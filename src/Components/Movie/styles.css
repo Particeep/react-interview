@@ -1,0 +1,17 @@
+.movie{
+	width: 300px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: silver;
+	margin: 5px auto;
+	padding: 5px;
+}
+
+h1 {
+	margin-bottom: 0px;
+}
+
+strong {
+	font-weight: normal;
+	font-size: 1.1em;
+}

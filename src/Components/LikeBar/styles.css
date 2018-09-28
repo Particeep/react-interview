@@ -1,0 +1,40 @@
+.like-bar-container{
+	width: 160px;
+	margin: auto;
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+progress {
+	height: 5px;
+	width: 160px;	
+}
+
+.radio-button {
+	 appearance:none;
+}
+
+label {
+	height: 20px;
+	width: 23px;
+    display:inline-block;
+    cursor:pointer;
+}
+
+.like {
+	background-image: url('./img/like-button.png');
+
+}
+
+.dislike {
+	background-image: url('./img/dislike-button.png');
+}
+
+form {
+	display: flex;
+	justify-content: space-between;
+}
+
+span {
+	margin-left: 5px;
+}
