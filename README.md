@@ -6,4 +6,4 @@
 
 3. Ajouter un bouton toggle like/dislike
 
-4. Ajouter un filtre par catégorie
+4. Ajouter un filtre par catégorie en supposant qu'on ne les connaisse pas à l'avance (il faut donc les récupérer depuis les films).
