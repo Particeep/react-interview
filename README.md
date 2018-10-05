@@ -6,4 +6,8 @@
 
 3. Ajouter un bouton toggle like/dislike
 
-4. Ajouter un filtre par catégorie en supposant qu'on ne les connaisse pas à l'avance (il faut donc les récupérer depuis les films).
+4. Ajouter un filtre par catégorie (de type multiselect) en supposant qu'on ne les connaisse pas à l'avance (il faut donc les récupérer dynamiquement depuis les films).
+
+5. Ajouter un système de pagination avec les fonctionnalités suivantes: 
+    * Boutons précédent/suivant
+    * Choix du nombre d'élements afficher par page (5, 10 ou 20).
