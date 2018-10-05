@@ -12,4 +12,4 @@
 
 5. Ajouter un système de pagination avec les fonctionnalités suivantes: 
     * Boutons précédent/suivant
-    * Choix du nombre d'élements afficher par page (4, 8 ou 12).
+    * Choix du nombre d'élements affichés par page (4, 8 ou 12).
