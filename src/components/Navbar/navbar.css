@@ -1,0 +1,29 @@
+.nav-bar ul{
+        margin: 0;
+        padding: 0;
+        background-color:#333545;
+}
+.nav-bar ul::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+.nav-bar ul li{
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin: 0;
+    padding: 30px;
+    list-style-type: none;
+    display: inline-block;
+    float: left;
+}
+.nav-bar ul li.pull-right{
+    margin: 0;
+    padding: 30px;
+    list-style-type: none;
+    display: inline-block;
+    float: right;
+}
