@@ -8,6 +8,7 @@
      margin: 20px;
      box-sizing: border-box;
      box-shadow: 5px 7px #797877;
+     position: relative;
 }
 .movie-card-outer .movie-card{
     height: 150px;
@@ -19,7 +20,7 @@
 .movie-card-outer .movie-card h3{
     letter-spacing: 3px;
     font-weight: bolder;
-    font-size: 30px;
+    font-size: 25px;
     color: #fff;
     text-transform: uppercase;
     text-shadow: 1px 1px #1e1f17;
@@ -45,4 +46,21 @@
     text-transform: uppercase;
     text-shadow: 1px 1px #1e1f17;
 
+}
+.movie-card-outer .likes-holder{
+    display: inline-block;
+    float: left;
+    width: 50%;
+    font-size: 25px;
+    color: #52524f
+}
+.movie-card-outer .likes-holder .fa {
+    cursor: pointer;
+}
+.movie-card-outer .delete{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    font-size: 15px;
+    cursor: pointer;
 }

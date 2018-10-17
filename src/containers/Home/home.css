@@ -3,3 +3,28 @@
     background-color: azure;
     margin:50px;
 }
+.filter{
+    text-align: center;
+    position: relative;
+    background-color: #b58927;
+}
+.filter .fa{
+    font-size:36px;
+    float:right;
+    padding: 20px;
+    cursor: pointer;
+}
+.filter::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+.filter .filter-options{
+  position: absolute;
+  top :0;
+  right:0;
+  background-color: black;
+  color:#fff;
+  height: 100px;
+  width: 200px;
+}

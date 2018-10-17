@@ -26,6 +26,66 @@ class Home extends Component{
             moviesPerPage
         })
     }
+    
+    // Like the Movie
+
+    likeMovie = (id,isDisliked,flag)=>{
+        let newMovieList=this.state.moviesList.map((movie)=>{
+            if(id==movie.id){
+                debugger
+                if(flag){
+                    movie.likes +=1;
+                    if(isDisliked){
+                        movie.dislikes -=1;
+                    }
+                }
+                else{
+                    movie.likes -=1;
+                }
+            }
+              return movie;
+            })
+
+            this.setState({
+                moviesList:newMovieList
+            })
+    }
+
+    // Dislike the Movie
+
+    disLikeMovie = (id,isLiked,flag) =>{
+      let newMovieList=this.state.moviesList.map((movie)=>{
+                if(id==movie.id){
+                    if(flag){
+                        movie.dislikes +=1;
+                        if(isLiked){
+                            movie.likes -=1;
+                        }
+                    }
+                    else{
+                        movie.dislikes -=1;
+                    }
+                    
+                    return movie;
+                }
+                else{
+                    return movie;
+                }
+      })
+      this.setState({
+        moviesList:newMovieList
+      })
+    }
+
+    // delete movies from the list
+
+    deleteMovie = (id) =>{
+        let newMovieList = this.state.moviesList.filter( (item) =>{ return item.id!=id});
+        debugger;
+        this.setState({
+            moviesList:newMovieList
+        })
+    }
 
     // get movies from the Promise
     getMovies = async()=>{
@@ -52,7 +112,13 @@ class Home extends Component{
         let { moviesList, moviesPerPage } = this.state;
         return(
             <div className="home-layout"> 
-                <RenderMovies movies={moviesList} moviesPerPage={moviesPerPage} updateMoviesPerPage={this.updateMoviesPerPage}/>
+                <RenderMovies deleteMovie={this.deleteMovie} 
+                               movies={moviesList} 
+                               moviesPerPage={moviesPerPage} 
+                               updateMoviesPerPage={this.updateMoviesPerPage}
+                               disLikeMovie={this.disLikeMovie}
+                               likeMovie = {this.likeMovie}
+                               />
             </div>
         )
     }
