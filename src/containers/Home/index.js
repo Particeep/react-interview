@@ -7,10 +7,11 @@ class Home extends Component{
     constructor(){
         
         super();
+
         //setting up Intial State with No Movies
         this.state={
           moviesList:[],
-          moviesPerPage: 4
+          moviesPerPage: 4,
         }
     }
 
@@ -27,7 +28,7 @@ class Home extends Component{
         })
     }
     
-    // Like the Movie
+    // Liked the Movie
 
     likeMovie = (id,isDisliked,flag)=>{
         let newMovieList=this.state.moviesList.map((movie)=>{
@@ -88,6 +89,7 @@ class Home extends Component{
     }
 
     // get movies from the Promise
+    
     getMovies = async()=>{
         try{
             let movies = await movies$;

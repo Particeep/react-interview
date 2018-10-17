@@ -1,6 +1,6 @@
 .movie-card-outer{
      float: left;
-     height: 400px;
+     height: 300px;
      width:45%;
      background-color: #bd9212;
      color: #fff;
@@ -11,7 +11,7 @@
      position: relative;
 }
 .movie-card-outer .movie-card{
-    height: 150px;
+    height: 100px;
     width:80%;
     margin:10%;
     background-color: #bd9212;
@@ -36,8 +36,8 @@
 
 }
 .movie-card-outer .movie-card-bottom {
-    height: 100px;
-    line-height: 100px;
+    height: 60px;
+    line-height: 60px;
     letter-spacing: 2px;
     font-weight: bold;
     font-size: 20px;
@@ -63,4 +63,20 @@
     right: 20px;
     font-size: 15px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 900px){
+    .movie-card-outer{
+        width: 80%;
+    }
+    .movie-card-outer .movie-card h3{
+        font-size: 20px;
+        letter-spacing: 1.5px;
+    }
+    .movie-card-outer .movie-card h6{
+        font-size: 12px;
+    }
+    .movie-card-outer .likes-holder{
+        font-size: 12px;
+    }
 }

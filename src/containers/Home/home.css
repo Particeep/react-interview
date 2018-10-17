@@ -18,16 +18,12 @@
     cursor: pointer;
 }
 .filter .drop-down-holder{
-    display: inline-block;
-    float: right;
-    padding: 20px;
+    float: left;
+    display: block;
+    margin: 1% 5%;
+    width: 90%;
 }
-.filter .drop-down-holder select{
-    width:100px;
-    border: none;
-    outline: none;
-    padding: 5px;
-}
+
 .filter .fa{
     font-size:36px;
     float:right;
@@ -47,4 +43,41 @@
   color:#fff;
   height: 100px;
   width: 200px;
+}
+
+.basic-multi-select{
+    width: 40%;
+    margin: 1% 2%;
+    float: left;
+    padding: 0px;
+}
+.basic-multi-select-num{
+    width: 40%;
+    margin: 1% 2%;
+    float: right;
+    padding: 0px;
+}
+
+
+@media screen and (max-width: 900px){
+    .basic-multi-select{
+        width:90%;
+        margin: 1% 5%;
+        float: left;
+        padding: 20px;
+    }
+
+    .filter .drop-down-holder {
+        float: left;
+        display: block;
+        margin: 1% 5%;
+        width: 100%;
+    }
+    .basic-multi-select-num{
+        width:90%;
+        margin: 1% 5%;
+        float: left;
+        padding: 20px;
+    }
+    
 }
