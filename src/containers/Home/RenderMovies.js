@@ -2,19 +2,7 @@ import React,{Component} from 'react';
 import './home.css'
 import MovieCard from '../../components/MovieCard/index';
 class RenderMovies extends Component{
-    constructor(){
-        super();
-        this.state={
-            isFilterOpen:false
-        }
-    }
-    toggleFilter = () =>{
-        this.setState((prev)=>{
-            return ({
-                isFilterOpen:!prev.isFilterOpen
-            })
-        })
-    }
+  
     renderMovies= () => {
     
         let { movies, moviesPerPage,likeMovie,deleteMovie,disLikeMovie} = this.props;
@@ -44,20 +32,40 @@ class RenderMovies extends Component{
             }
        
     }
+    renderFilter = () => {
+        let { movies} = this.props; 
+        let FiltersList = movies.map((movie)=>{
+                return movie.category
+        })
+        let Filter ="No Filters";
+        // removing Duplicates
+        FiltersList = Array.from(new Set(FiltersList));
+        if(!!FiltersList && FiltersList.length>0){
+            Filter=FiltersList.map((filter,index)=>{
+                    return (
+                        <div className="filter-item">
+                            <input type="checkbox" key={index} id={index} value={filter}/>
+                            <label for={index}> {filter} </label> 
+                         </div>
+                    )
+            })
+        }
+        return Filter;
+
+    }
 
     render(){
         return(
             <div>
                 <div className="filter">
-                   { this.state.isFilterOpen && <div className="filter-options">
-                                                   <input type="checkbox" name="vehicle1" value="Bike"/> I have a bike<br/>
-                                                 </div>
-                   }
-                   {
-                       !this.state.isFilterOpen &&  <i onClick={this.toggleFilter} className="fa fa-filter"></i>
-                   }
-                   
-                   
+                  {this.renderFilter()}
+                  <div className="drop-down-holder">
+                      <select>
+                          <option>4</option>
+                          <option>8</option>
+                          <option>12</option>
+                      </select>
+                  </div>
                 </div>
                 {this.renderMovies()}
             </div>

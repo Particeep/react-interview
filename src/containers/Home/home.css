@@ -8,6 +8,26 @@
     position: relative;
     background-color: #b58927;
 }
+.filter .filter-item{
+    display: inline-block;
+    padding: 20px;
+    float: left;
+}
+.filter .filter-item label{
+    
+    cursor: pointer;
+}
+.filter .drop-down-holder{
+    display: inline-block;
+    float: right;
+    padding: 20px;
+}
+.filter .drop-down-holder select{
+    width:100px;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
 .filter .fa{
     font-size:36px;
     float:right;
