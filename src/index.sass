@@ -8,9 +8,30 @@ $orange-2: #D65F30
 body
   background: $orange
   color: #fff
+  user-select: none
+
+.movie-filters
+  display: flex
+  flex-direction: row
+  margin: 20px auto 0 auto
+  max-width: 770px
+
+  .filter
+    &:first-child
+      margin-left: 0
+    margin-left: 20px
+
+    select
+      margin-left: 4px
+      background: $orange-2
+      color: #fff
+      height: 25px
+      line-height: 25px
+      border: 1px solid #fff
+      outline: none
 
 .movie-list
-  margin: 40px auto 0 auto
+  margin: 20px auto 0 auto
   display: flex
   flex-direction: row
   flex-wrap: wrap
@@ -27,6 +48,7 @@ body
   position: relative
 
   .movie-title
+    user-select: all
     font-weight: 700
     text-align: center
     padding: 10px 0

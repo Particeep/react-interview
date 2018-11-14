@@ -73,6 +73,22 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <div className="movie-filters">
+          <div className="filter">
+            Catégorie :
+            <select>
+              <option>Toutes</option>
+            </select>
+          </div>
+          <div className="filter">
+            Films par page :
+            <select>
+              <option>4</option>
+              <option>8</option>
+              <option selected>12</option>
+            </select>
+          </div>
+        </div>
         <div className="movie-list">
           {
             this.state.movies.map((movie) => (
@@ -88,7 +104,7 @@ class App extends React.Component {
                   </div>
                 </div>
                 <div className="delete-movie">
-                  <i class="far fa-window-close"></i>
+                  <i className="far fa-window-close"></i>
                 </div>
               </div>
             ))
