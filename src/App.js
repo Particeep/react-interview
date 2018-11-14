@@ -79,6 +79,17 @@ class App extends React.Component {
               <div className="movie-card">
                 <p className="movie-title">{movie.title}</p>
                 <p className="movie-category">Catégorie: {movie.category}</p>
+                <div className="like-bar">
+                  <div className="like-button">
+                    <i className="far fa-thumbs-up"></i> {movie.likes}
+                  </div>
+                  <div className="dislike-button">
+                    <i className="far fa-thumbs-down"></i> {movie.dislikes}
+                  </div>
+                </div>
+                <div className="delete-movie">
+                  <i class="far fa-window-close"></i>
+                </div>
               </div>
             ))
           }

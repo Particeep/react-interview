@@ -17,12 +17,14 @@ body
   max-width: 770px
 
 .movie-card
+  background: $orange-2
   width: 180px
-  height: 100px
-  border: 1px solid black
+  height: 110px
+  border: 1px solid #fff
   margin-right: 10px
   margin-top: 10px
   border-radius: 5px
+  position: relative
 
   .movie-title
     font-weight: 700
@@ -31,3 +33,32 @@ body
 
   .movie-category
     text-align: center
+    margin-bottom: 10px
+
+  .like-bar
+    display: flex
+    flex-direction: row
+    height: 48px
+    line-height: 48px
+
+    .like-button, .dislike-button
+      flex: 50%
+      text-align: center
+      cursor: pointer
+      &:hover
+        background: lighten($orange-2, 7%)
+
+    .like-button
+      border-radius: 0 0 0 5px
+
+    .dislike-button
+      border-radius: 0 0 5px 0
+
+  .delete-movie
+    display: inline-block
+    position: absolute
+    top: -7px
+    right: -5px
+    background: $orange-2
+    &:hover
+      background: lighten($orange-2, 20%)
