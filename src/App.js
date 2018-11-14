@@ -1,3 +1,5 @@
+import React from 'react'
+
 const movies = [
   {
     id: '1',
@@ -62,4 +64,14 @@ const movies = [
   },
 ]
 
-export const movies$ = new Promise((resolve, reject) => setTimeout(resolve, 100, movies))
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
+
+export default App
