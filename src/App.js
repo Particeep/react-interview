@@ -93,6 +93,7 @@ class App extends React.Component {
         movies.splice(index, 1)
         return true
       }
+      return false
     })
 
     let newState = {
@@ -124,6 +125,49 @@ class App extends React.Component {
     }
 
     this.setState(newState)
+  }
+
+  likeMovie(id, like) {
+    if (typeof like !== 'boolean')
+      like = true
+    let movies = this.state.movies.slice()
+    movies.some((movie) => {
+      if (movie.id === id) {
+        if (like) {
+          if (typeof movie.voted === 'boolean') {
+            if (!movie.voted) {
+              movie.dislikes -= 1
+              movie.likes += 1
+              movie.voted = true
+            } else {
+              movie.likes -= 1
+              movie.voted = null
+            }
+          } else {
+            movie.likes += 1
+            movie.voted = true
+          }
+        } else {
+          if (typeof movie.voted === 'boolean') {
+            if (movie.voted) {
+              movie.likes -= 1
+              movie.dislikes += 1
+              movie.voted = false
+            } else {
+              movie.dislikes -= 1
+              movie.voted = null
+            }
+          } else {
+            movie.dislikes += 1
+            movie.voted = false
+          }
+        }
+        return true
+      } else {
+        return false
+      }
+    })
+    this.setState({movies})
   }
 
   render() {
@@ -158,10 +202,12 @@ class App extends React.Component {
                 <p className="movie-title">{movie.title}</p>
                 <p className="movie-category">Catégorie: {movie.category}</p>
                 <div className="like-bar">
-                  <div className="like-button">
+                  <div className={"like-button " + (movie.voted === true ? 'current' : null)}
+                       onClick={() => this.likeMovie(movie.id)}>
                     <i className="far fa-thumbs-up"></i> {movie.likes}
                   </div>
-                  <div className="dislike-button">
+                  <div className={"dislike-button " + (movie.voted === false ? 'current' : null)}
+                       onClick={() => this.likeMovie(movie.id, false)}>
                     <i className="far fa-thumbs-down"></i> {movie.dislikes}
                   </div>
                 </div>
@@ -170,11 +216,10 @@ class App extends React.Component {
                 </div>
               </div>
             ))
-
           }
         </div>
 
-        {+
+        {
           this.state.nPages > 1 ? (
             <div className="pagination">
               <ul>
