@@ -6,7 +6,7 @@ class App extends React.Component {
     super()
     this.state = {
       movies: [],
-      nMoviesPerPage: 20,
+      nMoviesPerPage: 12,
       currentCategory: 'all',
       currentPage: 0,
       nPages: null
@@ -19,16 +19,20 @@ class App extends React.Component {
       .then((response) => {
         this.setState({
           movies: response.data,
-          nPages: Math.ceil(response.data.length / this.state.nMoviesPerPage)
+          nPages: this.getNPages(response.data, this.state.nMoviesPerPage)
         });
       })
+  }
+
+  getNPages(list, pageLength) {
+    return Math.ceil(list.length / pageLength)
   }
 
   setCategory(category) {
     this.setState({
       currentCategory: category,
       currentPage: 0,
-      nPages: Math.ceil(this.getMovies(category, this.state.nMoviesPerPage, true).length / this.state.nMoviesPerPage)
+      nPages: this.getNPages(this.getMovies(category, undefined, true), this.state.nMoviesPerPage)
     })
   }
 
@@ -36,7 +40,7 @@ class App extends React.Component {
     this.setState({
       nMoviesPerPage: nMoviesPerPage,
       currentPage: 0,
-      nPages: Math.ceil(this.getMovies(this.state.currentCategory, undefined, true).length / nMoviesPerPage)
+      nPages: this.getNPages(this.getMovies(this.state.currentCategory, undefined, true), nMoviesPerPage)
     })
   }
 
@@ -81,13 +85,54 @@ class App extends React.Component {
     return movies
   }
 
+  deleteMovie(id) {
+    let movies = this.state.movies.slice()
+
+    movies.some((movie, index) => {
+      if (movie.id === id) {
+        movies.splice(index, 1)
+        return true
+      }
+    })
+
+    let newState = {
+      movies
+    }
+
+    let _movies = movies.filter(
+      (movie) => (
+        (
+          this.state.currentCategory !== 'all' &&
+          this.state.currentCategory === movie.category
+        ) || this.state.currentCategory === 'all'
+      )
+    )
+
+    let nPages = this.getNPages(_movies, this.state.nMoviesPerPage)
+
+    if (nPages !== this.state.nPages) {
+      newState.nPages = nPages
+      if (this.state.currentPage > 0) {
+        newState.currentPage = this.state.currentPage - 1
+      }
+    }
+
+    if (_movies.length === 0) {
+      newState.currentCategory = 'all'
+      newState.currentPage = 0
+      newState.nPages = Math.ceil(movies.length / this.state.nMoviesPerPage)
+    }
+
+    this.setState(newState)
+  }
+
   render() {
     return (
       <div>
         <div className="movie-filters">
           <div className="filter">
             Catégorie :
-            <select onChange={(e) => this.setCategory(e.target.value)}>
+            <select value={this.state.currentCategory} onChange={(e) => this.setCategory(e.target.value)}>
               <option value="all">Toutes</option>
               {
                 this.getAvailableCategories().map((category, index) => (
@@ -98,7 +143,7 @@ class App extends React.Component {
           </div>
           <div className="filter">
             Films par page :
-            <select defaultValue="12" onChange={(e) => this.setNMoviesPerPage(parseInt(e.target.value))}>
+            <select value={this.state.nMoviesPerPage} onChange={(e) => this.setNMoviesPerPage(parseInt(e.target.value))}>
               <option value="4">4</option>
               <option value="8">8</option>
               <option value="12">12</option>
@@ -120,7 +165,7 @@ class App extends React.Component {
                     <i className="far fa-thumbs-down"></i> {movie.dislikes}
                   </div>
                 </div>
-                <div className="delete-movie">
+                <div className="delete-movie" onClick={() => this.deleteMovie(movie.id)}>
                   <i className="far fa-window-close"></i>
                 </div>
               </div>
