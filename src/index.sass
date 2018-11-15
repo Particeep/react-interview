@@ -84,3 +84,23 @@ body
     background: $orange-2
     &:hover
       background: lighten($orange-2, 20%)
+
+.pagination
+  max-width: 770px
+  margin: 20px auto 0 auto
+
+  ul
+    li
+      display: inline-block
+      &:first-child
+        margin-left: 0
+      margin-left: 10px
+      border: 1px solid $orange-2
+      border-radius: 10px
+      padding: 10px
+      background: lighten($orange-2, 10%)
+      &:hover
+        background: lighten($orange-2, 15%)
+      &.current
+        background: lighten($orange-2, 15%)
+      cursor: pointer
