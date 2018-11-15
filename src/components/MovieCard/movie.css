@@ -1,0 +1,55 @@
+.movie-card-outer{
+     float: left;
+     height: inherit;
+     width: 45%;
+	 text-align: center;
+     background-color: #F54C3C;
+     color: #fff;
+     border-radius: 15px;
+     margin: 15px;
+     box-sizing: border-box;
+     position: relative;
+	 font-weight: bold;
+}
+
+
+.movie-card-outer .movie-card h3{
+    letter-spacing: 3px;
+    font-weight: bolder;
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+
+}
+.movie-card-outer .movie-card h6{
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    text-transform: uppercase;
+
+}
+.movie-card-outer .movie-card-bottom {
+    height: 30px;
+    line-height: 30px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    background-color: #fff;
+    text-transform: uppercase;
+}
+.movie-card-outer .likes-holder{
+    display: inline-block;
+	margin-right: 5%;
+    float: right;
+    width: 20%;
+    font-size: 15px;
+    color: #000;
+	cursor: pointer;
+}
+.movie-card-outer .delete{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    font-size: 10px;
+    cursor: pointer;
+}

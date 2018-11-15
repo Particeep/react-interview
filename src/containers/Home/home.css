@@ -1,0 +1,83 @@
+.movie-layout{
+    text-align: center;
+    margin:100px;
+	font-size: 50px;
+}
+.filter{
+    text-align: center;
+    position: relative;
+    background-color: #F54C3C;
+}
+.filter .filter-item{
+    display: inline-block;
+    padding: 20px;
+    float: left;
+}
+.filter .filter-item label{
+    
+    cursor: pointer;
+}
+.filter .drop-down-holder{
+    float: left;
+    display: block;
+    margin: 1% 5%;
+    width: 90%;
+}
+
+.filter .fa{
+    font-size:36px;
+    float:right;
+    padding: 20px;
+    cursor: pointer;
+}
+.filter::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+.filter .filter-options{
+  position: absolute;
+  top :0;
+  right:0;
+  background-color: black;
+  color:#fff;
+  height: 100px;
+  width: 200px;
+}
+
+.basic-multi-select{
+    width: 20%;
+    margin: 1% 2%;
+    float: right;
+    padding: 0px;
+}
+.basic-multi-select-num{
+    width: 20%;
+    margin: 1% 2%;
+    float: right;
+    padding: 0px;
+}
+
+
+@media screen and (max-width: 900px){
+    .basic-multi-select{
+        width:90%;
+        margin: 1% 5%;
+        float: left;
+        padding: 20px;
+    }
+
+    .filter .drop-down-holder {
+        float: left;
+        display: block;
+        margin: 1% 5%;
+        width: 100%;
+    }
+    .basic-multi-select-num{
+        width:90%;
+        margin: 1% 5%;
+        float: left;
+        padding: 20px;
+    }
+    
+}
