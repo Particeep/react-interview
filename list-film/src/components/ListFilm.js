@@ -30,11 +30,12 @@ class ListFilm extends Component {
 
     }
     handelDelete =(film) =>{
+
         this.setState(previousState => {
             return {
 						filmList:[...previousState.filmList.filter(e => e.id !== film.id)],
             };
-        },()=>this.getMoviesPerPage());
+				},()=>this.getMoviesPerPage());
 
     }
     handelLike = (film,isLiked) =>{
@@ -69,6 +70,7 @@ class ListFilm extends Component {
         }
     }
     getMoviesPerPage = () => {
+		//	this.getSelectdCategories()
 				const { currentNumberPage,nbFilmPerPage,filmList } = this.state;
         const numberResultStart =
 						(currentNumberPage - 1) * nbFilmPerPage;
@@ -77,7 +79,10 @@ class ListFilm extends Component {
             numberResultEnd = this.filmFilter().length;
         }
 				const pageArray = this.filmFilter().slice(numberResultStart, numberResultEnd);
-
+				console.log("mes films ",pageArray);
+				if(pageArray.length ===0){
+					this.setState({currentNumberPage:1})
+				}
         this.setState({
             filmsPerPage: pageArray,
             numberResultStart: numberResultStart,
@@ -85,15 +90,24 @@ class ListFilm extends Component {
 
 				},()=>this.getCategories());
 		};
-
+		getSelectdCategories =() =>{
+			const {filmList,selectedCategories} = this.state;
+			 const categories =[]
+			let newSelectedCategories =[]
+			const myCategories = filmList.map(film =>film.category).filter(category =>(!categories.includes(category)))
+			 console.log("nouvelle categories",categories);
+			 newSelectedCategories= selectedCategories.filter(category =>myCategories.includes(category.value))
+			 this.setState({selectedCategories:newSelectedCategories})
+		}
 		getCategories =() =>{
-			const {filmList} = this.state;
+			this.getSelectdCategories()
+		  const {filmList} = this.state;
 			const selectedCategories =[];
 			const categoriesObject =[{}];
-			filmList.map(film =>{
-				if(!selectedCategories.includes(film.category)){
-					selectedCategories.push(film.category)
-					categoriesObject.push({value:film.category,label:film.category})
+			filmList.map(film =>film.category).filter(category =>{
+				if(!selectedCategories.includes(category)){
+					selectedCategories.push(category)
+					categoriesObject.push({value:category,label:category})
 				}
 			})
 			this.setState({categoriesObject})
@@ -104,7 +118,7 @@ class ListFilm extends Component {
 		console.log("selectedCategories",selectedCategories);
 
 		const options = selectedCategories.map(option => option.value)
-			console.log(options);
+			console.log("mes catégories", options);
 
 	if(options.length!==0){
 		return filmList.filter(film =>options.includes(film.category) )
@@ -184,7 +198,7 @@ class ListFilm extends Component {
 							options={options}
 						/>
 							<Select
-
+							// value ={categoriesObject}
 							value={selectedCategories}
 							onChange={this.handleChangeCategory}
 							options={categoriesObject}
