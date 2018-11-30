@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { ClipLoader } from "react-spinners";
 import Select from "react-select";
-import FilmCard from "./FilmCard";
-import { movies$ } from "../movies";
-import "./listFilm.css";
+import {
+  TiMediaFastForwardOutline,
+  TiMediaRewindOutline
+} from "react-icons/ti";
 
+import FilmCard from "./FilmCard";
+import movies$ from "../movies";
+import "./listFilm.css";
+/**
+ * options to select movies per page
+ */
 const options = [
   { value: 4, label: 4 },
   { value: 8, label: 8 },
@@ -30,6 +37,9 @@ class ListFilm extends Component {
     });
   };
 
+  /**
+   * delete a movie
+   */
   handelDelete = film => {
     this.setState(
       previousState => ({
@@ -39,60 +49,54 @@ class ListFilm extends Component {
     );
   };
 
-  handelLike = (film, stateChild) => {
-    // const { isLiked } = stateChild;
-    if (stateChild) {
-      // film.likes += 1;
-      console.log("one like", film.likes);
-
-      const { likes, dislikes } = film;
-
+  /**
+   * like a movie
+   */
+  handleLike = (film, isLiked) => {
+    if (isLiked) {
+      const NewLikesFilm = {
+        id: film.id,
+        title: film.title,
+        category: film.category,
+        likes: film.likes + 1,
+        dislikes: film.dislikes
+      };
       this.setState(previousState => ({
-        filmList: previousState.filmList.map(e => {
-          if (e.id === film.id)
-            return {
-              category: film.category,
-              title: film.title,
-              id: film.id,
-              likes: likes + 1,
-              dislikes
-            };
+        filmList: [
+          ...previousState.filmList.filter(e => e.id !== film.id),
+          NewLikesFilm
+        ],
+
+        filmsPerPage: previousState.filmsPerPage.map(e => {
+          if (e.id === film.id) return NewLikesFilm;
           return e;
         })
       }));
-      // this.setState(previousState => ({
-      //   filmList: [
-      //     ...previousState.filmList.filter(e => e.id !== film.id),
-      //     { likes: [likes + 1], dislikes }
-      //   ]
-      // }));
     } else {
-      const { likes, dislikes } = film;
-      console.log(likes);
+      const NewDislikesFilm = {
+        id: film.id,
+        title: film.title,
+        category: film.category,
+        likes: film.likes,
+        dislikes: film.dislikes + 1
+      };
       this.setState(previousState => ({
-        filmList: previousState.filmList.map(movie => {
-          if (movie.id === film.id)
-            return {
-              category: film.category,
-              title: film.title,
-              id: film.id,
-              likes,
-              dislikes: dislikes + 1
-            };
-          return movie;
+        filmList: [
+          ...previousState.filmList.filter(e => e.id !== film.id),
+          NewDislikesFilm
+        ],
+        filmsPerPage: previousState.filmsPerPage.map(e => {
+          if (e.id === film.id) return NewDislikesFilm;
+          return e;
         })
       }));
-      // this.setState(previousState => ({
-      //   filmList: [
-      //     ...previousState.filmList.filter(e => e.id !== film.id),
-      //     { likes, dislikes: dislikes + 1 }
-      //   ]
-      // }));
     }
   };
 
+  /**
+   * get a number movies per page
+   */
   getMoviesPerPage = () => {
-    //	this.getSelectdCategories()
     const { currentNumberPage, nbFilmPerPage, filmList } = this.state;
     if (this.filmFilter().length !== 0) {
       const numberResultStart = (currentNumberPage - 1) * nbFilmPerPage;
@@ -104,7 +108,6 @@ class ListFilm extends Component {
         numberResultStart,
         numberResultEnd
       );
-      console.log("mes films ", pageArray);
       this.setState(
         {
           filmsPerPage: pageArray
@@ -118,7 +121,6 @@ class ListFilm extends Component {
         numberResultEnd = filmList.length;
       }
       const pageArray = filmList.slice(numberResultStart, numberResultEnd);
-      console.log("mes films ", pageArray);
       this.setState(
         {
           filmsPerPage: pageArray
@@ -128,6 +130,9 @@ class ListFilm extends Component {
     }
   };
 
+  /**
+   * get  table of the categories selected by the user
+   */
   getSelectdCategories = () => {
     const { filmList, selectedCategories } = this.state;
     const categories = [];
@@ -141,6 +146,9 @@ class ListFilm extends Component {
     this.setState({ selectedCategories: newSelectedCategories });
   };
 
+  /**
+   * get categories
+   */
   getCategories = () => {
     this.getSelectdCategories();
     const { filmList } = this.state;
@@ -158,6 +166,10 @@ class ListFilm extends Component {
     this.setState({ categoriesObject });
   };
 
+  /**
+   * filter all the movies to render the result to the user
+   * depending in the selected categories
+   */
   filmFilter = () => {
     const { filmList, selectedCategories } = this.state;
     const myOptions = selectedCategories.map(option => option.value);
@@ -168,6 +180,9 @@ class ListFilm extends Component {
     return filmList;
   };
 
+  /**
+   * Go to the previous page
+   */
   handlerButtonPrevious = () => {
     const { currentNumberPage } = this.state;
     if (currentNumberPage > 1) {
@@ -197,6 +212,9 @@ class ListFilm extends Component {
     }
   };
 
+  /**
+   * event selection number per page
+   */
   handleChange = selectedOption => {
     this.setState(
       { nbFilmPerPage: selectedOption.value, currentNumberPage: 1 },
@@ -204,9 +222,13 @@ class ListFilm extends Component {
     );
   };
 
+  /**
+   * event selection categories
+   */
   handleChangeCategory = selectedOption => {
-    this.setState({ selectedCategories: selectedOption }, () =>
-      this.getMoviesPerPage()
+    this.setState(
+      { selectedCategories: selectedOption, currentNumberPage: 1 },
+      () => this.getMoviesPerPage()
     );
   };
 
@@ -216,56 +238,65 @@ class ListFilm extends Component {
       filmList,
       categoriesObject,
       selectedCategories,
-      currentNumberPage,
       filmsPerPage,
       nbFilmPerPage
     } = this.state;
 
     if (loading && filmList.length !== 0) {
       return (
-        <div>
-          <div className="ListFilm">
+        <div className="LisFilm">
+          <h1>Available Movies</h1>
+          <div className="select">
+            <Select
+              name="categories"
+              placeholder="select categories"
+              value={selectedCategories}
+              onChange={this.handleChangeCategory}
+              options={categoriesObject}
+              isMulti
+            />
+          </div>
+          <div className="select">
+            <Select
+              name="pages"
+              placeholder="movies per page"
+              value={nbFilmPerPage}
+              onChange={this.handleChange}
+              options={options}
+            />
+          </div>
+          <div className="ListCards">
             {filmsPerPage.map(film => (
               <div key={film.id} className="FilmCard">
                 <FilmCard
                   key={film.id}
-                  film={film}
+                  id={film.id}
+                  title={film.title}
+                  category={film.category}
+                  likes={film.likes}
+                  dislikes={film.dislikes}
                   handelDelete={this.handelDelete}
-                  handelLike={this.handelLike}
+                  handleLike={this.handleLike}
                 />
               </div>
             ))}
           </div>
-          <button type="submit" onClick={this.handlerButtonPrevious}>
-            {"\u003C"}
-          </button>
-          {currentNumberPage}
-          <button type="submit" onClick={this.handlerButtonNext}>
-            {"\u003E"}
-          </button>
-          <Select
-            name="nbFilmPerPage"
-            value={nbFilmPerPage}
-            onChange={this.handleChange}
-            options={options}
+          <TiMediaRewindOutline
+            className="previous"
+            size={40}
+            onClick={this.handlerButtonPrevious}
           />
-          <Select
-            value={selectedCategories}
-            onChange={this.handleChangeCategory}
-            options={categoriesObject}
-            isMulti
+          <TiMediaFastForwardOutline
+            className="next"
+            size={40}
+            onClick={this.handlerButtonNext}
           />
         </div>
       );
     }
     return (
-      <div className="sweet-loading">
-        <ClipLoader
-          sizeUnit="px"
-          size={150}
-          color="#123abc"
-          loading={loading}
-        />
+      <div className="loading">
+        <ClipLoader sizeUnit="px" size={50} color="#123abc" loading={loading} />
       </div>
     );
   }
