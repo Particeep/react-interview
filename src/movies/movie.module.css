@@ -1,0 +1,29 @@
+.movie {
+  height: 100px;
+  display: inline-table;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  margin: 5px;
+  align-content: center;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+.like {
+  cursor: pointer;
+}
+
+h1 {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+  cursor: pointer;
+}
