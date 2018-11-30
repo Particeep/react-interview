@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
@@ -16,8 +20,32 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "airbnb",
+      "plugin:prettier/recommended",
+      "prettier/flowtype",
+      "prettier/react",
+      "prettier/standard"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+      "react/jsx-filename-extension": [
+        "js",
+        "jsx"
+      ],
+      "prettier/prettier": [
+        "error",
+        {},
+        {
+          "usePrettierrc": false
+        }
+      ]
+    }
   },
+  "eslintIgnore": [
+    "src/App.test.js",
+    "src/index.js"
+  ],
   "browserslist": [
     ">0.2%",
     "not dead",
