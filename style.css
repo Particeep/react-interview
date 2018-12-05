@@ -1,0 +1,112 @@
+
+* {
+    box-sizing: border-box;
+}
+
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.row-center {
+  text-align: center;
+}
+
+label {
+  font-size: 30px;
+  color: white;
+}
+select {
+  font-size: 20px
+}
+
+
+
+.row-center > div {
+  background-color: lightgray;
+}
+.row-center > div {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.header{
+  background-color: #2196F3;
+}
+
+.liked {
+  background-color: green;
+}
+
+.disliked {
+  background-color: yellow;
+}
+.like {
+  background-color: teal;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    background-color: #f44336;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form {
+  text-align: center;
+  padding: 15px;
+}
+
+form > select {
+  font-weight: bold;
+}
+
+[class*="col-"] {
+    width: 100%;
+    float: left;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
