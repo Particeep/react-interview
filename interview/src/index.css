@@ -17,9 +17,12 @@ code {
   text-align: center;
 }
 
+.movies_list__multiselect {
+  padding: 1rem;
+}
 .movies_list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1rem;
   padding: 1rem;
 }
@@ -32,34 +35,35 @@ code {
 }
 .movie_card__category {
   text-align: center;
+  font-size: 18px;
 }
 .movie_card__bar {
   display: grid;
-  grid-auto-flow: column;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1px;
+  height: 4em;
   align-items: center;
+}
+.icon_label {
+  text-align: right;
 }
 .icon_like {
   display: inline-block;
-  text-align: flex-start;
-  line-height: 3em;
-  padding-left: 5em;
   background-image: url(assets/icons/youtube-up.png);
   background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: 0.6em;
-  background-size: 2em;
+  background-position: center;
+  background-size: 1.5em;
+  min-width: 3em;
+  min-height: 3em;
 }
 .icon_dislike {
   display: inline-block;
-  text-align: flex-end;
-  line-height: 3em;
-  padding-left: 5em;
   background-image: url(assets/icons/youtube-down.png);
   background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: 0.6em;
-  background-size: 2em;
+  background-position: center;
+  background-size: 1.5em;
+  min-width: 3em;
+  min-height: 3em;
 }
 .movie_card__buttons {
   display: grid;

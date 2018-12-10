@@ -15,12 +15,10 @@ function MovieCard({
       <h1 className="movie_card__title">{title}</h1>
       <div className="movie_card__category">{category}</div>
       <div className="movie_card__bar">
-        <label className="icon_like" onClick={onLike(id)}>
-          {likes}
-        </label>
-        <label className="icon_dislike" onClick={onDislike(id)}>
-          {dislikes}
-        </label>
+        <div className="icon_label">{likes}</div>
+        <div className="icon_like" onClick={onLike(id)} />
+        <div className="icon_label">{dislikes}</div>
+        <div className="icon_dislike" onClick={onDislike(id)} />
       </div>
       <div className="movie_card__buttons">
         <button
