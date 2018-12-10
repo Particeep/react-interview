@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App-header {
+  text-align: center;
+}
+
+.movies_list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+}
+.movie_card {
+  display: grid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.movie_card__title {
+  text-align: center;
+}
+.movie_card__category {
+  text-align: center;
+}
+.movie_card__bar {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.icon_like {
+  display: inline-block;
+  text-align: flex-start;
+  line-height: 3em;
+  padding-left: 5em;
+  background-image: url(assets/icons/youtube-up.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 0.6em;
+  background-size: 2em;
+}
+.icon_dislike {
+  display: inline-block;
+  text-align: flex-end;
+  line-height: 3em;
+  padding-left: 5em;
+  background-image: url(assets/icons/youtube-down.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 0.6em;
+  background-size: 2em;
+}
+.movie_card__buttons {
+  display: grid;
+  height: 2em;
+  justify-content: center;
+}
+.btn_delete {
+  color: white;
+  background-color: red;
+  width: 16em;
+  border-radius: 25px;
+}
