@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 
+import { paginate } from '../utils/array';
 import { movies$ } from '../api/movies';
 import MovieCard from './movie-card';
 
@@ -8,6 +9,8 @@ class MoviesList extends Component {
   state = {
     movies: [],
     selectedCategories: [],
+    perpage: 6,
+    currentPage: 1,
     error: undefined,
   };
 
@@ -44,10 +47,19 @@ class MoviesList extends Component {
       ),
     }));
   };
+  onInputChange = ({ target }) => {
+    this.setState(prevState => ({ [target.name]: target.value }));
+  };
   onCategorySelect = selectedOptions => {
     this.setState(prevState => ({
       selectedCategories: selectedOptions.map(op => op.value),
     }));
+  };
+  onPreviousClick = ({ target }) => {
+    this.setState(({ currentPage }) => ({ currentPage: currentPage - 1 }));
+  };
+  onNextClick = ({ target }) => {
+    this.setState(({ currentPage }) => ({ currentPage: currentPage + 1 }));
   };
   extractedCategories = (movies = []) => {
     const _categories = movies.map(m => m.category);
@@ -60,7 +72,10 @@ class MoviesList extends Component {
   };
 
   render() {
-    const { movies, selectedCategories } = this.state;
+    const { movies, selectedCategories, perpage, currentPage } = this.state;
+
+    const _filtredMovies = this.filtredMovies(movies, selectedCategories);
+    const _moviesToRender = paginate(_filtredMovies, perpage, currentPage);
     return (
       <div>
         <div className="movies_list__multiselect">
@@ -79,7 +94,7 @@ class MoviesList extends Component {
           />
         </div>
         <div className="movies_list">
-          {this.filtredMovies(movies, selectedCategories).map(m => (
+          {_moviesToRender.map(m => (
             <MovieCard
               key={m.id}
               onDelete={this.onMovieDelete}
@@ -88,6 +103,34 @@ class MoviesList extends Component {
               {...m}
             />
           ))}
+        </div>
+        <div className="movies_list__pagination">
+          <button
+            className="btn_previous"
+            name="previous"
+            disabled={currentPage <= 1}
+            onClick={this.onPreviousClick}
+          >
+            PREVIOUS
+          </button>
+          <div className="page_input_wrap">
+            <input
+              className="perpage_input"
+              type="number"
+              name="perpage"
+              value={perpage}
+              onChange={this.onInputChange}
+            />
+            <div>| {currentPage} |</div>
+          </div>
+          <button
+            className="btn_next"
+            name="next"
+            disabled={currentPage >= _filtredMovies.length / perpage}
+            onClick={this.onNextClick}
+          >
+            NEXT
+          </button>
         </div>
       </div>
     );

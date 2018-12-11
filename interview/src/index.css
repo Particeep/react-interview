@@ -12,6 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #666666;
+}
 
 .App-header {
   text-align: center;
@@ -45,7 +49,7 @@ code {
   align-items: center;
 }
 .icon_label {
-  text-align: right;
+  text-align: left;
 }
 .icon_like {
   display: inline-block;
@@ -75,4 +79,35 @@ code {
   background-color: red;
   width: 16em;
   border-radius: 25px;
+}
+.movies_list__pagination {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 2em;
+  justify-content: center;
+  grid-gap: 1em;
+  padding: 1rem;
+}
+.page_input_wrap {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 0.5em;
+}
+.perpage_input {
+  border-radius: 25px;
+  text-align: center;
+}
+
+.btn_previous {
+  color: white;
+  background-color: #6666cc;
+  width: 16em;
+  border-radius: 25px 0 0 25px;
+}
+
+.btn_next {
+  color: white;
+  background-color: #6666cc;
+  width: 16em;
+  border-radius: 0 25px 25px 0;
 }
