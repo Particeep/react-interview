@@ -1,0 +1,108 @@
+
+
+.barre
+{
+    margin-left: 55px;
+}
+
+.buttons{
+  margin-top: 10px;
+}
+
+button
+{
+    border-radius: 05px;
+    margin-top: 10px;
+}
+
+.supp{
+  margin-top: 50px;
+  margin-left: 38%;
+  background-color: red;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  height: 35px;
+}
+
+button:hover
+{
+  cursor: pointer;
+}
+
+.like
+{
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+h1
+{
+  padding-top: 15px;
+  text-align: center;
+  background-color: grey;
+  height: 80px;
+  text-shadow: 1px 1px 1px white;
+}
+
+h2
+{
+  text-align: center;
+  
+}
+
+.bloc
+{
+  width: 300px;
+  height: 400px;
+  background-color: whitesmoke;
+  margin-right: 15px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.progress{
+    width: 100%;
+    text-align: center;
+  }
+  .buttons {
+    width: 100%;
+    text-align: center;
+  }
+  #minus, #plus {
+    font-size: 1.9;
+    padding: 8px 15px;
+    color: white;
+    background-color: #2ecc71;
+    border: 2px soild #27ae60;
+    border-radius: 8px;
+    margin-right: 10px;
+  }
+
+  #minus{
+      background-color: red;
+  }
+  #minus:active, #plus:active {
+    background-color: #27ae60;
+  }
+  progress[value]::-webkit-progress-value {
+    background-image:
+         -webkit-linear-gradient(-45deg, 
+                                 transparent 33%, rgba(0, 0, 0, .1) 33%, 
+                                 rgba(0,0, 0, .1) 66%, transparent 66%),
+         -webkit-linear-gradient(top, 
+                                 rgba(255, 255, 255, .25), 
+                                 rgba(0, 0, 0, .25)),
+         -webkit-linear-gradient(left, #09c, #f44);
+  
+      border-radius: 2px; 
+      background-size: 35px 20px, 100% 100%, 100% 100%;
+  }
+  a {
+    text-decoration: none;
+  }
+  #words {
+    font-size: .9em;
+    font-style: italic;
+  }
