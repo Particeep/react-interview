@@ -1,0 +1,30 @@
+*,
+::after,
+::before {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    padding: 0.25vw 4vw 0.25vw 4vw;
+    background-color: #f5faff;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav svg {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #4285f4;
+}
+
+.nav svg:hover {
+    transform: rotate(-360deg);
+    transition: all 0.5s;
+    transform-origin: center;
+}
