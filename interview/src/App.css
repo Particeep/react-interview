@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-selection {
+  background-color: gainsboro;
+}
+
+.App-movies {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  background-color: #2196F3;
+  padding: 10px;
+  background-color: white;
+}

@@ -1,0 +1,13 @@
+article {
+    border: 1px solid black;
+    padding: 20px;
+    font-size: 20px;
+    margin: 5px;
+}
+
+span {
+    display: block;
+    margin-top: 5px;
+    padding: 5px;
+    background-color: gainsboro;
+}
