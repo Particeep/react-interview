@@ -1,4 +1,4 @@
-## Available Scripts
+## Commandes disponibles
 
 Dans le répertoire du projet:
 
