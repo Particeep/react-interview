@@ -33,10 +33,11 @@ export default class App extends Component {
 					movies: JSON.parse(JSON.stringify(movies)),
 					maxPages: Math.ceil(movies.length / this.state.display)
 				},
-				() =>
+				() => {
 					this.setState({
 						filteredMovies: this.state.movies
-					})
+					});
+				}
 			)
 		);
 	}
@@ -61,14 +62,11 @@ export default class App extends Component {
 		let movies = this.state.movies;
 		let index = this.getIndex(id);
 		if (index >= 0) {
-			let filteredMovies = this.state.filteredMovies;
-			let indexFiltered = this.state.filteredMovies.findIndex(movie => movie.id === id);
 			movies.splice(index, 1);
-			filteredMovies.splice(indexFiltered, 1);
-			this.setState({ movies, filteredMovies }, () => this.setMaxPages());
-			if (filteredMovies.length === 0) {
-				this.setState({ filter: [] }, () => this.getFilteredMovies());
-			}
+			this.setState({ movies }, () => {
+				this.setMaxPages();
+				this.getFilteredMovies();
+			});
 		}
 	}
 
@@ -121,12 +119,19 @@ export default class App extends Component {
 				this.state.filter.length === 0 ||
 				this.state.filter.find(cat => cat === movie.category)
 		);
-		this.setState(
-			{
-				filteredMovies
-			},
-			() => this.setMaxPages()
-		);
+		console.log(filteredMovies.length);
+		if (filteredMovies.length === 0) {
+			this.setState({ filter: [], filteredMovies: this.state.movies }, () =>
+				this.setMaxPages()
+			);
+		} else {
+			this.setState(
+				{
+					filteredMovies
+				},
+				() => this.setMaxPages()
+			);
+		}
 	}
 
 	selectDisplay(count) {
@@ -158,9 +163,16 @@ export default class App extends Component {
 	}
 
 	setMaxPages() {
-		this.setState({
-			maxPages: Math.ceil(this.state.filteredMovies.length / this.state.display)
-		});
+		this.setState(
+			{
+				maxPages: Math.ceil(this.state.filteredMovies.length / this.state.display)
+			},
+			() => {
+				if (this.state.page > this.state.maxPages) {
+					this.changePage(-1);
+				}
+			}
+		);
 	}
 
 	renderMovies() {
