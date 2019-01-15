@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MdThumbDown, MdThumbUp } from "react-icons/md";
-import "./movie.css";
+import "./Movie.css";
 
 export default class Movie extends Component {
 	renderRating() {

@@ -1,0 +1,101 @@
+.card-container {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    padding: 4vh 4vw;
+}
+
+.movie {
+    left: 0;
+    top: 0;
+    border: unset;
+    box-shadow: 0 1.5px 8px 0.5px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 10px;
+    min-width: 280px;
+    padding: 0.5rem 0;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0.5rem 0;
+}
+
+.category {
+    font-style: italic;
+    font-size: 16px;
+    margin: 0.5rem 0;
+}
+
+.rating {
+    margin: auto;
+    width: 80%;
+}
+
+.rating data {
+    margin: 0 5px;
+}
+
+.rating>span {
+    cursor: pointer;
+    display: flex;
+    user-select: none;
+}
+
+.rating>span:hover svg {
+    transform: scale(1.5);
+}
+
+.rating>span:first-of-type {
+    float: left;
+    margin-left: 0.6rem;
+}
+
+.rating>span:first-of-type:hover svg {
+    color: #76e297;
+}
+
+.rating>span:last-of-type {
+    float: right;
+    margin-right: 0.6rem;
+}
+
+.rating>span:last-of-type:hover svg {
+    color: #b81639;
+}
+
+.ratio {
+    width: 100%;
+    display: inline-flex;
+    background-color: #ce415f;
+}
+
+.ratio>.likes {
+    height: 5px;
+    background-color: #8ef1ac;
+}
+
+button.delete {
+    padding: 0.54rem 1.14rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    outline: none;
+    border: unset;
+    cursor: pointer;
+    background-color: #4285f4;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+button.delete:hover {
+    background-color: #629eff;
+}
+
+button.delete:active {
+    background-color: #1656be;
+    box-shadow: unset;
+}

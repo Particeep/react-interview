@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { MdReplay } from "react-icons/md";
+import {
+	MdReplay,
+	MdChevronLeft,
+	MdChevronRight,
+	MdFirstPage,
+	MdLastPage
+} from "react-icons/md";
 import Movie from "./Movie";
 import Multiselect from "./Multiselect";
 import FlipMove from "react-flip-move";
@@ -10,7 +16,9 @@ export default class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			filter: []
+			filter: [],
+			display: 4,
+			page: 1
 		};
 	}
 
@@ -19,29 +27,45 @@ export default class App extends Component {
 	}
 
 	getMovies() {
-		movies$.then(movies => this.setState({ movies: JSON.parse(JSON.stringify(movies)) }));
+		movies$.then(movies =>
+			this.setState(
+				{
+					movies: JSON.parse(JSON.stringify(movies)),
+					maxPages: Math.ceil(movies.length / this.state.display)
+				},
+				() =>
+					this.setState({
+						filteredMovies: this.state.movies
+					})
+			)
+		);
 	}
 
 	refresh() {
 		this.getMovies();
 		this.setState({ filter: [] });
-		document.querySelectorAll(".dropdown div").forEach(el => {
-			el.classList.remove("selected");
-		});
+		document
+			.querySelectorAll(".filter-container.categories .dropdown div")
+			.forEach(el => {
+				el.classList.remove("selected");
+			});
 	}
 
 	getIndex(id) {
 		let index = this.state.movies.findIndex(movie => movie.id === id);
 		if (index >= 0) return index;
-		return null;
+		return -1;
 	}
 
 	deleteMovie(id) {
 		let movies = this.state.movies;
 		let index = this.getIndex(id);
 		if (index >= 0) {
+			let filteredMovies = this.state.filteredMovies;
+			let indexFiltered = this.state.filteredMovies.findIndex(movie => movie.id === id);
 			movies.splice(index, 1);
-			this.setState({ movies });
+			filteredMovies.splice(indexFiltered, 1);
+			this.setState({ movies, filteredMovies }, () => this.setMaxPages());
 		}
 	}
 
@@ -74,25 +98,77 @@ export default class App extends Component {
 	selectCategory(category) {
 		let index = this.state.filter.findIndex(cat => cat === category);
 		if (index === -1) {
-			this.setState(prevState => ({
-				filter: [...prevState.filter, category]
-			}));
+			this.setState(
+				prevState => ({
+					filter: [...prevState.filter, category],
+					page: 1
+				}),
+				() => this.getFilteredMovies()
+			);
 		} else {
 			let filter = this.state.filter;
 			filter.splice(index, 1);
-			this.setState({ filter });
+			this.setState({ filter, page: 1 }, () => this.getFilteredMovies());
 		}
 	}
 
-	renderMovies() {
-		if (!this.state.movies) return null;
+	getFilteredMovies() {
+		let filteredMovies = this.state.movies.filter(
+			movie =>
+				this.state.filter.length === 0 ||
+				this.state.filter.find(cat => cat === movie.category)
+		);
+		this.setState(
+			{
+				filteredMovies
+			},
+			() => this.setMaxPages()
+		);
+	}
 
-		return this.state.movies.map(movie => {
-			if (
-				this.state.filter.length > 0 &&
-				!this.state.filter.find(cat => cat === movie.category)
-			)
-				return null;
+	selectDisplay(count) {
+		this.setState(
+			{
+				display: count,
+				page: 1
+			},
+			() => this.setMaxPages()
+		);
+	}
+
+	firstPage() {
+		this.setState({
+			page: 1
+		});
+	}
+	changePage(count) {
+		let newPage = this.state.page + count;
+		if (newPage > 0 && newPage <= this.state.maxPages)
+			this.setState({
+				page: newPage
+			});
+	}
+	lastPage() {
+		this.setState({
+			page: this.state.maxPages
+		});
+	}
+
+	setMaxPages() {
+		this.setState({
+			maxPages: Math.ceil(this.state.filteredMovies.length / this.state.display)
+		});
+	}
+
+	renderMovies() {
+		if (!this.state.movies || !this.state.filteredMovies) return null;
+
+		let counter = 0;
+		let pageCounter = (this.state.page - 1) * this.state.display;
+		return this.state.filteredMovies.map((movie, index) => {
+			if (counter === this.state.display || index < pageCounter) return null;
+
+			counter++;
 			return (
 				<Movie
 					key={movie.id}
@@ -113,13 +189,29 @@ export default class App extends Component {
 		return (
 			<div>
 				<div className="nav">
-					<MdReplay onClick={() => this.refresh()} />
+					<MdReplay className="refresh" onClick={() => this.refresh()} />
 					<Multiselect
-						categories={this.getCategories()}
+						type="categories"
+						options={this.getCategories()}
 						onSelect={category => this.selectCategory(category)}
+						multiple={true}
+					/>
+					<Multiselect
+						type="display"
+						options={[4, 8, 12]}
+						onSelect={count => this.selectDisplay(count)}
+						multiple={false}
+						selected={4}
 					/>
 				</div>
 				<FlipMove className="card-container">{this.renderMovies()}</FlipMove>
+				<div className="nav page">
+					<MdFirstPage onClick={() => this.firstPage()} />
+					<MdChevronLeft onClick={() => this.changePage(-1)} />
+					Page {this.state.page}
+					<MdChevronRight onClick={() => this.changePage(1)} />
+					<MdLastPage onClick={() => this.lastPage()} />
+				</div>
 			</div>
 		);
 	}

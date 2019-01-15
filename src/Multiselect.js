@@ -3,38 +3,60 @@ import FlipMove from "react-flip-move";
 import "./Multiselect.css";
 
 export default class Multiselect extends Component {
-	selectCategory(category) {
+	selectOption(option) {
+		if (!this.props.multiple) {
+			document
+				.querySelectorAll(".filter-container." + this.props.type + " .dropdown > div")
+				.forEach(el => {
+					el.classList.remove("selected");
+				});
+		}
+
 		document
-			.querySelector(".dropdown > div[category=" + category + "]")
+			.querySelector(".dropdown > div[option='" + option + "']")
 			.classList.toggle("selected");
-		this.props.onSelect(category);
+		this.props.onSelect(option);
 	}
 
 	renderSelect() {
-		return this.props.categories.map(category => {
+		return this.props.options.map(option => {
 			return (
-				<div
-					key={category}
-					category={category}
-					onClick={() => this.selectCategory(category)}>
-					<span>{category}</span>
+				<div key={option} option={option} onClick={() => this.selectOption(option)}>
+					<span>{option}</span>
 				</div>
 			);
 		});
 	}
 
-	toggleCategories(e) {
-		if (e.target !== document.querySelector(".filter-container")) return;
-		document.querySelector(".filter-container .dropdown").classList.toggle("active");
+	toggleDropdown(e) {
+		if (e.target !== document.querySelector(".filter-container." + this.props.type))
+			return;
+
+		document
+			.querySelector(".filter-container:not(." + this.props.type + ") .dropdown")
+			.classList.remove("active");
+		document
+			.querySelector(".filter-container." + this.props.type + " .dropdown")
+			.classList.toggle("active");
+	}
+
+	componentDidMount() {
+		if (this.props.selected > 0) {
+			document
+				.querySelector(".dropdown > div[option='" + this.props.selected + "']")
+				.classList.toggle("selected");
+		}
 	}
 
 	render() {
-		if (!this.props.categories || this.props.categories.length === 0)
+		if (!this.props.options || this.props.options.length === 0)
 			return "Aucun film disponible";
 
 		return (
-			<div className="filter-container" onClick={e => this.toggleCategories(e)}>
-				Filtrer par:
+			<div
+				className={"filter-container " + this.props.type}
+				onClick={e => this.toggleDropdown(e)}>
+				{this.props.type === "categories" ? "Filter par:" : "Afficher:"}
 				<FlipMove className="dropdown">{this.renderSelect()}</FlipMove>
 			</div>
 		);
