@@ -66,6 +66,9 @@ export default class App extends Component {
 			movies.splice(index, 1);
 			filteredMovies.splice(indexFiltered, 1);
 			this.setState({ movies, filteredMovies }, () => this.setMaxPages());
+			if (filteredMovies.length === 0) {
+				this.setState({ filter: [] }, () => this.getFilteredMovies());
+			}
 		}
 	}
 
