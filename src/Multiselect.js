@@ -10,6 +10,7 @@ export default class Multiselect extends Component {
 				.forEach(el => {
 					el.classList.remove("selected");
 				});
+			this.selected = option;
 		}
 
 		document
@@ -41,10 +42,11 @@ export default class Multiselect extends Component {
 	}
 
 	componentDidMount() {
-		if (this.props.selected > 0) {
+		if (this.props.selected) {
 			document
 				.querySelector(".dropdown > div[option='" + this.props.selected + "']")
 				.classList.toggle("selected");
+			this.selected = this.props.selected;
 		}
 	}
 
@@ -56,7 +58,7 @@ export default class Multiselect extends Component {
 			<div
 				className={"filter-container " + this.props.type}
 				onClick={e => this.toggleDropdown(e)}>
-				{this.props.type === "categories" ? "Filter par:" : "Afficher:"}
+				{this.props.type === "categories" ? "Filter par:" : "Afficher: " + this.selected}
 				<FlipMove className="dropdown">{this.renderSelect()}</FlipMove>
 			</div>
 		);
