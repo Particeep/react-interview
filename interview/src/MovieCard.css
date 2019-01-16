@@ -6,8 +6,25 @@ article {
 }
 
 span {
-    display: block;
-    margin-top: 5px;
     padding: 5px;
     background-color: gainsboro;
+    font-size: 10px;
+}
+
+.user-selected {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    margin-top: 20px;
+}
+
+.user-selected > a {
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+}
+
+.user-selected > a:hover {
+    border-bottom: 3px solid black;
 }

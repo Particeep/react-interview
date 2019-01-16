@@ -4,7 +4,7 @@ import {movies$} from './movies';
 import './MovieCard';
 import MovieCard from './MovieCard';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -18,6 +18,12 @@ class App extends Component {
     this.setState({ moviesList });
   }
 
+  deleteMovieCard(itemId) {
+    let arrMovies = this.state.moviesList;
+    arrMovies.splice(itemId, 1);
+    this.setState({moviesList: arrMovies});
+  }
+
   render() {
     return (
       <div className="App">
@@ -26,10 +32,15 @@ class App extends Component {
         </header>
         <div className="App-content">
           <div className="App-selection">
-            <p>Ok</p>
+            <p>Filtre par catégories</p>
           </div>
           <div className="App-movies">
-            <MovieCard data={this.state.moviesList} />
+            <MovieCard 
+              data={this.state.moviesList} 
+              delete={item => this.deleteMovieCard(item)}
+              like={item => this.likeMovieCard(item)}
+              dislike={item => this.dislikeMovieCard(item)}
+            />
           </div>
         </div>
       </div>
@@ -37,4 +48,3 @@ class App extends Component {
   }
 }
 
-export default App;

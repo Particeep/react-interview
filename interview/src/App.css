@@ -17,6 +17,7 @@
 
 .App-selection {
   background-color: gainsboro;
+  padding: 10px;
 }
 
 .App-movies {
@@ -25,4 +26,10 @@
   background-color: #2196F3;
   padding: 10px;
   background-color: white;
+}
+
+@media screen and (max-width: 640px) {
+  .App-movies {
+    grid-template-columns: 100%;
+  }
 }
