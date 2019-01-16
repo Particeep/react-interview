@@ -1,0 +1,173 @@
+body{
+  background-color: #e1e1e1;
+  margin: 0 5px 0 5px;
+  padding: 0;
+}
+
+.header{
+  background-color: #2e2122;
+  color: #e1e1e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin: 0 0 20px 0;
+}
+
+#settings{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.number-button{
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  cursor: pointer;
+  background: #dbd6d0;
+  border: 1px solid #2e2122;
+}
+
+.number-button:focus{
+  outline: 0;
+}
+
+.category-select{
+  width: 425px;
+}
+
+.main-content{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.movie-card{
+  width: 180px;
+  height: 250px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#card-infos{
+  width: 100%;
+  height: calc(100% - 11px);
+  border: 1px solid black;
+  text-align: center;
+  padding: 0 5px 0 5px;
+  font-size: 14px;
+  background: #dbd6d0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#card-infos h2{
+  height: 30%;
+}
+
+#card-infos p{
+  height: 20%;
+}
+
+
+#like-infos{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#like-count{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30% 0 30%;
+  font-size: 10px;
+}
+
+#like-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 4px;
+  margin-top: 7px;
+  text-align: center;
+}
+
+#likes{
+  background: #434665;
+}
+
+#dislikes{
+  background: #c55053;
+}
+
+.thumbs-up{
+  margin-right: 5px;
+  color: #434665;
+}
+
+.thumbs-down{
+  margin-left: 5px;
+  color: #c55053;
+}
+
+.thumbs-up:hover{
+  color: #656a9a;
+}
+
+.thumbs-down:hover{
+  color: #d68385;
+}
+
+#page-options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.page-button{
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  cursor: pointer;
+  background: #dbd6d0;
+  border: 1px solid #2e2122;
+}
+  
+.page-button:focus{
+  outline: 0;
+}
+
+.delete-button{
+  width: 60%;
+  height: 20px;
+  background-color: #c55053;
+  color: #300c0d;
+  border: 1px solid black;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.delete-button:hover{
+  background-color: #ce6668;
+}
+
+@media (max-width: 670px){
+  .movie-card{
+    width: 160px;
+    height: 230px;
+  }
+}
+
+@media (max-width: 610px){
+  .movie-card{
+    width: 140px;
+    height: 210px;
+  }
+}

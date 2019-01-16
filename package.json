@@ -1,0 +1,33 @@
+{
+  "name": "react-interview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --info=false --mode=development --hot --open --watch",
+    "build": "webpack --mode=production"
+  },
+  "author": "Erwan Le Cren",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.12.1",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "@types/react-fontawesome": "^1.6.4",
+    "@types/react-select": "^2.0.11",
+    "dotenv-webpack": "^1.6.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-fontawesome": "^1.6.1",
+    "react-select": "^2.2.0"
+  }
+}
