@@ -156,7 +156,7 @@ class MainContent extends React.Component<MyProps, MyState> {
     this.setState(prevState => {
       return {
         movies: updatedMovies,
-        selectedCategories: updatedCategories.length > 0 || updatedMovies.length === 0 ? updatedCategories : prevState.selectedCategories,
+        selectedCategories: updatedCategories.length > 0 || this.filterMovies(prevState.selectedCategories, updatedMovies).length === 0 ? updatedCategories : prevState.selectedCategories,
         currentPage: prevState.currentPage >= pageCount ? prevState.currentPage === 0 ? 0 : prevState.currentPage - 1 : prevState.currentPage
       }
     })
