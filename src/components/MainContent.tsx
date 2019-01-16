@@ -128,15 +128,16 @@ class MainContent extends React.Component<MyProps, MyState> {
       this.filterMovies(options, this.state.movies).length /
         this.state.displayCount
     );
+    const newPage =
+      this.state.currentPage >= pageCount
+        ? pageCount === 0
+          ? 0
+          : pageCount - 1
+        : this.state.currentPage;
     this.setState(prevState => {
       return {
         selectedCategories: options,
-        currentPage:
-          prevState.currentPage >= pageCount
-            ? prevState.currentPage === 0
-              ? 0
-              : prevState.currentPage - 1
-            : prevState.currentPage
+        currentPage: newPage
       };
     });
   }
@@ -170,7 +171,12 @@ class MainContent extends React.Component<MyProps, MyState> {
       this.filterMovies(this.state.selectedCategories, updatedMovies).length /
         this.state.displayCount
     );
-
+    const newPage =
+      this.state.currentPage >= pageCount
+        ? pageCount === 0
+          ? 0
+          : pageCount - 1
+        : this.state.currentPage;
     this.setState(prevState => {
       return {
         movies: updatedMovies,
@@ -180,12 +186,7 @@ class MainContent extends React.Component<MyProps, MyState> {
             .length === 0
             ? updatedCategories
             : prevState.selectedCategories,
-        currentPage:
-          prevState.currentPage >= pageCount
-            ? prevState.currentPage === 0
-              ? 0
-              : prevState.currentPage - 1
-            : prevState.currentPage
+        currentPage: newPage
       };
     });
   }
