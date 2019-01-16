@@ -2,32 +2,33 @@
   "name": "react-interview",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack-dev-server --info=false --mode=development --hot --open --watch",
-    "build": "webpack --mode=production"
-  },
-  "author": "Erwan Le Cren",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
-    "ts-loader": "^5.3.3",
-    "tslint": "^5.12.1",
-    "tslint-config-standard": "^8.0.1",
-    "tslint-loader": "^3.5.4",
-    "typescript": "^3.2.2",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
-  },
+  "keywords": [],
+  "main": "src/main.tsx",
   "dependencies": {
-    "@types/react-fontawesome": "^1.6.4",
-    "@types/react-select": "^2.0.11",
-    "dotenv-webpack": "^1.6.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-fontawesome": "^1.6.1",
-    "react-select": "^2.2.0"
-  }
+    "@fortawesome/fontawesome-svg-core": "1.2.12",
+    "@fortawesome/free-solid-svg-icons": "5.6.3",
+    "@fortawesome/react-fontawesome": "0.1.4",
+    "@types/react": "16.7.18",
+    "@types/react-dom": "16.0.11",
+    "@types/react-fontawesome": "1.6.4",
+    "@types/react-select": "2.0.11",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "react-fontawesome": "1.6.1",
+    "react-scripts": "2.0.3",
+    "react-select": "2.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "16.7.19",
+    "@types/react-dom": "16.0.11",
+    "@types/react-fontawesome": "1.6.4",
+    "@types/react-select": "2.0.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }

@@ -1,18 +1,17 @@
-import * as React from 'react'
+import * as React from "react";
 
 class Header extends React.Component {
-  constructor (props: Object) {
-    super(props)
+  constructor(props: Object) {
+    super(props);
   }
 
-  render () {
-
+  render() {
     return (
-      <div className='header'>
+      <div className="header">
         <h1>React Interview</h1>
       </div>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;

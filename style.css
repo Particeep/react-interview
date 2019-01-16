@@ -1,10 +1,10 @@
-body{
+body {
   background-color: #e1e1e1;
   margin: 0 5px 0 5px;
   padding: 0;
 }
 
-.header{
+.header {
   background-color: #2e2122;
   color: #e1e1e1;
   display: flex;
@@ -14,13 +14,13 @@ body{
   margin: 0 0 20px 0;
 }
 
-#settings{
+#settings {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.number-button{
+.number-button {
   width: 40px;
   height: 40px;
   margin: 5px;
@@ -29,21 +29,21 @@ body{
   border: 1px solid #2e2122;
 }
 
-.number-button:focus{
+.number-button:focus {
   outline: 0;
 }
 
-.category-select{
+.category-select {
   width: 425px;
 }
 
-.main-content{
+.main-content {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
 
-.movie-card{
+.movie-card {
   width: 180px;
   height: 250px;
   margin: 15px;
@@ -53,7 +53,7 @@ body{
   align-items: center;
 }
 
-#card-infos{
+#card-infos {
   width: 100%;
   height: calc(100% - 11px);
   border: 1px solid black;
@@ -67,29 +67,28 @@ body{
   align-items: center;
 }
 
-#card-infos h2{
+#card-infos h2 {
   height: 30%;
 }
 
-#card-infos p{
+#card-infos p {
   height: 20%;
 }
 
-
-#like-infos{
+#like-infos {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-#like-count{
+#like-count {
   display: flex;
   justify-content: space-between;
   margin: 0 30% 0 30%;
   font-size: 10px;
 }
 
-#like-bar{
+#like-bar {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -98,40 +97,40 @@ body{
   text-align: center;
 }
 
-#likes{
+#likes {
   background: #434665;
 }
 
-#dislikes{
+#dislikes {
   background: #c55053;
 }
 
-.thumbs-up{
+.thumbs-up {
   margin-right: 5px;
   color: #434665;
 }
 
-.thumbs-down{
+.thumbs-down {
   margin-left: 5px;
   color: #c55053;
 }
 
-.thumbs-up:hover{
+.thumbs-up:hover {
   color: #656a9a;
 }
 
-.thumbs-down:hover{
+.thumbs-down:hover {
   color: #d68385;
 }
 
-#page-options{
+#page-options {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
 }
 
-.page-button{
+.page-button {
   width: 40px;
   height: 40px;
   margin: 5px;
@@ -139,12 +138,12 @@ body{
   background: #dbd6d0;
   border: 1px solid #2e2122;
 }
-  
-.page-button:focus{
+
+.page-button:focus {
   outline: 0;
 }
 
-.delete-button{
+.delete-button {
   width: 60%;
   height: 20px;
   background-color: #c55053;
@@ -154,19 +153,19 @@ body{
   cursor: pointer;
 }
 
-.delete-button:hover{
+.delete-button:hover {
   background-color: #ce6668;
 }
 
-@media (max-width: 670px){
-  .movie-card{
+@media (max-width: 670px) {
+  .movie-card {
     width: 160px;
     height: 230px;
   }
 }
 
-@media (max-width: 610px){
-  .movie-card{
+@media (max-width: 610px) {
+  .movie-card {
     width: 140px;
     height: 210px;
   }
