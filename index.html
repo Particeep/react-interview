@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="react-container">
+
+    </div>
+
+    <script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+    <script type="text/javascript" src="movies.js"></script>
+    <script type="text/babel">
+
+      class App extends React.Component {
+        constructor(){
+          super();
+          this.state = {
+            category: "all categories",
+            movies: movies,
+            page: 1,
+            choix: 4
+          }
+          this.handlerFilter = this.handlerFilter.bind(this);
+          this.handlerDeleteMovie = this.handlerDeleteMovie.bind(this);
+          this.handlerLikeUnlike = this.handlerLikeUnlike.bind(this);
+          this.incrementPage = this.incrementPage.bind(this);
+          this.decrementPage = this.decrementPage.bind(this);
+          this.getDisplayNumber = this.getDisplayNumber.bind(this);
+          this.movies = movies;
+        }
+        render(){
+          var {movies} = this.state;
+          return (
+            <div className="row">
+              <Filter movies={movies} handlerFilter={this.handlerFilter} allMovies={this.movies} />
+              <Content movies={movies} choix={this.state.choix} page={this.state.page} category={this.state.category}
+                                       handlerDeleteMovie={this.handlerDeleteMovie}
+                                       handlerLikeUnlike={this.handlerLikeUnlike} />
+              <Pagination incrementPage={this.incrementPage}
+                          decrementPage={this.decrementPage}
+                          getDisplayNumber={this.getDisplayNumber} />
+            </div>
+          )
+        }
+        handlerFilter(e){
+          var targetOption = Array.from(e.target.children).reduce((elem, current) => (current.selected === true) ? current : elem, null);
+          this.setState({
+            ...this.state,
+            category: targetOption.value,
+            page: 1,
+            movies: this.movies.filter((movie) => (movie.category === targetOption.value || targetOption.value === "all categories"))
+          })
+        }
+        handlerDeleteMovie(id, searchedCategory){
+          this.movies = this.movies.filter((movie) => (movie.id !== id) ? true : false);
+          this.setState({
+            ...this.state,
+            category: searchedCategory,
+            movies: this.movies.filter((movie) => (movie.category === searchedCategory)),
+            page: 1
+          })
+        }
+        handlerLikeUnlike(e, id){
+          switch (e.target.textContent) {
+            case "like":
+              this.setState({
+                ...this.state,
+                movies: this.state.movies.map((movie) => { if(movie.id === id) {
+                  movie.likes += 1; movie.like = true;
+                  return movie;
+                }else {
+                  return movie;
+                } })
+              })
+              break;
+            case "liked":
+              this.setState({
+                ...this.state,
+                movies: this.state.movies.map((movie) => { if(movie.id === id) {
+                  movie.likes -= 1; movie.dislikes += 1; movie.like = false;
+                  return movie;
+                }else {
+                  return movie;
+                } })
+              });
+              break;
+            case "disliked":
+              this.setState({
+                ...this.state,
+                movies: this.state.movies.map((movie) => { if(movie.id === id) {
+                  movie.dislikes -= 1; movie.like = undefined;
+                  return movie;
+                }else {
+                  return movie
+                } })
+              });
+              break;
+          }
+        }
+        getDisplayNumber(e){
+          Array.from(e.target.parentElement.children).forEach((a) => a.className = "");
+          e.target.className = "active";
+          this.setState({
+            ...this.state,
+            page: 1,
+            choix: parseInt(e.target.textContent)
+          })
+        }
+        incrementPage(){
+          this.setState({
+            ...this.state,
+            page: (this.state.movies.length - (this.state.page * this.state.choix)  > 0) ? this.state.page + 1 : this.state.page
+          })
+        }
+        decrementPage(){
+          this.setState({
+            ...this.state,
+            page: ((this.state.page - 1) < 1) ? 1 : (this.state.page - 1)
+          })
+        }
+      }
+
+      class Filter extends React.Component {
+        render(){
+          var categoryFilteredArray = this.filter();
+          return (
+            <div className="row">
+              <div className="col-12 header">
+                <form>
+                  <label htmlFor="filter">Search by category{"  "}</label>
+                  <select name="filter" onChange={this.props.handlerFilter}>
+                    {
+                      categoryFilteredArray.map((category, key) => <Option key={key} category={category} />)
+                    }
+                  </select>
+                </form>
+              </div>
+            </div>
+          )
+        }
+        filter(){
+          var arr = new Array();
+          this.props.allMovies.filter(({category}, key) => {
+            var bool = arr.indexOf(category) === -1;
+            if (bool) {
+              arr.push(category);
+            }
+            return bool;
+          });
+          arr.push('all categories');
+          return arr.reverse();
+        }
+      }
+      Filter.propTypes = {
+        allMovies: React.PropTypes.array.isRequired,
+        handlerFilter: React.PropTypes.func.isRequired
+      }
+
+      class Option extends React.Component {
+        render() {
+          var {category} = this.props;
+          return (
+            <option value={category}>{category}</option>
+          )
+        }
+      }
+      Option.propTypes = {
+        category : React.PropTypes.string.isRequired
+      }
+
+      class Content extends React.Component {
+        constructor(){
+          super();
+          this.moviesIterator = this.moviesIterator.bind(this);
+        }
+        render(){
+          var {category} = this.props;
+          return (
+            <div className="row row-center">
+              {
+                this.moviesIterator(category)
+              }
+            </div>
+          )
+        }
+        moviesIterator(searchedCategory){
+          var tabMovies = new Array();
+          var {choix, page,handlerDeleteMovie,category, handlerLikeUnlike,category, movies} = this.props;
+          for(let i = (choix * (page - 1)); i < (choix * page) && i < movies.length; i++){
+              tabMovies.push(<Movie key={i} movie={movies[i]}
+                handlerDeleteMovie={handlerDeleteMovie}
+                handlerLikeUnlike={handlerLikeUnlike} searchedCategory={searchedCategory} />);
+          }
+          return tabMovies;
+        }
+      }
+      Content.propTypes = {
+        movies: React.PropTypes.array.isRequired,
+        category: React.PropTypes.string.isRequired,
+        handlerDeleteMovie: React.PropTypes.func.isRequired,
+        handlerLikeUnlike: React.PropTypes.func.isRequired,
+        choix: React.PropTypes.number.isRequired,
+        page: React.PropTypes.number.isRequired,
+      }
+
+      class Movie extends React.Component {
+        render(){
+          var {handlerDeleteMovie, handlerLikeUnlike, searchedCategory} = this.props;
+          var {id,title,category,likes,dislikes, like} = this.props.movie;
+          return (
+            <div className="col-3">
+              <h2>{title}</h2>
+              <h3>{category}</h3>
+              <h4><span className="likes">{likes} likes</span>{" | "}<span className="dislikes">{dislikes} dislikes</span></h4>
+              <p><button id="likeBtn" className={(like === true) ? "liked" : (like === false) ? "disliked" : "like"}
+                              onClick={(e) => handlerLikeUnlike(e, id)} type="button">{(like === true) ? "liked" : (like === false) ? "disliked" : "like"}</button></p>
+              <p><button type="button" onClick={() => handlerDeleteMovie(id, searchedCategory)}>DELETE</button></p>
+            </div>
+          )
+        }
+      }
+      Movie.propTypes = {
+        movie: React.PropTypes.object.isRequired,
+        handlerDeleteMovie: React.PropTypes.func.isRequired,
+        handlerLikeUnlike: React.PropTypes.func.isRequired,
+        searchedCategory: React.PropTypes.string.isRequired
+      }
+
+      class Pagination extends React.Component {
+        render(){
+          var {incrementPage, decrementPage, getDisplayNumber} = this.props;
+          return (
+            <div className="row">
+              <div className="col-4"></div>
+              <div className="col-4 pagination">
+                <div className="col-12">
+                  <div className="col-6">
+                    <a href="#" onClick={(e) => { e.preventDefault(); decrementPage();}}>❮ Previous</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); incrementPage();}}>Next ❯</a>
+                  </div>
+                  <div className="col-6 pagination">
+                    <a href="#" className="active" onClick={(e) => getDisplayNumber(e)}>4</a>
+                    <a href="#" onClick={(e) => getDisplayNumber(e)}>8</a>
+                    <a href="#" onClick={(e) => getDisplayNumber(e)}>12</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-4"></div>
+            </div>
+          )
+        }
+      }
+      Pagination.propTypes = {
+        incrementPage : React.PropTypes.func.isRequired,
+        decrementPage: React.PropTypes.func.isRequired,
+        getDisplayNumber: React.PropTypes.func.isRequired
+      }
+
+      ReactDOM.render(<App movies={movies} />, document.getElementById('react-container'));
+
+    </script>
+  </body>
+</html>
