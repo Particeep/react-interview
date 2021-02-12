@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "shards-ui/dist/css/shards.min.css";
 import MoviesListPage   from './containers/MoviesListPage';
 import './styles/index.css';
 import * as serviceWorker from './serviceWorker';

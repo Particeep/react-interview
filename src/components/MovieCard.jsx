@@ -1,11 +1,11 @@
 import { Card, CardBody, CardImg } from 'shards-react';
 
-const MovieCard = ({ imgSrc, title }) => {
+const MovieCard = ({ movie, movieCardKey }) => {
     return (
-        <Card>
-            <CardImg top src={ imgSrc } />
+        <Card key={ movieCardKey }>
+            <CardImg top src='' />
             <CardBody>
-                <h3>{ title }</h3>
+                <h5>{ movie.title }</h5>
             </CardBody>
         </Card>
     )
