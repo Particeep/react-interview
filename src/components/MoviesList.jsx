@@ -8,8 +8,8 @@ const MoviesList = ({ movies }) => {
             <Col key={ index }>
                 <MovieCard movie={ movie } movieCardKey={ index }/>
             </Col>
-        )
-    })
+        );
+    });
 
     return (
         <Container id='movies'>
@@ -17,7 +17,7 @@ const MoviesList = ({ movies }) => {
                 { cardList }
             </Row>
         </Container>
-    )
+    );
 }
 
 export default MoviesList;

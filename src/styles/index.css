@@ -18,6 +18,17 @@ img {
   height: 100%;
 }
 
+#main {
+  display: flex;
+  flex-direction: row;
+}
+
+#categories-list {
+  max-width: 250px;
+  margin-top: 1em;
+  border-right: solid 5px;
+}
+
 #movies {
   min-height: 100vh;
   margin-top: 1em;
@@ -36,8 +47,13 @@ img {
   margin: .50em;
   border-radius: 0;
   box-shadow: 0 5px 15px gray;
+  cursor: pointer;
 }
 
+#movies .card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 -3px 20px;
+}
 #movies .card .card-img-top {
   border-radius: 0;
 }
@@ -45,6 +61,7 @@ img {
 #movies .card .movie-caption {
   height: 90px;
   line-height: 2;
+  margin-top: -1.50em;
 }
 
 #movies .card h6 {
