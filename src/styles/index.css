@@ -20,6 +20,7 @@ img {
 
 #movies {
   min-height: 100vh;
+  margin-top: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -35,4 +36,28 @@ img {
   margin: .50em;
   border-radius: 0;
   box-shadow: 0 5px 15px gray;
+}
+
+#movies .card .card-img-top {
+  border-radius: 0;
+}
+
+#movies .card .movie-caption {
+  height: 90px;
+  line-height: 2;
+}
+
+#movies .card h6 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #737373;
+  overflow: hidden;
+  width: 190px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#movies .card .card-body span {
+  color:  #DCBE00;
+  font-weight: 500;
 }
