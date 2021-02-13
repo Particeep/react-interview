@@ -1,16 +1,26 @@
 import { Container, FormCheckbox } from 'shards-react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { filterMovies } from '../store/actions'
 
-const MoviesFilter = ({ categories }) => {
+const MoviesFilter = ({ categories, filterMovies }) => {
+    let checkedCategories = [];
     const categoriesList = categories.map((category, index) => {
         return (
             <FormCheckbox 
                 key={index}
-                checked={true}
+                checked={checkedCategories.indexOf(category) + 1}
+                onChange={ (e) => handleFilter(e, category) }
             >
                 {category}
             </FormCheckbox>
         );
     });
+
+    const handleFilter = (e, category) => {
+        console.log(e.target.getAttribute());
+        filterMovies(category);
+    }
 
     return (
         <Container id="movies-filter">
@@ -20,4 +30,10 @@ const MoviesFilter = ({ categories }) => {
     );
 }
 
-export default MoviesFilter;
+const mapDispatchToProps = dispatch => {
+    return {
+        filterMovies: bindActionCreators(filterMovies, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(MoviesFilter);

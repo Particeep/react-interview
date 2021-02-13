@@ -1,30 +1,45 @@
 import { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { movies$ } from '../movies';
 import MoviesList from '../components/MoviesList';
 import MoviesFilter from '../components/MoviesFilter';
+import { addMovies, deleteMovie } from '../store/actions';
 
-const MoviesListPage = () => {
-    const [movies, updateMovies] = useState([]);
+const MoviesListPage = ({ addMovies, deleteMovie, moviesList }) => {
     const [ categories, setCategories ] = useState([]);
 
     useEffect(() => {
         movies$.then(movies => { 
-            updateMovies(movies);
+            addMovies(movies);
             setCategories([ ...new Set(movies.map(movie => movie.category))]);
         });
     }, []);
 
 
     useEffect(() => {
-        setCategories([ ...new Set(movies.map(movie => movie.category))]);
-    }, [movies]);
+        setCategories([ ...new Set(moviesList.map(movie => movie.category))]);
+    }, [moviesList]);
 
     return (
         <div id="main">
             <MoviesFilter categories={ categories } />
-            < MoviesList movies={ movies } />
+            < MoviesList movies={ moviesList } />
         </div>
     )
 }
 
-export default MoviesListPage;
+const mapStateToProps = state => {
+    return {
+        moviesList: state.moviesList
+    }
+}
+
+const mapDispatchToprops = (dispatch) => {
+    return {
+        addMovies: bindActionCreators(addMovies, dispatch),
+        deleteMovie: bindActionCreators(deleteMovie, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToprops)(MoviesListPage);

@@ -1,8 +1,7 @@
 import { Container, Row, Col } from 'shards-react';
 import MovieCard from './MovieCard';
 
-const MoviesList = ({ movies }) => {
-    console.log(movies);
+const MoviesList = ({movies}) => {
     const cardList = movies.map((movie, index) => {
         return (
             <Col key={ index }>
