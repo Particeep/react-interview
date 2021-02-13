@@ -5,6 +5,7 @@ const MoviesFilter = ({ categories }) => {
         return (
             <FormCheckbox 
                 key={index}
+                checked={true}
             >
                 {category}
             </FormCheckbox>
@@ -12,7 +13,7 @@ const MoviesFilter = ({ categories }) => {
     });
 
     return (
-        <Container id="categories-list">
+        <Container id="movies-filter">
             <p>Filter categories:</p>
             { categoriesList }
         </Container>

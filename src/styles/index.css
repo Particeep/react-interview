@@ -23,14 +23,22 @@ img {
   flex-direction: row;
 }
 
-#categories-list {
-  max-width: 250px;
+#movies-filter {
+  position:fixed;
+  max-width: 200px;
   margin-top: 1em;
-  border-right: solid 5px;
+  border-right: solid 3px;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  min-width: 130px;
 }
 
 #movies {
   min-height: 100vh;
+  margin-left:20%;
+  width: 80%;
+  height: 500px;
   margin-top: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,6 +48,12 @@ img {
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
+}
+
+#movies .row .col {
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
 
 #movies .card {
@@ -64,7 +78,11 @@ img {
   margin-top: -1.50em;
 }
 
-#movies .card h6 {
+#movies .card .movie-caption progress {
+  background-color: #737373;
+}
+
+#movies .card .movie-caption h6 {
   text-transform: uppercase;
   font-weight: 600;
   color: #737373;

@@ -5,12 +5,19 @@ import MoviesFilter from '../components/MoviesFilter';
 
 const MoviesListPage = () => {
     const [movies, updateMovies] = useState([]);
-    const categories = ['Animation', 'Comedy', 'Drame', 'Horror', 'Thriller'];
+    const [ categories, setCategories ] = useState([]);
 
     useEffect(() => {
-        movies$.then(movies => { updateMovies(movies) });
-        // Update de movies state and pass it to moviesList
+        movies$.then(movies => { 
+            updateMovies(movies);
+            setCategories([ ...new Set(movies.map(movie => movie.category))]);
+        });
     }, []);
+
+
+    useEffect(() => {
+        setCategories([ ...new Set(movies.map(movie => movie.category))]);
+    }, [movies]);
 
     return (
         <div id="main">

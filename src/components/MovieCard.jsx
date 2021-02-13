@@ -1,4 +1,4 @@
-import { Card, CardBody, CardImg } from 'shards-react';
+import { Card, CardBody, CardImg, Progress } from 'shards-react';
 
 const MovieCard = ({ movie, movieCardKey }) => {
     return (
@@ -6,6 +6,7 @@ const MovieCard = ({ movie, movieCardKey }) => {
             <CardImg top src='https://www.avoir-alire.com/local/cache-vignettes/L240xH351/arton38265-dfc96.jpg?1578256957' />
             <CardBody>
                 <div className='movie-caption'>
+                    <Progress bar value={50} />
                     <h6>{ movie.title }</h6>
                     <span className='movie-category'>{ movie.category }</span>
                 </div>
