@@ -131,7 +131,7 @@ img {
   z-index: 1;
   transform: scale(1.2);
   transition: 0.4s;
-  margin-right: 1.2em;
+  margin-right: .94em;
   color: #ff1100;
 }
 

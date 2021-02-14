@@ -19,7 +19,11 @@ const MovieCard = ({ movie, movieCardKey }) => {
             <CardBody>
                 <div className='movie-caption'>
                     <div className='likes-bar'>
-                        <FontAwesomeIcon icon={faThumbsUp} className='like-icon' />
+                        <FontAwesomeIcon 
+                            icon={faThumbsUp} 
+                            className='like-icon' 
+                            onClick=''
+                        />
                         <Progress multi>
                             <Progress bar value={getLikesPercent(movie)} className='likes' />
                             <Progress bar value={getDislikesPercent(movie)} theme='secondary' className= 'dislikes' />
