@@ -4,26 +4,26 @@ import { connect } from 'react-redux';
 import { movies$ } from '../movies';
 import MoviesList from '../components/MoviesList';
 import MoviesFilter from '../components/MoviesFilter';
-import { addMovies, deleteMovie } from '../store/actions';
+import { addMovies, deleteMovie, setCategories } from '../store/actions';
 
-const MoviesListPage = ({ addMovies, deleteMovie, moviesList }) => {
-    const [ categories, setCategories ] = useState([]);
+const MoviesListPage = ({ addMovies, deleteMovie, setCategories, moviesList, categoriesList }) => {
+    // const [ categories, setCategories ] = useState([]);
 
     useEffect(() => {
         movies$.then(movies => { 
             addMovies(movies);
-            setCategories([ ...new Set(movies.map(movie => movie.category))]);
+            setCategories(movies);
         });
     }, []);
 
 
     useEffect(() => {
-        setCategories([ ...new Set(moviesList.map(movie => movie.category))]);
+        setCategories(moviesList);
     }, [moviesList]);
 
     return (
         <div id="main">
-            <MoviesFilter categories={ categories } />
+            <MoviesFilter categories={ categoriesList } />
             < MoviesList movies={ moviesList } />
         </div>
     )
@@ -31,14 +31,16 @@ const MoviesListPage = ({ addMovies, deleteMovie, moviesList }) => {
 
 const mapStateToProps = state => {
     return {
-        moviesList: state.moviesList
+        moviesList: state.moviesList,
+        categoriesList: state.categoriesList
     }
 }
 
 const mapDispatchToprops = (dispatch) => {
     return {
         addMovies: bindActionCreators(addMovies, dispatch),
-        deleteMovie: bindActionCreators(deleteMovie, dispatch)
+        deleteMovie: bindActionCreators(deleteMovie, dispatch),
+        setCategories: bindActionCreators(setCategories, dispatch)
     }
 }
 

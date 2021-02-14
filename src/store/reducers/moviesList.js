@@ -1,6 +1,8 @@
 import * as actions from '../actions/index';
+
 const moviesList = (state = [], action) => {
     let nextState;
+
     switch(action.type) {
         case actions.ADD_MOVIES:
             nextState = [ ...state, ...action.movies ];
@@ -11,7 +13,6 @@ const moviesList = (state = [], action) => {
             console.log('NEXT: ' + nextState);
             return nextState;
         case actions.FILTER_MOVIES:
-            console.log('FILTERING')
             nextState = state.filter(movie => action.categories.indexOf(movie.category) !== -1)
             return nextState;
         default:

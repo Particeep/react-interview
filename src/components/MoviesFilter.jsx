@@ -18,7 +18,6 @@ const MoviesFilter = ({ categories, filterMovies }) => {
     });
 
     const handleFilter = (e, category) => {
-        console.log(e.target.getAttribute());
         filterMovies(category);
     }
 

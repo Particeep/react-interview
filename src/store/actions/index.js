@@ -1,6 +1,7 @@
 export const ADD_MOVIES = 'ADD_MOVIES';
 export const DELETE_MOVIE = 'DELETE_MOVIE';
 export const FILTER_MOVIES = 'FILTER_MOVIES';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
 
 export const addMovies = (movies) => {
     return {
@@ -20,5 +21,12 @@ export const filterMovies = (categories) => {
     return {
         type: FILTER_MOVIES,
         categories
+    }
+}
+
+export const setCategories = (movies) => {
+    return {
+        type: SET_CATEGORIES,
+        movies
     }
 }
