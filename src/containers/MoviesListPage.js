@@ -9,7 +9,6 @@ import {
     deleteMovie,
     setAllMovies, 
     setAllCategories, 
-    setCheckedCategories
 } from '../store/actions';
 
 const MoviesListPage = ({ 
@@ -21,21 +20,15 @@ const MoviesListPage = ({
     allMoviesList,
     categoriesList,
 }) => {
-    let MOVIES = [];
 
     useEffect(() => {
         movies$.then(movies => {
-            MOVIES = [ ...movies ];
             addMovies(movies);
             setAllMovies(movies);
             setAllCategories(movies);
         });
     }, []);
 
-
-    useEffect(() => {
-        // setCheckedCategories(moviesList);
-    }, [moviesList]);
 
     return (
         <div id="main">
