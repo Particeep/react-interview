@@ -107,10 +107,32 @@ img {
   margin-top: 1.75em;
 }
 
+#movies .card .movie-caption .likes-bar .like-icon:hover {
+  z-index: 1;
+  transform: scale(1.4);
+  transition: 0.4s;
+  color: #007bff;
+}
+
+#movies .card .movie-caption .likes-bar .dislike-icon:hover {
+  z-index: 1;
+  transform: scale(1.4);
+  transition: 0.4s;
+  color: #007bff;
+}
+
 #movies .card .movie-caption .trash-can {
   display: flex;
   flex-direction: row;
   justify-content: end;
+}
+
+#movies .card .movie-caption .trash-can:hover {
+  z-index: 1;
+  transform: scale(1.2);
+  transition: 0.4s;
+  margin-right: 1.2em;
+  color: #ff1100;
 }
 
 #movies .card .card-body .movie-category {
