@@ -1,7 +1,7 @@
 const movies = [
   {
     id: '1',
-    title: 'Oceans 88888888888888888888888888888888888888888888888888888888888888888888888888888888888888',
+    title: 'Oceans 8',
     category: 'Comedy',
     likes: 4,
     dislikes: 1
@@ -59,7 +59,13 @@ const movies = [
     category: 'Thriller',
     likes: 22,
     dislikes: 12
-  },
+  }, {
+    id: 11,
+    title: 'Vol au dessus d\'un nid de coucou',
+    category: 'Drame',
+    likes: 1254,
+    dislikes: 95
+  }
 ]
 
 export const movies$ = new Promise((resolve, reject) => setTimeout(resolve, 100, movies))
