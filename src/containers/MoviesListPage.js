@@ -1,30 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { movies$ } from '../movies';
 import MoviesList from '../components/MoviesList';
 import MoviesFilter from '../components/MoviesFilter';
-import { addMovies, deleteMovie, setCategories } from '../store/actions';
+import { 
+    addMovies, 
+    deleteMovie,
+    setAllMovies, 
+    setAllCategories, 
+    setCheckedCategories
+} from '../store/actions';
 
-const MoviesListPage = ({ addMovies, deleteMovie, setCategories, moviesList, categoriesList }) => {
-    // const [ categories, setCategories ] = useState([]);
+const MoviesListPage = ({ 
+    addMovies,
+    setAllMovies, 
+    setAllCategories, 
+    deleteMovie, 
+    moviesList, 
+    allMoviesList,
+    categoriesList,
+}) => {
+    let MOVIES = [];
 
     useEffect(() => {
-        movies$.then(movies => { 
+        movies$.then(movies => {
+            MOVIES = [ ...movies ];
             addMovies(movies);
-            setCategories(movies);
+            setAllMovies(movies);
+            setAllCategories(movies);
         });
     }, []);
 
 
     useEffect(() => {
-        setCategories(moviesList);
+        // setCheckedCategories(moviesList);
     }, [moviesList]);
 
     return (
         <div id="main">
-            <MoviesFilter categories={ categoriesList } />
-            < MoviesList movies={ moviesList } />
+            <MoviesFilter categories={ categoriesList } movies={ allMoviesList } />
+            <MoviesList movies={ moviesList } />
         </div>
     )
 }
@@ -32,15 +48,17 @@ const MoviesListPage = ({ addMovies, deleteMovie, setCategories, moviesList, cat
 const mapStateToProps = state => {
     return {
         moviesList: state.moviesList,
-        categoriesList: state.categoriesList
+        categoriesList: state.categoriesList,
+        allMoviesList: state.allMoviesList
     }
 }
 
 const mapDispatchToprops = (dispatch) => {
     return {
         addMovies: bindActionCreators(addMovies, dispatch),
-        deleteMovie: bindActionCreators(deleteMovie, dispatch),
-        setCategories: bindActionCreators(setCategories, dispatch)
+        setAllCategories: bindActionCreators(setAllCategories, dispatch),
+        setAllMovies: bindActionCreators(setAllMovies, dispatch),
+        deleteMovie: bindActionCreators(deleteMovie, dispatch)
     }
 }
 

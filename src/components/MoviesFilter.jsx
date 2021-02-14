@@ -1,15 +1,27 @@
+import { useEffect } from 'react';
 import { Container, FormCheckbox } from 'shards-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { filterMovies } from '../store/actions'
+import { filterMovies, setCheckedCategories } from '../store/actions'
 
-const MoviesFilter = ({ categories, filterMovies }) => {
-    let checkedCategories = [];
+const MoviesFilter = ({ 
+    filterMovies, 
+    setCheckedCategories,
+    movies, 
+    categories, 
+    checkedCategories
+}) => {
+
+    useEffect(() => {
+        let cat = !checkedCategories.length ? categories : checkedCategories;
+        filterMovies(movies, cat);
+    }, [checkedCategories]);
+
     const categoriesList = categories.map((category, index) => {
         return (
             <FormCheckbox 
                 key={index}
-                checked={checkedCategories.indexOf(category) + 1}
+                checked={checkedCategories.includes(category)}
                 onChange={ (e) => handleFilter(e, category) }
             >
                 {category}
@@ -18,7 +30,7 @@ const MoviesFilter = ({ categories, filterMovies }) => {
     });
 
     const handleFilter = (e, category) => {
-        filterMovies(category);
+        setCheckedCategories(category);
     }
 
     return (
@@ -29,10 +41,17 @@ const MoviesFilter = ({ categories, filterMovies }) => {
     );
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        filterMovies: bindActionCreators(filterMovies, dispatch)
+        checkedCategories: state.checkedCategoriesList
     }
 }
 
-export default connect(null, mapDispatchToProps)(MoviesFilter);
+const mapDispatchToProps = dispatch => {
+    return {
+        filterMovies: bindActionCreators(filterMovies, dispatch),
+        setCheckedCategories: bindActionCreators(setCheckedCategories, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesFilter);

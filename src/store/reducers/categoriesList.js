@@ -4,7 +4,7 @@ const categoriesList = (state = [], action) => {
     let nextState;
 
     switch(action.type) {
-        case actions.SET_CATEGORIES:
+        case actions.SET_ALL_CATEGORIES:
             nextState = action.movies.map(movie => movie.category);
             nextState = [ ...new Set(nextState) ];
             return [ ...nextState ];
