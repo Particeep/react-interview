@@ -1,11 +1,11 @@
 import { Container, Row, Col } from 'shards-react';
 import MovieCard from './MovieCard';
 
-const MoviesList = ({movies}) => {
+const MoviesList = ({movies, deleteMovie }) => {
     const cardList = movies.map((movie, index) => {
         return (
             <Col key={ index }>
-                <MovieCard movie={ movie } movieCardKey={ index }/>
+                <MovieCard movieCardKey={ index } movie={ movie } deleteMovie={deleteMovie} />
             </Col>
         );
     });

@@ -4,6 +4,8 @@ export const FILTER_MOVIES = 'FILTER_MOVIES';
 export const SET_ALL_MOVIES = 'SET_ALL_MOVIES';
 export const SET_ALL_CATEGORIES = 'SET_ALL_CATEGORIES';
 export const SET_CHECKED_CATEGORIES = 'SET_CHECKED_CATEGORIES';
+export const ADD_LIKE = 'ADD_LIKE';
+export const DELETE_LIKE = 'ADD_LIKE';
 
 export const addMovies = (movies) => {
     return {
@@ -45,5 +47,12 @@ export const setCheckedCategories = (category) => {
     return {
         type: SET_CHECKED_CATEGORIES,
         category
+    }
+}
+
+export const addLike = (movie) => {
+    return {
+        type: ADD_LIKE,
+        movie
     }
 }

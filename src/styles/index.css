@@ -74,7 +74,7 @@ img {
 
 #movies .card .movie-caption {
   height: 90px;
-  line-height: 2;
+  line-height: 1;
   margin-top: -1.50em;
 }
 
@@ -88,7 +88,7 @@ img {
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-top: .75em;
-  margin-bottom: 0;
+  margin-bottom: .40em;
 }
 
 #movies .card .movie-caption .likes-bar {
@@ -114,6 +114,14 @@ img {
   color: #007bff;
 }
 
+#movies .card .movie-caption .likes-bar .like-icon.active {
+  color: #007bff;
+}
+
+#movies .card .movie-caption .likes-bar .dislike-icon.active {
+  color: #007bff;
+}
+
 #movies .card .movie-caption .likes-bar .dislike-icon:hover {
   z-index: 1;
   transform: scale(1.4);
@@ -125,6 +133,7 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: end;
+  margin-top: .40em;
 }
 
 #movies .card .movie-caption .trash-can:hover {

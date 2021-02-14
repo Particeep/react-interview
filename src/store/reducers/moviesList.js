@@ -9,7 +9,8 @@ const moviesList = (state = [], action) => {
             return nextState;
         case actions.DELETE_MOVIE:
             let index = state.indexOf(action.movie);
-            nextState = [ ...state ].splice(index, 1);
+            nextState = [ ...state ];
+            nextState.splice(index, 1);
             return nextState;
         case actions.FILTER_MOVIES:
             nextState = action.movies.filter(movie => action.categories.includes(movie.category));

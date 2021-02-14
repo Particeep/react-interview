@@ -33,7 +33,7 @@ const MoviesListPage = ({
     return (
         <div id="main">
             <MoviesFilter categories={ categoriesList } movies={ allMoviesList } />
-            <MoviesList movies={ moviesList } />
+            <MoviesList movies={ moviesList } deleteMovie={deleteMovie} />
         </div>
     )
 }
