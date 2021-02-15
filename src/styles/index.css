@@ -153,7 +153,7 @@ img {
 #movies .card .movie-caption .trash-can {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: .40em;
 }
 
