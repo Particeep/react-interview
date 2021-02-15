@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { movies$ } from '../movies';
-import MoviesList from '../components/MoviesList';
+import Header from '../components/Header';
 import MoviesFilter from '../components/MoviesFilter';
+import MoviesList from '../components/MoviesList';
 import { 
     addMovies, 
     deleteMovie,
@@ -39,19 +40,22 @@ const MoviesListPage = ({
 
 
     return (
-        <div id="main">
-            <MoviesFilter 
-                categories={ categoriesList } 
-                movies={ allMoviesList } 
-            />
-            <MoviesList 
-                movies={ moviesList } 
-                deleteMovie={deleteMovie} 
-                addLike={addLike}
-                deleteLike={deleteLike}
-                addDislike={addDislike}
-                deleteDislike={deleteDislike}
-            />
+        <div id='site'>
+            <Header />
+            <div id="main">
+                <MoviesFilter 
+                    categories={ categoriesList } 
+                    movies={ allMoviesList } 
+                />
+                <MoviesList 
+                    movies={ moviesList } 
+                    deleteMovie={deleteMovie} 
+                    addLike={addLike}
+                    deleteLike={deleteLike}
+                    addDislike={addDislike}
+                    deleteDislike={deleteDislike}
+                />
+            </div>
         </div>
     )
 }
