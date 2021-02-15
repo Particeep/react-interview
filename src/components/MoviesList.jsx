@@ -2,7 +2,9 @@ import { Container, Row, Col } from 'shards-react';
 import MovieCard from './MovieCard';
 
 const MoviesList = ({
-    movies, 
+    movies,
+    moviesPerPage,
+    currentPage,
     deleteMovie, 
     addLike, 
     deleteLike,
@@ -10,7 +12,11 @@ const MoviesList = ({
     deleteDislike
 }) => {
 
-    const cardList = movies.map((movie, index) => {
+    const indexOfLastMovie = currentPage * moviesPerPage;
+    const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+    const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+
+    const cardList = currentMovies.map((movie, index) => {
         return (
             <Col key={ index }>
                 <MovieCard 

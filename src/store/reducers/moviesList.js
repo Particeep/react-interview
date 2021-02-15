@@ -18,7 +18,7 @@ const moviesList = (state = [], action) => {
         case actions.ADD_LIKE:
             nextState = [ ...state ];
             nextState = nextState.map(movie => {
-                if (movie.title === action.movie.title) {
+                if (movie.title === action.movie.title && movie.id === action.movie.id) {
                     let updatedMovie = { ...movie };
                     ++updatedMovie['likes'];
                     return updatedMovie;
@@ -29,7 +29,7 @@ const moviesList = (state = [], action) => {
         case actions.DELETE_LIKE:
             nextState = [ ...state ];
             nextState = nextState.map(movie => {
-                if (movie.title === action.movie.title) {
+                if (movie.title === action.movie.title && movie.id === action.movie.id) {
                     let updatedMovie = { ...movie };
                     --updatedMovie['likes'];
                     return updatedMovie;
@@ -40,7 +40,7 @@ const moviesList = (state = [], action) => {
         case actions.ADD_DISLIKE:
             nextState = [ ...state ];
             nextState = nextState.map(movie => {
-                if (movie.title === action.movie.title) {
+                if (movie.title === action.movie.title && movie.id === action.movie.id) {
                     let updatedMovie = { ...movie };
                     ++updatedMovie['dislikes'];
                     return updatedMovie;
@@ -51,7 +51,7 @@ const moviesList = (state = [], action) => {
         case actions.DELETE_DISLIKE:
             nextState = [ ...state ];
             nextState = nextState.map(movie => {
-                if (movie.title === action.movie.title) {
+                if (movie.title === action.movie.title && movie.id === action.movie.id) {
                     let updatedMovie = { ...movie };
                     --updatedMovie['dislikes'];
                     return updatedMovie;

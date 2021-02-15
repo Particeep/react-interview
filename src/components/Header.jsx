@@ -1,4 +1,4 @@
-import { Container, Col } from 'shards-react';
+import { Container } from 'shards-react';
 
 const Header = () => {
     return (
