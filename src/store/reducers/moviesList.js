@@ -15,6 +15,50 @@ const moviesList = (state = [], action) => {
         case actions.FILTER_MOVIES:
             nextState = action.movies.filter(movie => action.categories.includes(movie.category));
             return nextState;
+        case actions.ADD_LIKE:
+            nextState = [ ...state ];
+            nextState = nextState.map(movie => {
+                if (movie.title === action.movie.title) {
+                    let updatedMovie = { ...movie };
+                    ++updatedMovie['likes'];
+                    return updatedMovie;
+                }
+                return movie;
+            });
+            return nextState;
+        case actions.DELETE_LIKE:
+            nextState = [ ...state ];
+            nextState = nextState.map(movie => {
+                if (movie.title === action.movie.title) {
+                    let updatedMovie = { ...movie };
+                    --updatedMovie['likes'];
+                    return updatedMovie;
+                }
+                return movie;
+            });
+            return nextState;
+        case actions.ADD_DISLIKE:
+            nextState = [ ...state ];
+            nextState = nextState.map(movie => {
+                if (movie.title === action.movie.title) {
+                    let updatedMovie = { ...movie };
+                    ++updatedMovie['dislikes'];
+                    return updatedMovie;
+                }
+                return movie;
+            });
+            return nextState;
+        case actions.DELETE_DISLIKE:
+            nextState = [ ...state ];
+            nextState = nextState.map(movie => {
+                if (movie.title === action.movie.title) {
+                    let updatedMovie = { ...movie };
+                    --updatedMovie['dislikes'];
+                    return updatedMovie;
+                }
+                return movie;
+            });
+            return nextState;
         default:
             return state;
     }

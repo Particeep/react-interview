@@ -8,14 +8,22 @@ import {
     addMovies, 
     deleteMovie,
     setAllMovies, 
-    setAllCategories, 
+    setAllCategories,
+    addLike,
+    deleteLike,
+    addDislike,
+    deleteDislike
 } from '../store/actions';
 
 const MoviesListPage = ({ 
     addMovies,
     setAllMovies, 
     setAllCategories, 
-    deleteMovie, 
+    deleteMovie,
+    addLike,
+    deleteLike,
+    addDislike,
+    deleteDislike,
     moviesList, 
     allMoviesList,
     categoriesList,
@@ -32,8 +40,18 @@ const MoviesListPage = ({
 
     return (
         <div id="main">
-            <MoviesFilter categories={ categoriesList } movies={ allMoviesList } />
-            <MoviesList movies={ moviesList } deleteMovie={deleteMovie} />
+            <MoviesFilter 
+                categories={ categoriesList } 
+                movies={ allMoviesList } 
+            />
+            <MoviesList 
+                movies={ moviesList } 
+                deleteMovie={deleteMovie} 
+                addLike={addLike}
+                deleteLike={deleteLike}
+                addDislike={addDislike}
+                deleteDislike={deleteDislike}
+            />
         </div>
     )
 }
@@ -51,7 +69,11 @@ const mapDispatchToprops = (dispatch) => {
         addMovies: bindActionCreators(addMovies, dispatch),
         setAllCategories: bindActionCreators(setAllCategories, dispatch),
         setAllMovies: bindActionCreators(setAllMovies, dispatch),
-        deleteMovie: bindActionCreators(deleteMovie, dispatch)
+        deleteMovie: bindActionCreators(deleteMovie, dispatch),
+        addLike: bindActionCreators(addLike, dispatch),
+        deleteLike: bindActionCreators(deleteLike, dispatch),
+        addDislike: bindActionCreators(addDislike, dispatch),
+        deleteDislike: bindActionCreators(deleteDislike, dispatch)
     }
 }
 

@@ -5,24 +5,32 @@ import toggleElement from '../utils/toggleElement';
 import isElementActive from '../utils/isElementActive';
 import getPercent from '../utils/getPercent';
 
-const MovieCard = ({ movieCardKey, movie, deleteMovie }) => {
-    console.log('FN', deleteMovie)
+const MovieCard = ({ 
+    movieCardKey, 
+    movie, 
+    deleteMovie, 
+    addLike, 
+    deleteLike,
+    addDislike,
+    deleteDislike
+}) => {
 
     const handleLike = (e, movie) => {
         toggleElement(e.target.parentNode);
         if (isElementActive(e.target.parentNode))
-            ++movie.likes;
-        else
-            --movie.likes;
+            addLike(movie);
+        else {
+            deleteLike(movie);
+        }
     }
 
-    // const handleDislike = (e) => {
-    //     toggleElement(e.target.parentNode);
-    //     if (isElementActive(e.target.parentNode))
-    //         addDislike()
-    //     else
-    //         deleteDislike();
-    // }
+    const handleDislike = (e, movie) => {
+        toggleElement(e.target.parentNode);
+        if (isElementActive(e.target.parentNode))
+            addDislike(movie)
+        else
+            deleteDislike(movie);
+    }
 
     return (
         <Card key={ movieCardKey }>
@@ -37,7 +45,7 @@ const MovieCard = ({ movieCardKey, movie, deleteMovie }) => {
                             <Progress bar value={getPercent(movie.likes, movie.likes + movie.dislikes)} className='likes' />
                             <Progress bar value={getPercent(movie.dislikes, movie.dislikes + movie.likes)} theme='secondary' className= 'dislikes' />
                         </Progress>
-                        <span onClick={e => handleLike(e)}>
+                        <span onClick={e => handleDislike(e, movie)}>
                             <FontAwesomeIcon icon={faThumbsDown} className='dislike-icon' />
                         </span>
                     </div>

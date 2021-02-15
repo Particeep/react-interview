@@ -5,7 +5,9 @@ export const SET_ALL_MOVIES = 'SET_ALL_MOVIES';
 export const SET_ALL_CATEGORIES = 'SET_ALL_CATEGORIES';
 export const SET_CHECKED_CATEGORIES = 'SET_CHECKED_CATEGORIES';
 export const ADD_LIKE = 'ADD_LIKE';
-export const DELETE_LIKE = 'ADD_LIKE';
+export const DELETE_LIKE = 'DELETE_LIKE';
+export const ADD_DISLIKE = 'ADD_DISLIKE';
+export const DELETE_DISLIKE = 'DELETE_DISLIKE';
 
 export const addMovies = (movies) => {
     return {
@@ -53,6 +55,27 @@ export const setCheckedCategories = (category) => {
 export const addLike = (movie) => {
     return {
         type: ADD_LIKE,
+        movie
+    }
+}
+
+export const deleteLike = (movie) => {
+    return {
+        type: DELETE_LIKE,
+        movie
+    }
+}
+
+export const addDislike = (movie) => {
+    return {
+        type: ADD_DISLIKE,
+        movie
+    }
+}
+
+export const deleteDislike = (movie) => {
+    return {
+        type: DELETE_DISLIKE,
         movie
     }
 }
