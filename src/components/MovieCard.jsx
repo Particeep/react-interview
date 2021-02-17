@@ -4,6 +4,7 @@ import { faThumbsUp, faThumbsDown, faTrashAlt } from "@fortawesome/free-solid-sv
 import toggleElement from '../utils/toggleElement';
 import isElementActive from '../utils/isElementActive';
 import getPercent from '../utils/getPercent';
+import movieImage from '../default-movie-image.jpg'
 
 const MovieCard = ({ 
     movieCardKey, 
@@ -34,7 +35,7 @@ const MovieCard = ({
 
     return (
         <Card key={ movieCardKey }>
-            <CardImg top src='https://www.avoir-alire.com/local/cache-vignettes/L240xH351/arton38265-dfc96.jpg?1578256957' />
+            <CardImg top src={movieImage} />
             <CardBody>
                 <div className='movie-caption'>
                     <div className='likes-bar'>
