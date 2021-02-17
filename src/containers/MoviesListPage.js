@@ -59,6 +59,11 @@ const MoviesListPage = ({
         setPageNumbers(moviesList.length, moviesPerPage);
     }, [moviesList, moviesPerPage])
 
+    useEffect(() => {
+        setMoviesPerPage(12);
+        paginate(1);
+    }, [moviesList])
+
     const handleSelect = (numberOfPages) => {
         setMoviesPerPage(numberOfPages);
     }
