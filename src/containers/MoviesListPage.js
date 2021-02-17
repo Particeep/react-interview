@@ -34,6 +34,7 @@ const MoviesListPage = ({
     addDislike,
     deleteDislike,
     setPageNumbers,
+    setMoviesPerPage,
     paginate,
     nextPage,
     prevPage,
@@ -56,7 +57,11 @@ const MoviesListPage = ({
     
     useEffect(() => {
         setPageNumbers(moviesList.length, moviesPerPage);
-    }, [moviesList])
+    }, [moviesList, moviesPerPage])
+
+    const handleSelect = (numberOfPages) => {
+        setMoviesPerPage(numberOfPages);
+    }
 
     return (
         <div id='site'>
@@ -78,10 +83,10 @@ const MoviesListPage = ({
                 />
             </div>
             <span id="pagination-bloc">
-                <DropdownButton title="Pagination" onSelect={(e) => setMoviesPerPage(12)}>
-                    <Dropdown.Item eventKey={1}>{4}</Dropdown.Item>
-                    <Dropdown.Item eventKey={2}>{8}</Dropdown.Item>
-                    <Dropdown.Item eventKey={3}>{12}</Dropdown.Item>
+                <DropdownButton title="Pagination" onSelect={handleSelect}>
+                    <Dropdown.Item eventKey={4}>{4}</Dropdown.Item>
+                    <Dropdown.Item eventKey={8}>{8}</Dropdown.Item>
+                    <Dropdown.Item eventKey={12}>{12}</Dropdown.Item>
                 </DropdownButton>
                 <Pagination 
                     pageNumbers={pageNumbers}
@@ -118,7 +123,8 @@ const mapDispatchToprops = (dispatch) => {
         setPageNumbers: bindActionCreators(setPageNumbers, dispatch),
         paginate: bindActionCreators(paginate, dispatch),
         nextPage: bindActionCreators(nextPage, dispatch),
-        prevPage: bindActionCreators(prevPage, dispatch)
+        prevPage: bindActionCreators(prevPage, dispatch),
+        setMoviesPerPage: bindActionCreators(setMoviesPerPage, dispatch)
     }
 }
 
