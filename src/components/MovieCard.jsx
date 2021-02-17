@@ -4,7 +4,7 @@ import { faThumbsUp, faThumbsDown, faTrashAlt } from "@fortawesome/free-solid-sv
 import toggleElement from '../utils/toggleElement';
 import isElementActive from '../utils/isElementActive';
 import getPercent from '../utils/getPercent';
-import movieImage from '../default-movie-image.jpg'
+import movieImage from '../assets/images/default-movie-image.jpg'
 
 const MovieCard = ({ 
     movieCardKey, 
