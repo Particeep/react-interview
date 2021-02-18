@@ -4,7 +4,6 @@ import { faThumbsUp, faThumbsDown, faTrashAlt } from "@fortawesome/free-solid-sv
 import toggleElement from '../utils/toggleElement';
 import isElementActive from '../utils/isElementActive';
 import getPercent from '../utils/getPercent';
-import movieImage from '../assets/images/default-movie-image.jpg'
 
 const MovieCard = ({ 
     movieCardKey, 
@@ -33,9 +32,11 @@ const MovieCard = ({
             deleteDislike(movie);
     }
 
+    const image = require('../assets/images/' + movie.src);
+    
     return (
         <Card key={ movieCardKey }>
-            <CardImg top src={movieImage} />
+            <CardImg top src={image.default} />
             <CardBody>
                 <div className='movie-caption'>
                     <div className='likes-bar'>

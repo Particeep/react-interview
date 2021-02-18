@@ -9,7 +9,7 @@ const MoviesList = ({
     addLike, 
     deleteLike,
     addDislike,
-    deleteDislike
+    deleteDislike,
 }) => {
 
     const indexOfLastMovie = currentPage * moviesPerPage;
