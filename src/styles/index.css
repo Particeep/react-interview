@@ -91,6 +91,7 @@ img {
 }
 #movies .card .card-img-top {
   border-radius: 0;
+  max-height: 300px;
 }
 
 #movies .card .movie-caption {
