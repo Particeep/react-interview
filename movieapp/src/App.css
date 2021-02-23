@@ -1,0 +1,128 @@
+html {
+  font-size: .625em; /* fallback sur IE8+ */
+  font-size: calc(1em * .625); /* IE9-IE11 math fixing. */
+  background: #F5F5F8;
+}
+
+body {
+  font-size: 1.4em; /* base font-size est équivalent à "14px" */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+header {
+  height: 10rem;
+  width: 100%;
+  background: white;
+  box-shadow: 0px 1px 10px #999;
+  display: flex;
+  justify-content: center;
+}
+.logo {
+  width: 10rem;
+  height: auto;
+}
+
+.movie {
+  margin-top: 2.5rem;
+  width: 30rem;
+  background: white;
+  box-shadow:0 2rem 2.5rem -.5rem rgba(0,0,0,.1), 0 1rem 1rem -.5rem rgba(0,0,0,.04);
+  border-radius: .5rem;
+} 
+.filter {
+ 
+  text-align: center;
+  margin-right: .5rem;
+}
+.container__filter {
+  padding-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.movie:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all .2s ease-in;
+  transition: all .2s ease-out;
+}
+.movie img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  padding-bottom: .5rem;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
+.movie__info-content {
+  text-align: center;
+}
+.movie__info-content span {
+  padding: .4rem;
+  color: white;
+  font-weight: bold;
+}
+.movie__info-links {
+  display: flex;
+  justify-content: space-around;
+}
+.movie__info-validate, .movie__info-dislike {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.likevalidate, .dislikevalidate {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.trash {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.likevalidate, .dislikevalidate {
+  margin-right: .7rem;
+  margin-top: .4rem;
+}
+
+.movie__container {
+  padding-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  height: 10rem;
+  padding-top: 2rem;
+}
+.pagination ul {
+  display: flex;
+  list-style: none;
+  
+}
+.pagination li {
+  margin-right: 1.3rem;
+  font-size: 2rem;
+}
+.pagination li a {
+  color: black;
+  text-decoration: none;
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  background: white;
+  box-shadow: 0px 1px 10px #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
