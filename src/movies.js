@@ -4,61 +4,71 @@ const movies = [
     title: 'Oceans 8',
     category: 'Comedy',
     likes: 4,
-    dislikes: 1
+    dislikes: 1,
+    image:'oceans8.jpg',
   }, {
     id: '2',
     title: 'Midnight Sun',
     category: 'Comedy',
     likes: 2,
-    dislikes: 0
+    dislikes: 0,
+    image:'Midnight.png',
   }, {
     id: '3',
     title: 'Les indestructibles 2',
     category: 'Animation',
     likes: 3,
-    dislikes: 1
+    dislikes: 1,
+    image:'indestructibles2.png',
   }, {
     id: '4',
     title: 'Sans un bruit',
     category: 'Thriller',
     likes: 6,
-    dislikes: 6
+    dislikes: 6,
+    image:'Sansbruit.png',
   }, {
     id: '5',
     title: 'Creed II',
     category: 'Drame',
     likes: 16,
-    dislikes: 2
+    dislikes: 2,
+    image:'Creed.png',
   }, {
     id: '6',
     title: 'Pulp Fiction',
     category: 'Thriller',
     likes: 11,
-    dislikes: 3
+    dislikes: 3,
+    image:'PulpFiction.png',
   }, {
     id: '7',
     title: 'Pulp Fiction',
     category: 'Thriller',
     likes: 12333,
-    dislikes: 32
+    dislikes: 32,
+    image:'PulpFiction.png',
   }, {
     id: '8',
     title: 'Seven',
     category: 'Thriller',
     likes: 2,
-    dislikes: 1
+    dislikes: 1,
+    image:'Seven.png',
   }, {
     id: '9',
     title: 'Inception',
     category: 'Thriller',
     likes: 2,
-    dislikes: 1
+    dislikes: 1,
+    image:'Inception.png',
   }, {
     id: '10',
     title: 'Gone Girl',
     category: 'Thriller',
     likes: 22,
-    dislikes: 12
+    dislikes: 12,
+    image:'GoneGirl.png',
   },
 ]
 
