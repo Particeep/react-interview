@@ -1,0 +1,47 @@
+.movie-card{
+    width: 200px;
+    background-color: #e0dcdc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); 
+}
+
+.movie-category{
+    margin: 10px 0;
+    padding: 10px;
+    background-color: burlywood;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2)
+}
+
+hr {
+    margin: 20px 0;
+}
+
+.movie-votes{
+    width: 100%;
+    display: table;
+}
+
+
+.movie-likes{
+    text-align: right;
+}
+
+
+.movie-dislikes{
+    text-align: left;
+}
+
+.movie-dislikes, .movie-likes{
+    display: table-cell;    
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.delete-button{
+    float: right;
+}

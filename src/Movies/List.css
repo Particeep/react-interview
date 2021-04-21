@@ -1,0 +1,21 @@
+.movies-list{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.navigation-button{
+    background-color: #2F4F4F;
+    padding: 5px 10px;
+    color: white;
+
+}
+
+.previous{
+    text-align: left;
+}
+
+
+.next{
+    text-align: right;
+}
