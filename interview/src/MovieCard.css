@@ -1,0 +1,30 @@
+article {
+    border: 1px solid black;
+    padding: 20px;
+    font-size: 20px;
+    margin: 5px;
+}
+
+span {
+    padding: 5px;
+    background-color: gainsboro;
+    font-size: 10px;
+}
+
+.user-selected {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    margin-top: 20px;
+}
+
+.user-selected > a {
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+}
+
+.user-selected > a:hover {
+    border-bottom: 3px solid black;
+}
