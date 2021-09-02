@@ -1,0 +1,14 @@
+.deleteButton{
+    border-radius: 10px;
+    background: #7ee7db;
+    box-shadow:  20px 20px 60px #6bbcb3,
+             -20px -20px 60px #91fef2;
+    
+}
+
+
+._3lLt8{
+    text-transform: none;
+    color: #b6553b;
+    font-style: italic;
+}
