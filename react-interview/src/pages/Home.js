@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {movies$ } from "../components/Movies"
 import { StyledGrid, StyledGridContent, StyledPage } from '../styles/StyledMovies';
 import likes from "../assets/icons8-j'aime-ça-50.png"
@@ -8,91 +8,62 @@ import {
     mdiThumbUpOutline,
     mdiThumbDownOutline
   } from '@mdi/js'
-import  Nav  from '../components/Nav';
+import Nav from '../components/Nav';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { initialMovies, UPDATE_MOVIE_ACTION } from '../reducers/MoviesReducer';
+import { MoviesSelector } from '../reducers/MoviesSelector';
+import { allMovieAction, deleteMovieAction, filterMovieAction, toggleDislikeMovieAction, toggleLikeMovieAction } from '../reducers/MoviesActions';
+import MovieList from '../components/MoviesList';
+
 
 function Home() {
     
-    const [movies, setMovies] = useState({ allMovies: [] })
-    const [initialMovies, setInitialMovies] = useState({ allInitialMovies: [] })
-
-
     useEffect(() => {
-        movies$.then(data => setMovies({ allMovies: [data] }))
-        movies$.then(data => setInitialMovies({ allMovies: [data] }))
+        refresh()
+    }, [])
 
-    },[])
+    const refresh = () => {
+        movies$.then(data => dispatch(allMovieAction(data)))
+    }
 
+    const movies = useSelector(MoviesSelector)
+    const dispatch = useDispatch()
+
+    const onToggle = useCallback((movie) => {
+        dispatch(toggleLikeMovieAction(movie))
+    }, [])
+
+    const onToggleDislike = useCallback((movie) => {
+        dispatch(toggleDislikeMovieAction(movie))
+    }, [])
+
+    const onDelete = useCallback((movie) => {
+        dispatch(deleteMovieAction(movie))
+    }, [])
+
+    const onFilterMovies = useCallback((movie) => {
+        dispatch(filterMovieAction(movie))
+    }, [])
     
 
     return (
         <>
-            <Nav category={initialMovies.allMovies} setMovies={ setMovies}/>
+            <Nav
+                category={movies}
+                onFilterMovies={onFilterMovies}
+            />
             <StyledPage>
-                    <div className="alignGrid">
-                    
-                        <StyledGrid>
-                            <StyledGridContent>
-                                {
-                                movies.allMovies.map(item => item.map(e => (
-                                    e.map ? (e.map(element =>
-                                        <div className="movieBlock"> 
-                                            <h1>{element.title}</h1>
-                                            <p>{element.category }</p>
-                                            <div className="likesAndDislikesBlock">               
-                                                <div className="likesBlock">
-                                                    <Icon path={mdiThumbUpOutline} size={0.9} />
-                                                    <p className="numberLikesAndDislikes">{element.likes}</p>
-                                                </div>
-                                                <div className="dislikesBlock">
-                                                    <Icon path={mdiThumbDownOutline} size={0.9}  />
-                                                    <p className="numberLikesAndDislikes">{element.dislikes}</p>
-                                                </div>  
-                                            </div>
-                                            <div className="footerBlock">
-                                                <label className="label">
-                                                    <div className="toggle">
-                                                        <input className="toggle-state" type="checkbox" name="check" value="check" />
-                                                        <div className="indicator"></div>
-                                                    </div>
-                                                    <div className="label-text">like/dislike</div>
-                                                </label>
-                                                <Button className="deleteButton">Supprimer</Button>
-                                            </div>
-                                        </div>
-                                        ))
-
-                                        :
-                                        <div className="movieBlock">
-                                            <h1>{e.title}</h1>
-                                            <p>{e.category}</p>
-                                            <div className="likesAndDislikesBlock">               
-                                                <div className="likesBlock">
-                                                    <Icon path={mdiThumbUpOutline} size={0.9} />
-                                                    <p className="numberLikesAndDislikes">{e.likes}</p>
-                                                </div>
-                                                <div className="dislikesBlock">
-                                                    <Icon path={mdiThumbDownOutline} size={0.9}  />
-                                                    <p className="numberLikesAndDislikes">{ e.dislikes}</p>
-                                                </div>  
-                                            </div>
-                                            <div className="footerBlock">
-                                                <label className="label">
-                                                    <div className="toggle">
-                                                        <input className="toggle-state" type="checkbox" name="check" value="check" />
-                                                        <div className="indicator"></div>
-                                                    </div>
-                                                    <div className="label-text">like/dislike</div>
-                                                </label>
-                                                <Button className="deleteButton">Supprimer</Button>
-                                            </div>
-                                        </div>
-                                    )))
-                            }
-                            
-                            </StyledGridContent>
-                        </StyledGrid>
-                    </div>
-                </StyledPage>
+                <div className="alignGrid">
+        
+                    <StyledGrid>
+                    <StyledGridContent>
+                        {
+                                movies.map(movie => <MovieList movie={movie} onToggle={onToggle} key={movie.id} onDelete={onDelete} onToggleDislike={onToggleDislike}/>)
+                        }
+                    </StyledGridContent>
+                    </StyledGrid>
+                </div>
+            </StyledPage>
         </>    
     )
 }

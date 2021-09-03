@@ -8,7 +8,10 @@ import {
 import Icon from '@mdi/react';
 
 
-function Nav({ category, setMovies }) {
+function Nav({ category,
+    
+    onFilterMovies
+}) {
     
     const [isOpen, setIsOpen] = useState(false)
 
@@ -20,19 +23,16 @@ function Nav({ category, setMovies }) {
         setIsOpen(false)
     }
 
-    
-
     const handleHiddenListCategory = (categoryChoose) => {
         setIsOpen(false)
-        console.log(categoryChoose)
         
-        const filterMovies = category.map(item => item.filter(e => e.category === categoryChoose))
-        setMovies({allMovies: [filterMovies]})
+        const filterMovies = category.filter(e => e.category === categoryChoose)
+        onFilterMovies(filterMovies)
     }
 
-    // const allValue = category && category.map(item=>item.map(e=>e.category))
-    // const unique = [...new Set(allValue)]
-    // console.log("unique", unique.map(e=>e.map(i=>i!==i)))
+    const allValue = category && category.map(item=>item.category)
+    const uniqueValue = [...new Set(allValue)]
+
  
     return (
         <StyledNav>
@@ -52,10 +52,9 @@ function Nav({ category, setMovies }) {
                     <div className="listCategory">
                         <ul>
                             {
-                                category.map(item => item.map(e => (
-
-                                    <li onClick={()=>handleHiddenListCategory(e.category)}>{ e.category}</li>
-                                )))
+                                uniqueValue.map((category, index) => (
+                                    <li onClick={()=>handleHiddenListCategory(category)} key={index} >{ category}</li>
+                                ))
                             }
                         </ul>
                     </div>
