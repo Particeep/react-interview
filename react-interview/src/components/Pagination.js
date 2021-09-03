@@ -6,7 +6,7 @@ import { StyledPagination } from '../styles/StyledPagination';
 import MovieList from './MoviesList';
 
 function Pagination({ data, dataLimit, onDelete, onToggle, onToggleDislike }) {
-    const pages = Math.round(data.length / dataLimit);
+    const pages = Math.ceil(data.length / dataLimit);
     const [currentPage, setCurrentPage] = useState(1);
   
     function goToNextPage() {
