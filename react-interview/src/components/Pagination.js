@@ -1,3 +1,5 @@
+import { mdiArrowLeftCircleOutline, mdiArrowRightCircleOutline } from '@mdi/js';
+import Icon from '@mdi/react';
 import React, { useState } from 'react';
 import { StyledGrid, StyledGridContent, StyledPage } from '../styles/StyledMovies';
 import { StyledPagination } from '../styles/StyledPagination';
@@ -53,14 +55,16 @@ function Pagination({ data, dataLimit, onDelete, onToggle, onToggleDislike }) {
                     onClick={goToPreviousPage}
                     className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
                 >
-                    précédent
+                    <Icon path={mdiArrowLeftCircleOutline} size={0.9} />
+                    <span>previous</span>
                 </button>
             
                 <button
                     onClick={goToNextPage}
                     className={`next ${currentPage === pages ? 'disabled' : ''}`}
                 >
-                    suivant
+                    <span>next</span>
+                    <Icon path={mdiArrowRightCircleOutline} size={0.9} />
                 </button>
             </div>
         </StyledPagination>

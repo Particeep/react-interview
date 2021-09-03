@@ -57,7 +57,7 @@ function Nav({ onFilterMovies, initialMovies, movies}) {
                                     <li onClick={()=>handleHiddenListCategory(category)} key={index} >{ category}</li>
                                 ))
                             }
-                            <li onClick={handleAllMovies}>Voir tout</li>
+                            <li onClick={handleAllMovies}>See all</li>
                         </ul>
                     </div>
                     : undefined

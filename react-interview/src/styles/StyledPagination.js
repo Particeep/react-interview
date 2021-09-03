@@ -25,4 +25,12 @@ export const StyledPagination = styled.div`
         margin: 10px;
     }
 
+    button{
+        display: flex;
+    }
+
+    span{
+        margin: 2px;
+    }
+
 `;
