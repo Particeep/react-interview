@@ -29,6 +29,10 @@ export const StyledPagination = styled.div`
         display: flex;
     }
 
+    button:hover{
+        cursor: pointer;
+    }
+
     span{
         margin: 2px;
     }
