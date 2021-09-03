@@ -34,6 +34,7 @@ export const StyledNav = styled.div`
         background-color: rgba(163, 84, 62, 0.55);
         border-radius: 5px;
         display: flex;
+        color: #7ee7db;
        
         ul{
             display: flex;
@@ -45,6 +46,7 @@ export const StyledNav = styled.div`
 
         li:hover{
             cursor: pointer;
+            font-style: italic;
             color: #a3543e;
         }
     }

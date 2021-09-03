@@ -14,9 +14,12 @@ import { initialMovies, UPDATE_MOVIE_ACTION } from '../reducers/MoviesReducer';
 import { MoviesSelector } from '../reducers/MoviesSelector';
 import { allMovieAction, deleteMovieAction, filterMovieAction, toggleDislikeMovieAction, toggleLikeMovieAction } from '../reducers/MoviesActions';
 import MovieList from '../components/MoviesList';
+import Pagination from '../components/Pagination';
+import { StyledForm } from '../styles/StyledForm';
 
 
 function Home() {
+    const [initialMovies, setInitialMovies] = useState([])
     
     useEffect(() => {
         refresh()
@@ -24,6 +27,7 @@ function Home() {
 
     const refresh = () => {
         movies$.then(data => dispatch(allMovieAction(data)))
+        movies$.then(data => setInitialMovies(data))
     }
 
     const movies = useSelector(MoviesSelector)
@@ -44,26 +48,40 @@ function Home() {
     const onFilterMovies = useCallback((movie) => {
         dispatch(filterMovieAction(movie))
     }, [])
+
+    const [limitDataAppeared, setLimitDataAppeared] = useState(4)
+    
+    const handleChange = (event) => {
+        setLimitDataAppeared(Number(event.target.value))
+    }
     
 
     return (
         <>
             <Nav
-                category={movies}
+                movies={movies}
+                initialMovies={initialMovies}
                 onFilterMovies={onFilterMovies}
             />
-            <StyledPage>
-                <div className="alignGrid">
-        
-                    <StyledGrid>
-                    <StyledGridContent>
-                        {
-                                movies.map(movie => <MovieList movie={movie} onToggle={onToggle} key={movie.id} onDelete={onDelete} onToggleDislike={onToggleDislike}/>)
-                        }
-                    </StyledGridContent>
-                    </StyledGrid>
-                </div>
-            </StyledPage>
+            <StyledForm>
+                <form>
+                    <label>
+                        Choisissez votre type d'affichage :
+                        <select value={limitDataAppeared} onChange={handleChange}>
+                            <option value={4}>4</option>
+                            <option value={8}>8</option>
+                            <option value={12}>12</option>
+                        </select>
+                    </label>
+                </form>
+            </StyledForm>
+            <Pagination
+                data={movies}
+                onToggle={onToggle}
+                onDelete={onDelete}
+                onToggleDislike={onToggleDislike}
+                dataLimit={limitDataAppeared}
+            />
         </>    
     )
 }

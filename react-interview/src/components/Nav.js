@@ -8,10 +8,7 @@ import {
 import Icon from '@mdi/react';
 
 
-function Nav({ category,
-    
-    onFilterMovies
-}) {
+function Nav({ onFilterMovies, initialMovies, movies}) {
     
     const [isOpen, setIsOpen] = useState(false)
 
@@ -26,12 +23,16 @@ function Nav({ category,
     const handleHiddenListCategory = (categoryChoose) => {
         setIsOpen(false)
         
-        const filterMovies = category.filter(e => e.category === categoryChoose)
+        const filterMovies = movies.filter(e => e.category === categoryChoose)
         onFilterMovies(filterMovies)
     }
 
-    const allValue = category && category.map(item=>item.category)
+    const allValue = movies && movies.map(item=>item.category)
     const uniqueValue = [...new Set(allValue)]
+
+    const handleAllMovies = () => {
+        onFilterMovies(initialMovies)
+    }
 
  
     return (
@@ -56,6 +57,7 @@ function Nav({ category,
                                     <li onClick={()=>handleHiddenListCategory(category)} key={index} >{ category}</li>
                                 ))
                             }
+                            <li onClick={handleAllMovies}>Voir tout</li>
                         </ul>
                     </div>
                     : undefined
