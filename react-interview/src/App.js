@@ -1,4 +1,6 @@
 import logo from './logo.svg';
+import { Provider } from 'react-redux'
+import store from './reducers'
 import './App.css';
 
 import 'ui-neumorphism/dist/index.css'
@@ -12,10 +14,12 @@ function App() {
 
   
   return (
-    <div className="App">
+    <Provider store={store}>
+      <div className="App">
+        <Home />
+      </div>
+    </Provider>
 
-      <Home />
-    </div>
   );
 }
 

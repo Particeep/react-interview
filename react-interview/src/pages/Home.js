@@ -13,14 +13,16 @@ import  Nav  from '../components/Nav';
 function Home() {
     
     const [movies, setMovies] = useState({ allMovies: [] })
-    const [initialMovies, setInitialMovies] = useState({allInitialMovies: []})
+    const [initialMovies, setInitialMovies] = useState({ allInitialMovies: [] })
+
 
     useEffect(() => {
         movies$.then(data => setMovies({ allMovies: [data] }))
-        movies$.then(data=>setInitialMovies({allMovies: [data]}))
+        movies$.then(data => setInitialMovies({ allMovies: [data] }))
+
     },[])
 
-    console.log(movies)
+    
 
     return (
         <>
