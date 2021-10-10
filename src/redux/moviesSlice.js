@@ -106,7 +106,6 @@ export const moviesSlice = createSlice({
       .addCase(fetchMovies.fulfilled, (state, action) => {
         state.status = "success";
         state.movies = action.payload;
-        state.filtered = action.payload;
       })
       .addCase(fetchMovies.rejected, (state) => {
         state.status = "rejected";
