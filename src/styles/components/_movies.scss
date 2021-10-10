@@ -25,7 +25,7 @@
 }
 
 .movie-image {
-  @include flexCenter(column, flex-start);
+  @include flexCenter(column, flex-start, center, center);
   cursor: pointer;
   position: relative;
   width: 100%;
@@ -42,8 +42,8 @@
   }
 
   .movie-cover {
-    width: calc(20rem + 15vw);
-    height: calc(30rem + 20vw);
+    width: calc(15rem + 15vw);
+    height: calc(20rem + 20vw);
     border: 1px solid rgba(0, 0, 0, 0.15);
     /* object-fit: contain; */
   }
@@ -51,7 +51,7 @@
 
 .movie-text {
   @include flexCenter(column);
-  min-height: 20rem;
+  min-height: 10rem;
 }
 .movie-category {
   & > * {
