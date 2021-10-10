@@ -24,33 +24,30 @@ const Pagination = () => {
     dispatch(change_page(selected + 1));
   };
 
-  return (
+  return status === "success" ? (
     <div className="pagination-container">
-      {status === "success" ? (
-        <>
-          <Limiter />
-          <ReactPaginate
-            data-testid="toggle-page"
-            previousLabel={"◄"}
-            nextLabel={"►"}
-            pageCount={pageCount}
-            onPageChange={handleChange}
-            containerClassName={"pagination"}
-            previousLinkClassName={`${currentPage === 1 ? "hidden" : ""}`}
-            nextLinkClassName={`${
-              currentPage === pageCount ||
-              (filter != null &&
-                movies.filter((movie) => movie.category === filter).length ===
-                  0) ||
-              movies.length === 0
-                ? "hidden"
-                : ""
-            }`}
-            activeClassName={"pagination-active"}
-          />
-        </>
-      ) : null}
+      <Limiter />
+      <ReactPaginate
+        data-testid="toggle-page"
+        previousLabel={"◄"}
+        nextLabel={"►"}
+        pageCount={pageCount}
+        onPageChange={handleChange}
+        containerClassName={"pagination"}
+        previousLinkClassName={`${currentPage === 1 ? "hidden" : ""}`}
+        nextLinkClassName={`${
+          currentPage === pageCount ||
+          (filter != null &&
+            movies.filter((movie) => movie.category === filter).length === 0) ||
+          movies.length === 0
+            ? "hidden"
+            : ""
+        }`}
+        activeClassName={"pagination-active"}
+      />
     </div>
+  ) : (
+    <></>
   );
 };
 
