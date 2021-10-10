@@ -1,0 +1,13 @@
+$breakpoints: (
+  "medium": (
+    min-width: 768px,
+  ),
+  "large": (
+    min-width: 1024px,
+  ),
+  "huge": (
+    min-width: 1200px,
+  ),
+);
+
+$footer-height: 10rem;

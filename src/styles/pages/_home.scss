@@ -1,0 +1,231 @@
+.home-page {
+  @include flexCenter(column, center);
+}
+
+.section-text-container {
+  margin: 5rem 0;
+  width: 80%;
+  & > p {
+    margin-top: 4rem;
+    &:not(.contact-content) {
+      text-align: left;
+    }
+  }
+
+  & a {
+    &:hover {
+      color: blue;
+    }
+  }
+}
+
+/* --------------------------------- About ----------------------------------- */
+
+.about-section {
+  background-color: $primary-gray;
+  .about-photo-container {
+    margin: 2rem 1rem 0 1rem;
+
+    text-align: center;
+    & img {
+      border-radius: 50%;
+    }
+  }
+}
+
+/* --------------------------------- Skills ----------------------------------- */
+.skills-section {
+  .youtube-link {
+    font-size: 1.8rem;
+    font-family: $secondary-font;
+    color: blue;
+  }
+  .skills-card-container {
+    .skills-list {
+      margin: auto;
+      @include flexCenter(row, center);
+      width: 95%;
+
+      .skill-card {
+        cursor: pointer;
+        min-width: 10rem;
+        min-height: 8rem;
+        border-radius: 15%;
+        margin: 2rem;
+        padding: 1rem 0;
+        box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
+        background-color: $primary-gray;
+        border: 1px solid $secondary-gray;
+        transition: all 0.5s ease;
+        transition-property: transform color;
+
+        p {
+          margin-top: 5%;
+          font-weight: bold;
+          font-family: $primary-font;
+        }
+
+        &:hover {
+          transform: translateY(-20%);
+          background-color: $primary-blue;
+          & i,
+          & p {
+            color: $primary-gray;
+          }
+        }
+      }
+
+      i {
+        font-size: 5rem;
+      }
+    }
+  }
+}
+
+/* --------------------------------- Projects ----------------------------------- */
+.projects-section {
+  background-color: $primary-gray;
+  .projects-card-container {
+    width: 95%;
+    @include flexCenter(row, center);
+
+    .project-card {
+      @include flexCenter(column);
+      width: calc(90% - 2.5rem);
+      min-height: 50rem;
+      border-radius: 5%;
+      margin: 2rem;
+      box-shadow: 0rem 0.2rem 1.5rem 0.2rem rgba(0, 0, 0, 0.15);
+      background-color: $primary-gray;
+
+      &-image {
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        img {
+          border-radius: 5%;
+        }
+
+        .project-card-overlay {
+          opacity: 0;
+          position: absolute;
+          border-radius: 5%;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          transition: opacity 0.5s ease;
+          background-color: $primary-black;
+          .project-overlay {
+            height: 100%;
+            width: 100%;
+            color: $primary-gray;
+            position: absolute;
+            @include flexCenter(column, space-around);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      &-text {
+        min-height: 25rem;
+        width: 100%;
+        @include flexCenter(column);
+      }
+
+      &-footer {
+        @include flexCenter(row, space-around);
+        border-top: 1.5px solid $secondary-gray;
+        width: 100%;
+        min-height: 7rem;
+      }
+
+      .project-description {
+        width: 90%;
+      }
+
+      .project-link,
+      .project-repo {
+        @include flexCenter(row);
+        i {
+          font-size: 2.5rem;
+          &:hover {
+            color: blue;
+            transform: translateY(-25%);
+          }
+        }
+      }
+
+      .project-tags-container {
+        @include flexCenter(column);
+        width: 100%;
+        height: 100%;
+        min-height: 10rem;
+        .project-tags {
+          @include flexCenter(column);
+          width: 100%;
+          height: 100%;
+          li {
+            color: $primary-gray;
+            background-color: $primary-blue;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem;
+            width: 10rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*-------------------------------------- Contact -----------------------------------*/
+
+/*------------ Reponsive -----------*/
+@include respond-to("medium") {
+  .projects-section {
+    .projects-card-container {
+      .project-card {
+        width: 50rem;
+        min-height: 40rem;
+
+        &-text {
+          min-height: 30rem;
+        }
+
+        .project-tags-container {
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}
+@include respond-to("large") {
+  .section-text-container {
+    width: 55%;
+  }
+
+  .skills-section {
+    .skills-card-container {
+      .skills-list {
+        width: 75%;
+      }
+    }
+  }
+
+  .projects-section {
+    .projects-card-container {
+      .project-card {
+        width: 48rem;
+        &-image {
+          &:hover .project-card-overlay {
+            opacity: 0.95;
+          }
+        }
+      }
+    }
+  }
+}

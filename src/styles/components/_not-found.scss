@@ -1,0 +1,5 @@
+.not-found-container {
+  @include flexCenter(column,center,center,center);
+  height: 100%;
+  width: 100%;
+}

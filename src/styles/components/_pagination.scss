@@ -1,0 +1,50 @@
+.pagination-container {
+  @include flexCenter(row, center, center, center);
+  background-color: $primary-gray;
+
+  height: 10rem;
+  margin-bottom: 0.2rem;
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+}
+
+.pagination {
+  @include flexCenter(row, center, center, center);
+  width: 100%;
+  height: 75%;
+
+  & a {
+    min-width: 1rem;
+    margin: 0 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid $primary-blue;
+    border-radius: 0.75rem;
+    transition: background-color 0.3s, color 0.2s ease-in-out;
+
+    &:hover {
+      color: $secondary-white;
+      background-color: $secondary-blue;
+    }
+  }
+  &-active a {
+    color: $secondary-white;
+    background-color: $secondary-blue;
+  }
+}
+
+.items-limiter {
+  margin-top: 1.5rem;
+}
+
+/*------------ Reponsive -----------*/
+@include respond-to("medium") {
+  .pagination {
+    width: 40rem;
+  }
+  .items-limiter {
+    margin-top: 0;
+  }
+}
+@include respond-to("large") {
+}

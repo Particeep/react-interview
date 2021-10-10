@@ -1,0 +1,11 @@
+main {
+  min-height: 100vh;
+  min-width: 95vw;
+  @include flexCenter(column);
+}
+
+/*------------ Reponsive -----------*/
+@include respond-to("medium") {
+}
+@include respond-to("large") {
+}

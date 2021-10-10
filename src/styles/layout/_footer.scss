@@ -1,0 +1,12 @@
+footer {
+  @include flexCenter(column, center, center, center);
+  background: $primary-black;
+  min-height: $footer-height;
+  color: $primary-white;
+}
+
+/*------------ Reponsive -----------*/
+@include respond-to("medium") {
+}
+@include respond-to("large") {
+}

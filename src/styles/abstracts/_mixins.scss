@@ -1,0 +1,47 @@
+/*- Centred flex -*/
+@mixin flexCenter(
+  $direction,
+  $justify-content: space-evenly,
+  $align-items: center,
+  $align-content: flex-start,
+  $wrap: wrap
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-flow: $wrap $direction;
+  align-content: $align-content;
+}
+
+/*- Reset params -*/
+@mixin initialProperties {
+  position: initial;
+  height: initial;
+  width: initial;
+  transform: none;
+}
+
+/* Responsive Breakpoints */
+
+/// Responsive breakpoint manager
+/// @access public
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}

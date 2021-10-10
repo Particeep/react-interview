@@ -1,21 +1,42 @@
-# react-interview
+# Movies app
 
-1. Lister les films dans des cartes avec: le titre en gras, la catégorie et une jauge type Youtube indiquant le ratio likes/dislikes. Les cartes doivent être côtes à côtes et responsive. Càd que lorsque la fenêtre se réduit, les cartes sautent à la ligne suivante.
+Movies app developed with ReactJS using Redux Toolkit showing a list of movies, the user may filter them by type, like/dislike movies, and decide how many movies can be showed per page.
 
-2. Ajouter un bouton dans les cartes permettant de supprimer celle-ci
+**⚠️ movies.js is in the src folder.**
 
-3. Ajouter un bouton toggle like/dislike
+**⚠️ A strong emphasis had been on producing a clean, well-structured code with isolated components and state management.**
 
-4. Ajouter un filtre par catégorie (de type multiselect) en supposant qu'on ne les connaisse pas à l'avance (il faut donc les récupérer dynamiquement depuis les films). Si tous les films d'une catégorie sont supprimés, celle-ci ne doit plus appraître.
+Viewable here: **https://YHADJRABIA.github.io/movies-app/**
 
-5. Ajouter un système de pagination avec les fonctionnalités suivantes: 
-    * Boutons précédent/suivant
-    * Choix du nombre d'élements affichés par page (4, 8 ou 12).
+## Setup:
 
-Prennez des initiatives, il y a des points bonus si
+#### Installation:
 
-* C'est jolie
-* Vous utilisez correctement REDUX 
-* Il y a une attention aux détails
+From root folder
 
-/!\ La suppression du comportement asynchrone dans `movies.js` entraînera une annulation du test.
+```
+npm install
+```
+
+#### Use:
+
+```
+npm start
+```
+
+## Features:
+
+- Fully responsive mobile-first app displaying a list of movies.
+- Rating feature for each movie, leading to the update of the movie's like/dislike ratio.
+- Filtering feature by movie category.
+- Possibility to remove a movie, this will trigger a notification, if no more movies remain — an svg may be displayed.
+- Pagination feature.
+- Choosing how much movies to display per page.
+- Loading animation to handle asynchronous actions when the promise is being resolved.
+- Lazy-loading images for better performance (commented out, but can be enabled by removing the comments).
+
+## Technologies:
+
+- ReactJS (with hooks).
+- Redux Toolkit.
+- Sass using 7-1 pattern.

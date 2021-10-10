@@ -1,0 +1,17 @@
+.Toastify__toast-body {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.Toastify__toast-container--top-left,
+.Toastify__toast-container--top-right,
+.Toastify__toast-container--top-center {
+  top: 0.5rem;
+}
+
+/*------------ Reponsive -----------*/
+@include respond-to("medium") {
+}
+@include respond-to("large") {
+}

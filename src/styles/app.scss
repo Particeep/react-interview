@@ -1,0 +1,15 @@
+// @author Yacine Hadj Rabia
+
+/*--- Imports ---*/
+
+@import "abstracts/variables", "abstracts/colors", "abstracts/functions",
+  "abstracts/mixins";
+
+@import "base/typography", "base/reset", "base/svg";
+
+@import "layout/main", "layout/footer";
+
+@import "components/not-found", "components/pagination", "components/loading",
+  "components/notifications", "components/filter", "components/movies";
+
+@import "pages/home";

@@ -1,0 +1,17 @@
+.filter-container {
+  margin: 5rem 0;
+  width: 85%;
+  position: sticky;
+  z-index: 5;
+  top: 0.5rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+/*------------ Reponsive -----------*/
+@include respond-to("medium") {
+  .filter-container {
+    width: 30rem;
+  }
+}
+@include respond-to("large") {
+}
