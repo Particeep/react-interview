@@ -42,8 +42,8 @@ export default function Gauge(props) {
         <div className='gauge' >
             <section>
                 <div className='icons'>
-                    <img className='up' src='https://o.remove.bg/downloads/5271210c-6dbb-4748-80f3-20954eb1aacf/image-removebg-preview.png'  alt='like'/>
-                    <img className='down' src='https://o.remove.bg/downloads/5271210c-6dbb-4748-80f3-20954eb1aacf/image-removebg-preview.png'  alt='dislike'/>
+                    <img className='up' src='./thump-up.png'  alt='like'/>
+                    <img className='down' src='/thump-up.png'  alt='dislike'/>
                 </div>
                 <div className='line'>
                     <div className='like' style={styleLike}>

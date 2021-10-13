@@ -3,14 +3,22 @@ import '../styles/MovieCard.css';
 import Gauge from './Gauge'
 import {movies$} from '../movies'
 
-export default function MoviesList() {
+export default function MoviesList(props) {
     const [list,setList] = useState([])
     useEffect(() => {
         console.log("render")
         movies$.then(res=>{
-            setList([...res])
+            console.log(props.filter)
+            let theList = [];
+            if(props.filter.length > 0) {
+                theList = [...res].filter(el=>props.filter.includes(el.category))
+                console.log(theList)
+            } else {
+                theList = [...res]
+            }
+            setList(theList)
         })
-    },[])
+    },[props.filter])
     const handleDelete = (id) => {
         const newList = list.filter(el => el.id !== id)
         setList(newList)

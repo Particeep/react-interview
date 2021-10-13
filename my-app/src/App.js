@@ -14,16 +14,15 @@ function App() {
         })
     }, [])
     const handleChange = (e) => {
-        console.log(e.target.selectedOptions)
-        setFilter(Array.from(e.target.selectedOptions, (item) => item.value))
+      setFilter(Array.from(e.target.selectedOptions, (item) => item.value))
     }
-    const handleSubmit = () => {
-        console.log(filter)
+    const handleClear = () => {
+      setFilter([])
     }
   return (
     <div className="App">
       <div className='category-list'>
-        <form onSubmit={()=>handleSubmit()}>
+        <form>
             <label for={filter}>Choose one or many categories:</label>
                 <select multiple value={filter} onChange={(e)=>handleChange(e)}>
                 {categoryList.map((el,id)=>{
@@ -32,10 +31,10 @@ function App() {
                     )
                 })}
                 </select>
-            <input type='submit' value='search'/>
         </form>
+        <button className='clear-filter' onClick={()=>handleClear()}>Clear Filter</button>
         </div>
-      <MoviesList />
+      <MoviesList filter={filter} />
     </div>
   );
 }
