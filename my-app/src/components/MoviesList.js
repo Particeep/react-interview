@@ -8,20 +8,27 @@ export default function MoviesList() {
     useEffect(() => {
         console.log("render")
         movies$.then(res=>{
-            console.log(res)
-            setList(res)
+            setList([...res])
         })
-    }, [])
-
+    },[])
+    const handleDelete = (id) => {
+        const newList = list.filter(el => el.id !== id)
+        setList(newList)
+    }
     return (
-        <div>
+        <div className='list'>
             {list.map(el=>{
                 return (
                     <div className='card' key={el.id}>
-                        <img src={el.image} alt='poster'/>
+                        <div className='poster'>
+                            <img src={el.image} alt='poster'/>
+                        </div>
                         <h1>{el.title}</h1>
                         <p>{el.category}</p>
-                        <Gauge like={el.like} dislike={el.dislike}/>
+                        <div className='bottom'>
+                            <Gauge likes={el.likes} dislikes={el.dislikes}/>
+                            <button className='delete-button' onClick={()=>handleDelete(el.id)}>Delete</button>                    
+                        </div>
                     </div>
                  )
             })}
