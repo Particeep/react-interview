@@ -1,0 +1,16 @@
+.gauge {
+    width: 100px;
+    display: flex;
+}
+.like img, .dislike img {
+    max-width: 40%;
+}
+.like {
+    border-bottom: 1px solid black;
+}
+.dislike {
+    border-bottom: 1px solid gray;
+}
+.dislike img {
+    transform: rotate(180deg);
+}
