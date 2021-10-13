@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/MovieCard.css';
 import Gauge from './Gauge'
 import {movies$} from '../movies'

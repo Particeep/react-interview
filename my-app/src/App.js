@@ -4,7 +4,7 @@ import MoviesList from './components/MoviesList';
 import {movies$} from './movies';
 
 function App() {
-   const [categoryList, setCategoryList] = useState([])
+    const [categoryList, setCategoryList] = useState([])
     const [filter, setFilter] = useState([]);
     useEffect(() => {
         movies$.then(res=>{
@@ -13,21 +13,22 @@ function App() {
             setCategoryList(filteredList)
         })
     }, [])
-    const handleClick = (id) => {
-        setFilter([...filter,categoryList[id]])
+    const handleChange = (e) => {
+        console.log(e.target.selectedOptions)
+        setFilter(Array.from(e.target.selectedOptions, (item) => item.value))
     }
     const handleSubmit = () => {
-        
+        console.log(filter)
     }
   return (
     <div className="App">
       <div className='category-list'>
-        <form onSubmit={handleSubmit()}>
-            <label for="categories">Choose one or many categories:</label>
-                <select name={filter} id='options' multiple>
+        <form onSubmit={()=>handleSubmit()}>
+            <label for={filter}>Choose one or many categories:</label>
+                <select multiple value={filter} onChange={(e)=>handleChange(e)}>
                 {categoryList.map((el,id)=>{
                     return (
-                        <option value={el} onClick={()=>{handleClick(id)}}>{el}</option>
+                        <option key={id} value={el} >{el}</option>
                     )
                 })}
                 </select>
