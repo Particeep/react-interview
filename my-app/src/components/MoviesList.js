@@ -16,9 +16,14 @@ export default function MoviesList(props) {
             } else {
                 theList = [...res]
             }
+            if (props.display !== res.length) {
+                let start = props.page * props.display - props.display;
+                let end = props.page * props.display
+                theList = [...res].slice(start,end)
+            }
             setList(theList)
         })
-    },[props.filter])
+    },[props.filter, props.page, props.display])
     const handleDelete = (id) => {
         const newList = list.filter(el => el.id !== id)
         setList(newList)

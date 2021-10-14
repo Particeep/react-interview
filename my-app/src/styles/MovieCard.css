@@ -6,13 +6,15 @@ body {
 .list {
     display: flex;
     flex-wrap: wrap;
+    max-width:100%;
 }
 .card {
     max-width: 300px;
     height: 580px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 20px;
-    margin: 50px;
+    margin: 30px;
+    text-align: center;
 }
 .card p {
   margin-bottom: 20px;  
@@ -25,6 +27,8 @@ img {
     max-width: 90%;
     width:90%;
     border-radius: 16px;
+    display: block;
+    margin: 0 auto;
 }
 .poster {
     height:400px;
@@ -32,10 +36,11 @@ img {
 .delete-button {
     margin-right: 10px;
     background-color: #9D2020;
-    border-radius: 13px;
+    border-radius: 10px;
     color: white;
     font-weight: bold;
     width: 60px;
+    height: 28px;
     text-align: center;
     border-style: none;
 }
