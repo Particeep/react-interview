@@ -22,3 +22,25 @@ span {
 .number {
   text-align: right;
 }
+span:hover {
+  font-weight: 900;
+}
+.clear-filter {
+  background-color: gray;
+  border-style: none;
+  padding: 6px;
+  text-align: center;
+  color:white;
+  height: 30px;
+}
+.category-list {
+  display: flex;
+}
+.category-list select {
+  width: 100px;
+}
+.category-list form {
+  display: flex;
+  align-content: flex-start;
+
+}

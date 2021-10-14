@@ -23,7 +23,6 @@ function App() {
     const handleClear = () => {
       setFilter([])
     }
-
   return (
     <div className="App">
       <h1>Movies Recommendations</h1>
