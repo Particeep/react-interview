@@ -1,0 +1,50 @@
+{
+  "common": {
+    "button": {
+      "cancel": {
+        "label": "Annuler"
+      },
+      "submit": {
+        "label": "Valider"
+      }
+    }
+  },
+  "page": {
+    "movie": {
+      "title": "Recommandations de films",
+      "filterButton": {
+        "label": "Filtre"
+      },
+      "filterDialog": {
+        "title": "Filtre les films",
+        "selectCategories": {
+          "placeholder": "Sélectionner des catégories"
+        }
+      }
+    }
+  },
+  "ui": {
+    "card": {
+      "movieCard": {
+        "likeButton": {
+          "tooltip": "J'aime"
+        },
+        "dislikeButton": {
+          "tooltip": "Je n'aime pas"
+        },
+        "deleteButton": {
+          "tooltip": "Supprimer"
+        }
+      }
+    },
+    "select": {
+      "multiSelect": {
+        "message": {
+          "loading": "Chargement",
+          "noOptions": "Il n'y a pas d'option"
+        },
+        "placeholder": "Sélectionner"
+      }
+    }
+  }
+}
