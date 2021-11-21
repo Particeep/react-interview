@@ -1,0 +1,104 @@
+* {
+	box-sizing: border-box
+}
+
+ul {
+    list-style: none;
+	
+}
+
+li {
+	float: left;
+	margin-right: 20px;
+	text-align: center
+	
+}
+
+
+.card {
+  width: 250px;
+  height: 250px;
+  margin:0px auto;
+  padding-bottom: 30px;
+  background-color:white;
+  box-shadow: 0px 5px 20px #555;
+  margin-left: 20px;
+  
+}
+
+.card-title {
+   font-family: 'Playfair Display', serif;
+}
+.fa {
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+	color: #8F8F8F;
+}
+
+.fa-thumbs-up {
+	color: #0061D4;
+}
+
+.btn-full {
+	background-color: red;
+	border: 1px solid #e67e22;
+	color: #fff;
+	cursor: pointer
+}
+
+p {
+	color: orange
+}
+
+.form-group {
+	padding-top: 20%;
+	margin-left:20px;
+}
+
+.hidden-check1 {
+  display: none;  
+  }
+
+.hidden-check2 {
+  visibility: hidden;
+}
+.hidden-check3 {
+  display: none;  
+  }
+
+.hidden-check4 {
+  visibility: hidden;
+}
+
+.toggle {
+  font-size: 20px;	
+  width: 300px;
+  margin-left: 40px;
+  padding-bottom: 40px;
+}
+button {
+	
+	cursor: pointer;
+}
+
+.progress {
+  position: relative;
+  display: inline-block;
+}
+
+.progressBar {
+  width: 160px;
+  height: 10px;
+  background: #fff;
+  padding: 3px;
+}
+
+.progressValue {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+progress::-webkit-progress-value { background: #0061D4; }
