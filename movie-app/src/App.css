@@ -1,0 +1,344 @@
+body {
+  --color-over: linear-gradient(180deg, rgba(50,50,50,0.9) 0%, rgba(50,50,50,0.3) 80%);
+  --color-primary:rgb(112, 76, 182);
+  --color-secondary: #fff;
+  --color-secondary-half: rgb(212, 212, 212);
+  --color-background: #f4f4f4;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-float infinite 3s ease-in-out;
+  }
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: var(--color-primary);
+}
+
+@keyframes App-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.ma__filters {
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 40px);
+  z-index: 20;
+  overflow: auto;
+}
+.ma__filters__button {
+  background-color: transparent;
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+  border-radius: 25px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.ma__filters__button:hover {
+  background-color: var(--color-secondary-half);
+  color: var(--color-primary);
+}
+.ma__filters__button-active {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.ma__movieslist {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 40px;
+  max-width: 1400px;
+  margin: auto;
+  padding-bottom: 80px;
+}
+.ma__moviecard {
+  margin: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  transition: 0.2s;
+  display: inline-block;
+}
+.ma__moviecard img {
+  width: 100%;
+  height: 100%;
+}
+
+.ma__moviecard__info {
+  transition: 0.2s;
+  position: absolute;
+  background: var(--color-over);
+  color: var(--color-secondary);
+  top: -110%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes MovieCardTransition {
+  0% {
+    top: -110%;
+  }
+  50% {
+    top: 0;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes MovieCardTransitionOut {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -110%;
+  }
+  100% {
+    top: -110%;
+  }
+}
+.ma__moviecard:hover .ma__moviecard__info{
+  animation: MovieCardTransition 1 2s ease-in-out;
+  top: 0;
+}
+.ma__moviecard__info h3 {
+  margin: 10px;
+  font-size: 22px;
+}
+.ma__moviecard:hover {
+  box-shadow: 0px 0px 20px -10px;
+  transform: scale(1.05);
+}
+.ma__moviecard__catname {
+  margin-left: 10px;
+}
+.ma__moviecard__info__bottom {
+  transition: 2s;
+  position: absolute;
+  bottom: -110%;
+  width: calc(100% - 20px);
+  text-align: center;
+  padding: 10px;
+}
+.ma__moviecard:hover .ma__moviecard__info__bottom{
+  bottom: 0;
+}
+.ma__progressbar__container {
+  width: 100%;
+  background-color: red;
+  border-radius: 5px;
+}
+.ma__progressbar {
+  height: 5px;
+  border-radius: 5px;
+  background-color: green;
+}
+.ma__like__container {
+}
+.ma__like__container button {
+  font-size: 30px;
+  margin: 10px;
+  border-radius: 50px;
+  border: none;
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+}
+.ma__like__container button:hover {
+  background-color: var(--color-primary);
+}
+.ma__liked {
+  background-color: green;
+}
+.ma__disliked {
+  background-color: red;
+}
+.ma__moviecard__info button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 15px;
+  border-radius: 0px 0px 0px 10px;
+  height: 30px;
+  width: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.ma__moviecard__info button:hover {
+  background-color: var(--color-primary);
+}
+.ma__animation_disappear {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.ma__pagination {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 40px);
+  left: 0;
+  background-color: var(--color-primary);
+  padding: 10px 20px;
+}
+
+.ma__pagination__action {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-secondary);
+  padding: 5px 10px;
+  border-radius: 25px;
+}
+
+.ma__pagination__action button {
+  margin: 0px 5px;
+  background-color: var(--color-secondary);
+  border: none;
+  border-radius: 25px;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 30px;
+  justify-content: center;
+}
+.ma__pagination__action button:hover {
+  background-color: var(--color-secondary-half);
+  color: var(--color-primary);
+}
+.ma__pagination__currentPage {
+  border-radius: 50px;
+  color: var(--color-primary);
+  height: 30px;
+  width: 30px;
+  background-color: var(--color-secondary) !important;
+  cursor: default !important;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ma__elperpage {
+  width: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.ma__elperpage select {
+  padding: 5px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+.ma__pagination__container {
+  display: flex;
+  justify-content: center;
+}
+
+.ma__pagination__pagebutton {
+  background-color: var(--color-secondary);
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ma__elperpage__container {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-secondary);
+  padding: 5px 10px;
+  border-radius: 50px;
+}
+.ma__elperpage__container svg {
+  color: var(--color-primary);
+  margin-right: 1px;
+  display: none;
+}
+
+.ma__pagination__action button svg {
+  width: 15px;
+  height: 15px;
+}
+@media (min-width:320px)  { 
+  /* smartphones, iPhone, portrait 480x320 phones */ 
+
+}
+@media (min-width:481px)  { 
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 
+  .ma__elperpage__container svg {
+    display: flex;
+  }
+}
+@media (min-width:641px)  { 
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+  .ma__moviecard {
+    max-width: calc(50% - 40px);
+  }
+  .ma__pagination {
+    margin: 20px;
+    box-shadow: 0px 6px 20px -10px;
+    border-radius: 50px;
+    width: calc(100vw - 80px);
+  }
+
+}
+@media (min-width:961px)  { 
+  /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+  .ma__moviecard {
+    max-width: calc(25% - 40px);
+  }
+
+}
+@media (min-width:1025px) { 
+  /* big landscape tablets, laptops, and desktops */ 
+
+}
+@media (min-width:1281px) { 
+  /* hi-res laptops and desktops */ 
+
+}
