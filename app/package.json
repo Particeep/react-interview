@@ -44,6 +44,7 @@
     "autoprefixer": "^10.4.2",
     "axios-mock-adapter": "^1.20.0",
     "postcss": "^8.4.5",
+    "redux-devtools-extension": "^2.13.9",
     "tailwindcss": "^3.0.17"
   }
 }
