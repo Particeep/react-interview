@@ -16,7 +16,7 @@ const MovieCard = (props: any) => {
     <div className="w-full md:w-1/2 lg:w-1/3 px-4">
       <div className="p-4 md:px-7 xl:px-10 rounded-[20px] bg-slate-100 shadow-md hover:shadow-lg mb-8">
         <button
-          className="float-right inline-flex items-center justify-center w-8 h-8 -mr-6 text-red-100 transition-colors duration-150 bg-red-700 rounded-full focus:shadow-outline hover:bg-red-800"
+          className="float-right inline-flex items-center justify-center w-8 h-8 md:-mr-6 text-red-100 transition-colors duration-150 bg-red-700 rounded-full focus:shadow-outline hover:bg-red-800"
           onClick={handleDelete}
         >
           <svg
@@ -41,7 +41,7 @@ const MovieCard = (props: any) => {
           {category}
         </span>
         <button
-          className={`float-right inline-flex items-center justify-center w-12 h-12 -mr-8 text-${
+          className={`float-right inline-flex items-center justify-center w-12 h-12 -mr-2 md:-mr-8 text-${
             userLike === undefined ? "gray" : userLike === true ? "teal" : "red"
           }-100 transition-colors duration-150 bg-${
             userLike === undefined ? "gray" : userLike === true ? "teal" : "red"

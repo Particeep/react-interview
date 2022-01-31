@@ -6,6 +6,14 @@ const ParticlesContainer = () => {
     <Particles
       params={{
         particles: {
+          move: {
+            direction: "none",
+            enable: true,
+            outMode: "bounce",
+            random: false,
+            speed: 1,
+            straight: false,
+          },
           number: {
             value: 50,
           },

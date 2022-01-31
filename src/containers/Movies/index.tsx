@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../store/actions";
-import { MovieCard } from "../../components";
+import { MultiSelect, MovieCard, Pagination } from "../../components";
 
 const Movies = () => {
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ const Movies = () => {
                 </p>
               </div>
             </div>
+          <MultiSelect />
           </div>
           <div className="flex flex-wrap -mx-4">
             {movies.map((e: any) => (
@@ -36,6 +37,7 @@ const Movies = () => {
             ))}
           </div>
         </div>
+      <Pagination />
       </section>
     </div>
   );
