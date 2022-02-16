@@ -61,5 +61,5 @@ const movies = [
     dislikes: 12
   },
 ]
-
+// eslint-disable-next-line no-unused-vars
 export const movies$ = new Promise((resolve, reject) => setTimeout(resolve, 100, movies))
