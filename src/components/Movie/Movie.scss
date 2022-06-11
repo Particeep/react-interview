@@ -1,0 +1,94 @@
+.movie {
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: calc(25% - 2rem);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .delete {
+    width: 20px;
+    cursor: pointer;
+    transition: scale 0.3s ease-in-out;
+
+    &:hover {
+      scale: 1.1;
+    }
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  .thumbnail {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .progress {
+    margin: 1rem 0 0 auto;
+    width: 60%;
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+
+    .progress-bar {
+      height: 16px;
+      border-radius: 4px;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+      transition: all 0.4s linear;
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+      background-color: #86e01e;
+    }
+  }
+
+
+  .rating {
+    display: flex;
+
+    .thumb-up {
+      margin-left: auto;
+      margin-right: 1rem;
+    }
+
+    >div {
+      display: flex;
+      align-items: center;
+    }
+
+    img {
+      cursor: pointer;
+      width: 20px;
+      margin: .4rem;
+      filter: invert(68%) sepia(23%) saturate(11%) hue-rotate(12deg) brightness(95%) contrast(92%);
+      transition: filter 0.3s ease-in-out;
+
+      &:hover {
+        filter: invert(68%) sepia(23%) saturate(11%) hue-rotate(12deg) brightness(75%) contrast(92%);
+        ;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .movie {
+    width: calc(33% - 2rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .movie {
+    width: calc(100% - 2rem);
+  }
+}

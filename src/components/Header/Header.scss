@@ -1,0 +1,16 @@
+@import '../../assets/css/colors.scss';
+
+.header {
+  display: flex;
+  background: $secondary;
+  padding: 2rem;
+  position: sticky;
+  top: 0;
+  right: 0;
+  opacity: 0.95;
+  align-items: center;
+
+  p {
+    margin-right: 1rem;
+  }
+}
