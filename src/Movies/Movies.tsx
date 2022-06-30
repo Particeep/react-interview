@@ -13,23 +13,33 @@ interface Movie {
 }
 
 export const Movies = () => {
-    const [movies, setMovies] = useState([]);
+    const [init, setInit] = useState(false);
+    const [movies, setMovies] = useState(Array<Movie>);
 
     useEffect(() => {
-        movies$.then((movies) => setMovies(movies))
+        console.log("useEffect !! ");
+        if(!init) {
+            movies$.then((movies) => setMovies(movies));
+            setInit(true);
+        }
     })
 
     function getPercentage(value: number, totValues: number) {
-        console.log("getPercentage : ", (value / totValues) * 100)
         return Math.ceil((value / totValues) * 100);
+    }
+
+    function toggleDeleteBtn(id: number) {
+        const newMovies = _.filter(movies, (movie: Movie) => !_.isEqual(movie.id, id));
+        setMovies(newMovies);
     }
 
     return (
         <div id="movies">
             <div className="cards-container">
                 {
-                    _.map(movies, (movie: Movie) => <div className="card-movie">
+                    movies && _.map(movies, (movie: Movie) => <div className="card-movie" key={movie.id}>
                         <div className="title">{movie.title}</div>
+                        <button className="bin-btn" onClick={() => toggleDeleteBtn(movie.id)}><img className="bin-icon" src={bin}/></button>
                         <div>{movie.category}</div>
                         <button className="like-btn"><img className="like-icon" src={like}/>{movie.likes}</button>
                         <button className="dislike-btn"><img className="dislike-icon" src={dislike}/>{movie.dislikes}</button>
