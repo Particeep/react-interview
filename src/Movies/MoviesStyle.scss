@@ -1,0 +1,71 @@
+#movies{
+  .cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    .card-movie{
+      height: 300px;
+      width: 200px;
+      .title{
+        font-weight: bold;
+      }
+      .bin-btn{
+        @extend .basic-small-btn;
+        @extend .clickable;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+      }
+      .like-btn{
+        @extend .small-btn;
+        @extend .liking-btn;
+      }
+      .dislike-btn{
+        @extend .small-btn;
+        @extend .liking-btn;
+      }
+      .liking-bar{
+        background-color: #f1f1f1;
+        .like-bar{
+          height: 5px;
+          background-color: #61dafb;
+        }
+      }
+    }
+  }
+}
+
+.liking-btn {
+  display: flex;
+  border: none;
+  background-color: white;
+  font-size: 18px;
+  img{
+    margin-right: 15px;
+  }
+}
+
+.basic-small-btn{
+  @extend .small-btn;
+  border-radius: 100%;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.small-btn{
+  @extend .small-icon;
+  width: 30px;
+  height: 30px;
+}
+
+.small-icon{
+  img{
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.clickable{
+  cursor: pointer;
+}
