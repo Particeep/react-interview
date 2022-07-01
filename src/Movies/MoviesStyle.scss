@@ -1,8 +1,38 @@
-#movies{
-  .cards-container{
+#movies {
+  padding: 20px;
+
+  .cards-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+  }
+
+  .filter-movie{
+    width: 200px;
+  }
+
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pagination-container {
+    display: flex;
+    margin-top: 20px;
+
+    .pagination {
+      flex: 1;
+      align-self: center;
+      text-align: -webkit-center;
+
+      .MuiPagination-root {
+        width: fit-content !important;
+      }
+    }
   }
 }
 

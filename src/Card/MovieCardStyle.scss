@@ -1,37 +1,80 @@
-#card{
-  .card-movie{
-    height: 300px;
+#card {
+  .card-movie {
+    height: 400px;
     width: 200px;
-    .title{
+    border: 1px black solid;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .header-card {
+      height: 250px;
+      overflow: hidden;
+
+      img {
+        width: 200px;
+      }
+    }
+
+    .title {
       font-weight: bold;
     }
-    .bin-btn{
+
+    .bin-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
       @extend .basic-small-btn;
       @extend .clickable;
       display: flex;
       align-items: center;
       justify-content: center;
 
+      &:hover {
+        background-color: #d1d1d1;
+      }
     }
-    .selected{
-      img{
+
+    .selected {
+      img {
         background-color: grey;
       }
     }
 
-    .like-btn{
-      @extend .small-btn;
-      @extend .liking-btn;
+    .body-card {
+      flex: 1;
+      padding: 20px;
     }
-    .dislike-btn{
-      @extend .small-btn;
-      @extend .liking-btn;
-    }
-    .liking-bar{
-      background-color: #f1f1f1;
-      .like-bar{
-        height: 5px;
-        background-color: #61dafb;
+
+    .liking-container {
+      padding: 20px;
+
+      .liking-btn-container {
+        display: flex;
+        align-items: center;
+        place-content: center;
+        height: 30px;
+
+        button {
+          @extend .small-icon;
+          @extend .liking-btn;
+          @extend .clickable;
+
+          &:hover {
+            @extend .medium-icon;
+          }
+        }
+      }
+
+      .liking-bar {
+        background-color: #f1f1f1;
+
+        .like-bar {
+          height: 5px;
+          background-color: #61dafb;
+        }
       }
     }
   }
@@ -41,32 +84,40 @@
     border: none;
     background-color: white;
     font-size: 18px;
-    img{
+
+    img {
       margin-right: 15px;
     }
   }
 
-  .basic-small-btn{
+  .basic-small-btn {
     @extend .small-btn;
     border-radius: 100%;
-    border: 1px solid black;
+    border: 1px solid #d1d1d1;
     background-color: white;
   }
 
-  .small-btn{
+  .small-btn {
     @extend .small-icon;
     width: 30px;
     height: 30px;
   }
 
-  .small-icon{
-    img{
+  .small-icon {
+    img {
       width: 20px;
       height: 20px;
     }
   }
 
-  .clickable{
+  .medium-icon {
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .clickable {
     cursor: pointer;
   }
 

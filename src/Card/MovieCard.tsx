@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import _ from "lodash";
 import "./MovieCardStyle.scss";
-import {bin, dislike, like} from "../svg";
+import {bin, dislike, dislikeSelected, like, likeSelected} from "../svg";
 import {Movie} from "../Movies/Movies";
 
 const VOTE = {LIKED: "LIKED", DISLIKED: "DISLIKED", NONE: "NONE"};
@@ -9,18 +9,12 @@ const VOTE = {LIKED: "LIKED", DISLIKED: "DISLIKED", NONE: "NONE"};
 interface Props {
     defaultMovie: Movie;
     deleteCallback: Function;
-    likingCallback: Function;
 }
+
 export const MovieCard = (props: Props) => {
-    const { defaultMovie, deleteCallback, likingCallback } = props;
-    const [movie, setMovie] = useState<Movie>(defaultMovie);
+    const {defaultMovie, deleteCallback} = props;
+    const [movie] = useState<Movie>(defaultMovie);
     const [liked, setLiked] = useState<string>(VOTE.NONE);
-    const [likes, setLikes] = useState<number>(movie.likes);
-    const [dislikes, setDislikes] = useState<number>(movie.dislikes);
-
-    useEffect(() => {
-
-    })
 
     function getPercentage(value: number, totValues: number) {
         return Math.ceil((value / totValues) * 100);
@@ -30,8 +24,8 @@ export const MovieCard = (props: Props) => {
         deleteCallback(id);
     }
 
-    function likingBtn(isLiked: boolean, id: number) {
-        let newLiked = "";
+    function likingBtn(isLiked: boolean) {
+        let newLiked: string;
         const likes = movie.likes;
         const dislikes = movie.dislikes;
 
@@ -51,37 +45,46 @@ export const MovieCard = (props: Props) => {
                 movie.likes = isLiked ? likes + 1 : likes;
                 movie.dislikes = !isLiked ? dislikes + 1 : dislikes;
                 break;
-            default: newLiked = VOTE.NONE;
+            default:
+                newLiked = VOTE.NONE;
         }
         setLiked(newLiked);
-        setLikes(likes);
-        setLikes(dislikes);
-        likingCallback(id, likes, dislikes);
     }
 
     return (
         <div id="card">
-                <div className="card-movie" key={movie.id}>
-                        <div className="title">{movie.title}</div>
-                        <button className="bin-btn" onClick={() => deleteBtn(movie.id)}>
-                            <img className="bin-icon" src={bin}/>
-                        </button>
-                        <div>{movie.category}</div>
+            <div className="card-movie">
+                <div className="header-card">
+                    <button className="bin-btn" onClick={() => deleteBtn(movie.id)}>
+                        <img className="bin-icon" src={bin} alt=""/>
+                    </button>
+                    <img className="film-img" src={movie.src} alt=""/>
+                </div>
+                <div className="body-card">
+                    <div className="title">{movie.title}</div>
+                    <label>Catégorie</label>
+                    <div>{movie.category}</div>
+                </div>
+                <div className="liking-container">
+                    <div className="liking-btn-container">
                         <button
-                            className={`like-btn ${_.isEqual(liked, VOTE.LIKED) ? 'selected' : ''}`}
-                            onClick={() => likingBtn(true, movie.id)}>
-                            <img className="like-icon" src={like}/>
+                            onClick={() => likingBtn(true)}>
+                            <img className="like-icon" src={_.isEqual(liked, VOTE.LIKED) ? likeSelected : like} alt=""/>
                             {movie.likes}
                         </button>
-                        <button className={`dislike-btn ${_.isEqual(liked, VOTE.DISLIKED) ? 'selected' : ''}`} onClick={() => likingBtn(false, movie.id)}>
-                            <img className="dislike-icon" src={dislike}/>
+                        <button onClick={() => likingBtn(false)}>
+                            <img className="dislike-icon"
+                                 src={_.isEqual(liked, VOTE.DISLIKED) ? dislikeSelected : dislike}
+                                 alt=""/>
                             {movie.dislikes}
                         </button>
-                        <div className="liking-bar">
-                            <div className="like-bar"
-                                 style={{width: `${getPercentage(movie.likes, (movie.likes + movie.dislikes))}%`}}></div>
-                        </div>
                     </div>
+                    <div className="liking-bar">
+                        <div className="like-bar"
+                             style={{width: `${getPercentage(movie.likes, (movie.likes + movie.dislikes))}%`}}></div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,0 +1,9 @@
+export {default as creedII} from './creedII.jpg';
+export {default as goneGirl} from './goneGirl.jpg';
+export {default as inception} from './inception.png';
+export {default as lesIndestructible2} from './lesIndestructible2.jpg';
+export {default as ocean8} from './ocean8.jpg';
+export {default as midnightSun} from './midnightsun.jpg';
+export {default as pulpFiction} from './pulpFiction.jpg';
+export {default as sansUnBruit} from './sansUnBruit.jpg';
+export {default as seven} from './seven.jpg';

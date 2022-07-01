@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {movies$} from "../movies";
-import _, {filter} from "lodash";
+import _ from "lodash";
 import "./MoviesStyle.scss";
 import {MovieCard} from "../Card/MovieCard";
 import {InputLabel, MenuItem, Pagination, Select} from "@mui/material";
@@ -11,11 +11,7 @@ export interface Movie {
     category: string;
     likes: number;
     dislikes: number;
-}
-
-interface LikedMovie {
-    id: number;
-    liked: string;
+    src: string;
 }
 
 interface Filter {
@@ -38,7 +34,6 @@ export const Movies = () => {
                 setMoviesFiltered(movies)
                 setFilters(_.groupBy(movies, (movie: Movie) => movie.category) as unknown as Array<Filter>);
             });
-
             setInit(true);
         }
     })
@@ -46,10 +41,13 @@ export const Movies = () => {
     function deleteBtn(id: number) {
         const newMovies = _.filter(movies, (movie: Movie) => !_.isEqual(movie.id, id));
         setMovies(newMovies);
+        const newMoviesFiltered = _.filter(moviesFiltered, (movie: Movie) => !_.isEqual(movie.id, id));
+        setMoviesFiltered(newMoviesFiltered);
+        setFilters(_.groupBy(newMovies, (movie: Movie) => movie.category) as unknown as Array<Filter>)
     }
 
     function getMoviesFiltered(filter: string) {
-       // @ts-ignore
+        // @ts-ignore
         return _.isEmpty(filter) ? movies : filters[filter];
     }
 
@@ -57,19 +55,15 @@ export const Movies = () => {
     function getMoviesToShow() {
         const lastIndex = (currentPage * nbPerPage);
         const firstIndex = lastIndex - nbPerPage;
-        console.log(lastIndex, firstIndex, moviesFiltered, moviesFiltered.slice(firstIndex, lastIndex))
         return moviesFiltered.slice(firstIndex, lastIndex)
     }
 
-    console.log(filters, currentFilter)
-
     return (
         <div id="movies">
-            <header>
-                <InputLabel>Filtrer</InputLabel>
+            <div className="header">
+                <InputLabel>Filtrer par catégorie</InputLabel>
                 <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
+                    id="filter-movie"
                     value={currentFilter}
                     onChange={(e) => {
                         const none = _.isEqual(e.target.value, "aucun");
@@ -79,39 +73,47 @@ export const Movies = () => {
                     style={{width: "200px"}}
                 >
                     {_.map(filters, (_, value) =>
-                        <MenuItem value={value}>{value}</MenuItem>
+                        <MenuItem key={value} value={value}>{value}</MenuItem>
                     )}
-                    <MenuItem value={"aucun"}>-</MenuItem>
+                    <MenuItem key={'none'} value={"aucun"}>-</MenuItem>
                 </Select>
-            </header>
-            <div className="cards-container">
-                {
-                    _.map(getMoviesToShow(), (movie: Movie) =>
-                        <MovieCard defaultMovie={movie} deleteCallback={(id: number) => deleteBtn(id)}
-                                   likingCallback={(id: number, likes: number, dislikes: number) => {
-                                   }}/>
-                    )
-                }
-                <Select
-                    id="nb-per-page-select"
-                    value={nbPerPage}
-                    onChange={(e) => setNbPerPage( e.target.value as number)}
-                    style={{width: "70px", height: 'fit-content'}}
-                >
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={8}>8</MenuItem>
-                    <MenuItem value={12}>12</MenuItem>
-                </Select>
-                <Pagination count={Math.ceil(moviesFiltered.length / nbPerPage)} onChange={(e, page) => setCurrentPage(page)}/>
             </div>
-            <footer>
-                <a href="https://www.flaticon.com/free-icons/bad" title="bad icons">Bad icons created by vectorspoint -
+            <div className="body">
+                <div className="cards-container">
+                    {
+                        moviesFiltered && _.map(getMoviesToShow(), (movie: Movie) =>
+                            <MovieCard defaultMovie={movie} deleteCallback={(id: number) => deleteBtn(id)} key={movie.id}/>
+                        )
+                    }
+                </div>
+                <div className="pagination-container">
+                    <Select
+                        id="nb-per-page-select"
+                        value={nbPerPage}
+                        onChange={(e) => {
+                            setNbPerPage(e.target.value as number);
+                            setCurrentPage(1);
+                        }}
+                        style={{width: "70px", height: 'fit-content'}}
+                    >
+                        <MenuItem key={4} value={4}>4</MenuItem>
+                        <MenuItem key={8} value={8}>8</MenuItem>
+                        <MenuItem key={12} value={12}>12</MenuItem>
+                    </Select>
+                    <div className="pagination">
+                        <Pagination count={Math.ceil(moviesFiltered.length / nbPerPage)}
+                                    onChange={(e, page) => setCurrentPage(page)}/>
+                    </div>
+                </div>
+            </div>
+            <div className="footer">
+                <a href="https://www.flaticon.com/free-icons/like" title="like icons">Like icons created by Freepik -
                     Flaticon</a>
-                <a href="https://www.flaticon.com/free-icons/like" title="like icons">Like icons created by Pixel
-                    perfect - Flaticon</a>
+                <a href="https://www.flaticon.com/free-icons/thumbs-down" title="thumbs-down icons">Thumbs-down icons
+                    created by Freepik - Flaticon</a>
                 <a href="https://www.flaticon.com/free-icons/trash" title="trash icons">Trash icons created by
                     smalllikeart - Flaticon</a>
-            </footer>
+            </div>
         </div>
     );
 }
