@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+  background: repeat url("./assets/images/wall2.jpg");
+  font-family: 'Montserrat', sans-serif;
+  color: #444
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+@font-face {
+  font-family: "Stars";
+  src: local("Stars"), 
+  url(./assets/fonts/neon.ttf) format("truetype");
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
+}
+
+h1 {
+  font-family: "Stars", sans-serif;
+  text-align: center;
+  font-size: 5rem;
+  margin-top: 2rem;
+  color: white;
+  text-shadow:
+  .1vw 0vw .25vw rgb(152, 255, 126), 
+  .15vw 0vw .25vw rgb(152, 255, 126), 
+
+
+  .1vw 0vw  .1vw rgb(33, 166, 0), 
+  .15vw 0vw  .1vw rgb(33, 166, 0), 
+  .4vw 0vw  .1vw rgb(33, 166, 0),
+
+  .1vw 0vw   2vw rgb(33, 166, 0), 
+  .15vw 0vw   2vw rgb(33, 166, 0), 
+  .4vw 0vw   2vw rgb(33, 166, 0), 
+
+  .1vw 0vw   1vw rgb(12, 62, 0), 
+  .15vw 0vw   1vw rgb(12, 62, 0), 
+  .4vw 0vw   5vw rgb(12, 62, 0), 
+
+  .1vw 0vw   5vw rgb(12, 62, 0), 
+  .15vw 0vw  20vw rgb(12, 62, 0), 
+  .4vw 0vw  10vw rgb(12, 62, 0),
+  
+  .1vw 0vw  10vw rgb(12, 62, 0), 
+  .15vw 0vw  30vw rgb(12, 62, 0), 
+  .4vw 0vw  10vw rgb(12, 62, 0);
+  animation: flash .1s cubic-bezier(.85,1.43,0,-0.53) infinite;
+}
+
+@keyframes flash {
+  0% {
+    color: white;
+    text-shadow: none;
+  }
+  1% {
+    color: white;
+    text-shadow:
+    .1vw 0vw .25vw rgb(152, 255, 126), 
+    .15vw 0vw .25vw rgb(152, 255, 126), 
+  
+  
+    .1vw 0vw  .1vw rgb(33, 166, 0), 
+    .15vw 0vw  .1vw rgb(33, 166, 0), 
+    .4vw 0vw  .1vw rgb(33, 166, 0),
+  
+    .1vw 0vw   2vw rgb(33, 166, 0), 
+    .15vw 0vw   2vw rgb(33, 166, 0), 
+    .4vw 0vw   2vw rgb(33, 166, 0), 
+  
+    .1vw 0vw   1vw rgb(12, 62, 0), 
+    .15vw 0vw   1vw rgb(12, 62, 0), 
+    .4vw 0vw   5vw rgb(12, 62, 0), 
+  
+    .1vw 0vw   5vw rgb(12, 62, 0), 
+    .15vw 0vw  20vw rgb(12, 62, 0), 
+    .4vw 0vw  10vw rgb(12, 62, 0),
+    
+    .1vw 0vw  10vw rgb(12, 62, 0), 
+    .15vw 0vw  30vw rgb(12, 62, 0), 
+    .4vw 0vw  10vw rgb(12, 62, 0);
+  }
+  99% {
+    color: white;
+    text-shadow: none;
+  }
+  100% {
+    color: white;
+    text-shadow:
+    .1vw 0vw .25vw rgb(152, 255, 126), 
+    .15vw 0vw .25vw rgb(152, 255, 126), 
+  
+  
+    .1vw 0vw  .1vw rgb(33, 166, 0), 
+    .15vw 0vw  .1vw rgb(33, 166, 0), 
+    .4vw 0vw  .1vw rgb(33, 166, 0),
+  
+    .1vw 0vw   2vw rgb(33, 166, 0), 
+    .15vw 0vw   2vw rgb(33, 166, 0), 
+    .4vw 0vw   2vw rgb(33, 166, 0), 
+  
+    .1vw 0vw   1vw rgb(12, 62, 0), 
+    .15vw 0vw   1vw rgb(12, 62, 0), 
+    .4vw 0vw   5vw rgb(12, 62, 0), 
+  
+    .1vw 0vw   5vw rgb(12, 62, 0), 
+    .15vw 0vw  20vw rgb(12, 62, 0), 
+    .4vw 0vw  10vw rgb(12, 62, 0),
+    
+    .1vw 0vw  10vw rgb(12, 62, 0), 
+    .15vw 0vw  30vw rgb(12, 62, 0), 
+    .4vw 0vw  10vw rgb(12, 62, 0);
+  }
+}
