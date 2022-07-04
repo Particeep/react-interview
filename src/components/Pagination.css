@@ -1,0 +1,41 @@
+.pagination-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.page-item {
+  list-style: none;
+  font-size: 2rem;
+  margin: 0.5rem;
+  border: solid 2px #57338c;
+  padding: 0.5rem;
+}
+
+.page-item:hover,
+.page-item:focus {
+  background-color: #ccc4d8;
+  color: #ffffff;
+}
+
+.page-item > a {
+  text-decoration: none;
+}
+
+.page-item.active {
+  background-color: #57338c;
+}
+
+.page-item.active > a {
+  color: #ffffff;
+}
+
+.moviesPerPAge-options {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}

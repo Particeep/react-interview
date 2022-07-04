@@ -1,0 +1,19 @@
+.App {
+  margin: 0;
+}
+
+.App-header {
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff5047;
+}
+
+.app-title {
+  font-size: 2.5rem;
+}
+
+/* Couleurs de particeep */
+/* violet : #57338c */
+/* gris : #d8d8d8 */

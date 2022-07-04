@@ -1,0 +1,43 @@
+.movies-container {
+  background-color: #f5f5f5;
+  margin: 1rem;
+}
+
+.movies-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Début filtres genre */
+.select-filters > div.searchWrapper {
+  background-color: #ffffff;
+  min-height: 3rem;
+  width: 90%;
+}
+
+.select-filters > div.searchWrapper > span.chip,
+.select-filters > div.optionListContainer > ul > li.option {
+  background: #57338c;
+  color: #ffffff;
+  height: 2rem;
+  font-size: 1.4rem;
+}
+
+.select-filters > div.optionListContainer {
+  width: 50%;
+}
+
+.select-filters > div.optionListContainer > ul > li.option {
+  height: 3rem;
+  font-size: 1.4rem;
+}
+/* Fin filtres genre */
+
+/* Plus grand que format mobile */
+@media screen and (min-width: 700px) {
+  .select-filters > div.searchWrapper {
+    width: 50%;
+  }
+}
