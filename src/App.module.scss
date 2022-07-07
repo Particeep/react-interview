@@ -1,0 +1,103 @@
+.container {
+  max-width: 1600px;
+  margin: auto;
+  width: 100%;
+}
+
+.title {
+  font-family: "Stars", sans-serif;
+  text-align: center;
+  font-size: 5rem;
+  margin-top: 2rem;
+  color: white;
+  text-shadow:
+  .1vw 0vw .25vw var(--light-green), 
+  .15vw 0vw .25vw var(--light-green), 
+
+
+  .1vw 0vw  .1vw var(--green), 
+  .15vw 0vw  .1vw var(--green), 
+  .4vw 0vw  .1vw var(--green),
+
+  .1vw 0vw   2vw var(--green), 
+  .15vw 0vw   2vw var(--green), 
+  .4vw 0vw   2vw var(--green), 
+
+  .1vw 0vw   1vw var(--dark-green), 
+  .15vw 0vw   1vw var(--dark-green), 
+  .4vw 0vw   5vw var(--dark-green), 
+
+  .1vw 0vw   5vw var(--dark-green), 
+  .15vw 0vw  20vw var(--dark-green), 
+  .4vw 0vw  10vw var(--dark-green),
+  
+  .1vw 0vw  10vw var(--dark-green), 
+  .15vw 0vw  30vw var(--dark-green), 
+  .4vw 0vw  10vw var(--dark-green);
+  animation: flash .1s cubic-bezier(.85,1.43,0,-0.53) infinite;
+}
+
+@keyframes flash {
+  0% {
+    color: white;
+    text-shadow: none;
+  }
+  1% {
+    color: white;
+    text-shadow:
+    .1vw 0vw .25vw var(--light-green), 
+    .15vw 0vw .25vw var(--light-green), 
+  
+  
+    .1vw 0vw  .1vw var(--green), 
+    .15vw 0vw  .1vw var(--green), 
+    .4vw 0vw  .1vw var(--green),
+  
+    .1vw 0vw   2vw var(--green), 
+    .15vw 0vw   2vw var(--green), 
+    .4vw 0vw   2vw var(--green), 
+  
+    .1vw 0vw   1vw var(--dark-green), 
+    .15vw 0vw   1vw var(--dark-green), 
+    .4vw 0vw   5vw var(--dark-green), 
+  
+    .1vw 0vw   5vw var(--dark-green), 
+    .15vw 0vw  20vw var(--dark-green), 
+    .4vw 0vw  10vw var(--dark-green),
+    
+    .1vw 0vw  10vw var(--dark-green), 
+    .15vw 0vw  30vw var(--dark-green), 
+    .4vw 0vw  10vw var(--dark-green);
+  }
+  99% {
+    color: white;
+    text-shadow: none;
+  }
+  100% {
+    color: white;
+    text-shadow:
+    .1vw 0vw .25vw var(--light-green), 
+    .15vw 0vw .25vw var(--light-green), 
+  
+  
+    .1vw 0vw  .1vw var(--green), 
+    .15vw 0vw  .1vw var(--green), 
+    .4vw 0vw  .1vw var(--green),
+  
+    .1vw 0vw   2vw var(--green), 
+    .15vw 0vw   2vw var(--green), 
+    .4vw 0vw   2vw var(--green), 
+  
+    .1vw 0vw   1vw var(--dark-green), 
+    .15vw 0vw   1vw var(--dark-green), 
+    .4vw 0vw   5vw var(--dark-green), 
+  
+    .1vw 0vw   5vw var(--dark-green), 
+    .15vw 0vw  20vw var(--dark-green), 
+    .4vw 0vw  10vw var(--dark-green),
+    
+    .1vw 0vw  10vw var(--dark-green), 
+    .15vw 0vw  30vw var(--dark-green), 
+    .4vw 0vw  10vw var(--dark-green);
+  }
+}

@@ -1,0 +1,83 @@
+.card {
+  background-color: white;
+  margin: 1rem;
+  width: 350px;
+  border-radius: 10px;
+  padding: 1rem;
+  overflow: hidden;
+  box-shadow: 
+  0 0 3px 3px var(--light-green),
+  0 0 9px 5px var(--green),
+  
+  inset 0 0 4px 3px var(--light-green),
+  inset 0 0 3px 3px var(--green), 
+  inset 0 0 4px 3px var(--dark-green); 
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+  }
+
+  .title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    height: 60px;
+    margin: 0 0 1rem 0;
+  }
+
+  .imageContainer {
+    width: 250px;
+    height: 370px;
+    margin: 0 auto;
+    border-radius: 6px;
+    overflow: hidden;
+    img {
+      transition: 0.5s transform;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+
+  .category {
+    text-align: center;
+  }
+
+  .thumbs {
+    width: 300px;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    i {
+      cursor: pointer;
+    }
+  }
+
+  .bar {
+    background-color: red;
+    width: 300px;
+    height: 10px;
+    margin: 0 auto;
+
+    .insideBar {
+      background-color: green;
+      height: 10px;
+    }
+  }
+
+  button {
+    display: block;
+    cursor: pointer;
+    width: 150px;
+    margin: 1rem auto 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold; 
+    background-color: red;
+  }
+}
