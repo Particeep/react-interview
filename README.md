@@ -14,7 +14,7 @@
 
 ## Todo
 
-- [ ] Correction du bug à la suppression d'une carte avant la sélection d'une catégorie
+- [x] Correction du bug à la suppression d'une carte avant la sélection d'une catégorie
 - [x] Accessibilité audité avec Wave et Lighthouse
 - [ ] Tests unitaires
 - [ ] Gestion des détails en CSS (titre de film trop long...)

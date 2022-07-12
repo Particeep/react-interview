@@ -47,10 +47,7 @@ const Home = () => {
           label: movie.category,
         });
       }
-      setCategoryFilterOptions(
-        ...categoryFilterOptions,
-        categoryFilterOptionsTemp
-      );
+      setCategoryFilterOptions(categoryFilterOptionsTemp);
     });
   };
   
