@@ -19,3 +19,10 @@ Prenez des initiatives, il y a des points bonus si
 * Il y a une attention aux détails
 
 /!\ La suppression du comportement asynchrone dans `movies.js` entraînera une annulation du test.
+
+
+# Connaissances complémentaires non mises en pratique sur ce projet test
+* tests unitaires Jest
+* tests E2E Cypress
+* Storybook
+* Developpement React-Native
