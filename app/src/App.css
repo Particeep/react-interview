@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.App {
+
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px ;
+  gap: 10px;
+}
+
+.card {
+  width: calc(100% - 10px);
+  border-radius: 3px;
+  min-height: 250px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.card-img-container {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img-container img {
+  min-width: 100%;
+  width: auto;
+  min-height: 100%;
+  height: auto;
+}
+
+.card-img-container::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-title {
+  font-size: 18px;
+  z-index: 1;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.category {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  margin: 0;
+}
+
+.likes {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.likes-progressbar {
+  width: 70px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  margin: 0 5px;
+  position: relative;
+}
+
+.likes-progressbar > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #1cb5e0;
+  border-radius: 3px;
+}
+@media (min-width: 480px) {
+  .card {
+    width: calc(50% - 10px);
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: calc((100% / 3) - 10px);
+  }
+}
