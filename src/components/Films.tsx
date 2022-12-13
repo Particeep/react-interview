@@ -9,8 +9,8 @@ const Films = () => {
 
   return (
     <div>
-      {film.map((film) => {
-        return <Film film={film} key={film.id} />;
+      {film.map((film, index) => {
+        return <Film film={film} index={index} key={film.id} />;
       })}
     </div>
   );

@@ -9,18 +9,17 @@ import { setMovies } from "./logic/filmsSlices";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState<IMovie[]>([]);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     const dataFetch = async () => {
       const response = await movies$;
-      setData(response);
       dispatch(setMovies(response));
       setIsLoading(false);
     };
     dataFetch();
-  }, [data]);
+  }, []);
 
   return (
     <div>
