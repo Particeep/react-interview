@@ -4,4 +4,5 @@ export interface dataMovies {
   category: string;
   likes: number;
   dislikes: number;
+  isLiked?: boolean;
 }
