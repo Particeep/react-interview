@@ -1,4 +1,6 @@
-const movies = [
+import { dataMovies } from "./interfaces/Movies";
+
+const movies: dataMovies[] = [
   {
     id: "1",
     title: "Oceans 8",
@@ -71,6 +73,6 @@ const movies = [
   },
 ];
 
-export const movies$ = new Promise((resolve, reject) =>
+export const moviesData = new Promise<dataMovies[]>((resolve, reject) =>
   setTimeout(resolve, 100, movies)
 );
