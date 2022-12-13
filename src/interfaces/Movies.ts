@@ -6,3 +6,8 @@ export interface dataMovies {
   dislikes: number;
   isLiked?: boolean;
 }
+
+export interface selectValues {
+  label: string;
+  value: string;
+}
