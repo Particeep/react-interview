@@ -1,15 +1,15 @@
 import { IMovie } from "../interfaces/IMovie";
 import Film from "./Film";
 
-type Props = {
-  data: IMovie[];
-};
+import { useSelector } from "react-redux";
+import type { RootState } from "../logic/store";
 
-const Films = ({ data }: Props) => {
+const Films = () => {
+  const film = useSelector((state: RootState) => state.films.films);
+
   return (
     <div>
-      {data.map((film) => {
-        console.log(film);
+      {film.map((film) => {
         return <Film film={film} key={film.id} />;
       })}
     </div>

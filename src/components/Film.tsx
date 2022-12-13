@@ -16,6 +16,7 @@ const Film = ({ film }: Props) => {
       <span>{category}</span>
       <Ranking likes={likes} dislikes={dislikes} vote={vote} />
       <button>Remove</button>
+      <button></button>
     </div>
   );
 };
