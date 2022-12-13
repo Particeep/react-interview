@@ -1,6 +1,7 @@
 //React
 import { useState } from "react";
 import Ranking from "./Ranking/Ranking";
+import Rating from "./Rating/Rating";
 
 //TS
 import { IMovie } from "../interfaces/IMovie";
@@ -19,12 +20,6 @@ const Film = ({ film, index }: Props) => {
   const [vote, setVote] = useState(likes + dislikes);
 
   const dispatch = useDispatch();
-  {
-    /* <button onClick={()=>{dispatch(addMovie({title: "Superman", up: 3}))}}>Add a movie</button> */
-  }
-  {
-    /* <button onClick={()=>{dispatch(setMovies())}}>Replace movie</button> */
-  }
 
   return (
     <div style={{ width: "100%", height: "140px", backgroundColor: "grey" }}>
@@ -34,16 +29,14 @@ const Film = ({ film, index }: Props) => {
       <button
         onClick={() => {
           dispatch(removeMovie(index));
-          console.log(index);
         }}
       >
         Remove
       </button>
       <div>
         <span>Likes: {likes}</span>
-        <button>Like</button>
         <span>Disikes: {dislikes}</span>
-        <button>Dislike</button>
+        <Rating index={index} />
       </div>
     </div>
   );
