@@ -1,14 +1,14 @@
 //React
 import { useState } from "react";
-import Ranking from "./Ranking/Ranking";
-import Rating from "./Rating/Rating";
+import Ranking from "../Ranking/Ranking";
+import Rating from "../Rating/Rating";
 
 //TS
-import { IMovie } from "../interfaces/IMovie";
+import { IMovie } from "../../interfaces/IMovie";
 
 //Redux
 import { useDispatch } from "react-redux";
-import { removeMovie } from "../logic/filmsSlices";
+import { removeMovie } from "../../logic/filmsSlices";
 
 type Props = {
   film: IMovie;
@@ -22,7 +22,7 @@ const Film = ({ film, index }: Props) => {
   const dispatch = useDispatch();
 
   return (
-    <div style={{ width: "100%", height: "140px", backgroundColor: "grey" }}>
+    <div className="film">
       <h2>{title}</h2>
       <span>{category}</span>
       <Ranking likes={likes} dislikes={dislikes} vote={vote} />

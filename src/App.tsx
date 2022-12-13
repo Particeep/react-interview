@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.scss";
 import { movies$ } from "./movies";
-import Films from "./components/Films";
-import { IMovie } from "./interfaces/IMovie";
+import Films from "./components/Films/Films";
 
 import { useDispatch } from "react-redux";
 import { setMovies } from "./logic/filmsSlices";
@@ -19,7 +18,7 @@ function App() {
       setIsLoading(false);
     };
     dataFetch();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
