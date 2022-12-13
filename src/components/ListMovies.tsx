@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { dataMovies } from "../interfaces/Movies";
 import { moviesData } from "../movies.js";
-import Movie from "./Movie.js";
+import Movie from "./movie/Movie.js";
 
 const ListMovies = () => {
   const [isLoading, setIsLoading] = useState(true);
