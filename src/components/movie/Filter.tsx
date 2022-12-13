@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { MultiSelect } from "react-multi-select-component";
-import { dataMovies, selectValues } from "../interfaces/Movies";
+import { dataMovies, selectValues } from "../../interfaces/Movies";
 
 interface Props {
   movies: dataMovies[];
