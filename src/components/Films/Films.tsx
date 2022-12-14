@@ -10,11 +10,20 @@ import "./films.scss";
 
 const Films = () => {
   const film = useSelector((state: RootState) => state.films.films);
+  const currentCategorie = useSelector(
+    (state: RootState) => state.categories.currentCategory
+  );
 
   return (
     <div className="films">
       {film.map((film, index) => {
-        return <Film film={film} index={index} key={film.id} />;
+        if (currentCategorie) {
+          if (currentCategorie === film.category) {
+            return <Film film={film} index={index} key={film.id} />;
+          }
+        } else {
+          return <Film film={film} index={index} key={film.id} />;
+        }
       })}
     </div>
   );

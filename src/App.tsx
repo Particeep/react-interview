@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
 import "./App.scss";
 import { movies$ } from "./movies";
+
+import React, { useEffect, useState } from "react";
 import Films from "./components/Films/Films";
+import Header from "./components/Header/Header";
 
 import { useDispatch } from "react-redux";
 import { setMovies } from "./logic/filmsSlices";
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div>
+      <Header />
       {isLoading ? (
         <span>Loading</span>
       ) : (

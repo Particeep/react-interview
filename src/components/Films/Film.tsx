@@ -1,14 +1,11 @@
 //React
 import { useState } from "react";
 import Ranking from "../Ranking/Ranking";
-import Rating from "../Rating/Rating";
+import Rating from "../Buttons/Rating";
 
 //TS
 import { IMovie } from "../../interfaces/IMovie";
-
-//Redux
-import { useDispatch } from "react-redux";
-import { removeMovie } from "../../logic/filmsSlices";
+import Trash from "../Buttons/Trash";
 
 type Props = {
   film: IMovie;
@@ -19,24 +16,17 @@ const Film = ({ film, index }: Props) => {
   const { title, likes, dislikes, category } = film;
   const [vote, setVote] = useState(likes + dislikes);
 
-  const dispatch = useDispatch();
-
   return (
     <div className="film">
-      <h2>{title}</h2>
-      <span>{category}</span>
+      <div className="heading">
+        <h2>{title}</h2>
+        <p>{category}</p>
+      </div>
+      <Trash index={index} />
       <Ranking likes={likes} dislikes={dislikes} vote={vote} />
-      <button
-        onClick={() => {
-          dispatch(removeMovie(index));
-        }}
-      >
-        Remove
-      </button>
+
       <div>
-        <span>Likes: {likes}</span>
-        <span>Disikes: {dislikes}</span>
-        <Rating index={index} />
+        <Rating index={index} likes={likes} />
       </div>
     </div>
   );

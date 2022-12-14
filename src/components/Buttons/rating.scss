@@ -1,6 +1,6 @@
 .rating {
   display: flex;
-  width: 60px;
+  width: 70px;
   box-sizing: border-box;
   border: 0.5px solid black;
   border-radius: 5px;
@@ -11,24 +11,29 @@
     border: none;
     display: flex;
     align-items: center;
-    justify-content: center;
 
     &.like {
-      color: rgb(56, 56, 222);
+      // color: rgb(56, 56, 222);
       // border-right: solid 0.01px lightgrey;
       border-right: none;
       border-radius: 5px 0 0 5px;
+      width: 40px;
 
       &:disabled {
         background-color: rgb(205, 204, 204);
-        color: rgb(80, 80, 133);
+        color: #46cb18;
+
+        span {
+          color: black;
+        }
       }
     }
 
     &.dislike {
-      color: red;
+      // color: red;
       border-left: solid 0.1px lightgrey;
       border-radius: 0 5px 5px 0;
+      justify-content: center;
 
       &:disabled {
         background-color: rgb(205, 204, 204);
