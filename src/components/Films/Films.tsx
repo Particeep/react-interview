@@ -9,7 +9,6 @@ import type { RootState } from "../../logic/store";
 import "./films.scss";
 import { useEffect } from "react";
 import { setFilmFiltered } from "../../logic/filmsSlices";
-import { setCurrentCategorie } from "../../logic/categoriesSlices";
 
 const Films = () => {
   const films = useSelector((state: RootState) => state.films.films);
