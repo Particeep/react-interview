@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -7,6 +7,8 @@ import {
   setCategories,
 } from "../../logic/categoriesSlices";
 import { RootState } from "../../logic/store";
+
+import "./header.scss";
 
 const Header = () => {
   const film = useSelector((state: RootState) => state.films.films);
@@ -24,7 +26,7 @@ const Header = () => {
       }
     }
     dispatch(setCategories(tab));
-  }, [film]);
+  }, [film, dispatch]);
 
   return (
     <header>
@@ -35,7 +37,6 @@ const Header = () => {
       >
         <option value={""}>Choisissez une catégorie</option>
         {categories.map((categorie, index) => {
-          console.log(categorie);
           return (
             <option value={categorie} key={index}>
               {categorie}

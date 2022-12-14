@@ -2,21 +2,25 @@
 import { useState } from "react";
 
 //Redux import
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { upVote, downVote } from "../../logic/filmsSlices";
+import type { RootState } from "../../logic/store";
 
 //Style
 import "./rating.scss";
 import { AiTwotoneDislike, AiTwotoneLike } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
+import { IMovie } from "../../interfaces/IMovie";
 
 type Props = {
-  index: number;
+  film: IMovie;
   likes: number;
 };
 
-const Rating = ({ index, likes }: Props) => {
+const Rating = ({ film, likes }: Props) => {
   const dispatch = useDispatch();
+  const films = useSelector((state: RootState) => state.films.films);
+
   const [toggle, setToggle] = useState<boolean | undefined>(undefined);
 
   return (
@@ -25,6 +29,7 @@ const Rating = ({ index, likes }: Props) => {
         <button
           disabled={toggle}
           onClick={() => {
+            const index = films.indexOf(film);
             dispatch(upVote(index));
             setToggle(true);
           }}
@@ -36,6 +41,7 @@ const Rating = ({ index, likes }: Props) => {
         <button
           disabled={toggle === false}
           onClick={() => {
+            const index = films.indexOf(film);
             dispatch(downVote(index));
             setToggle(false);
           }}

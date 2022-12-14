@@ -1,0 +1,17 @@
+header {
+  display: flex;
+  justify-content: center;
+
+  height: 70px;
+  select {
+    display: flex;
+    margin: 10px;
+    height: 50px;
+    width: 210px;
+    display: flex;
+    padding: 0 20px;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}

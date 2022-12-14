@@ -1,0 +1,31 @@
+.pagination {
+  border: solid 1px black;
+  width: 180px;
+  display: flex;
+  border-radius: 5px 5px 5px 5px;
+  div {
+    display: flex;
+    width: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  button {
+    width: 80px;
+    height: 30px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+
+    &:first-child {
+      border-right: solid 1px lightgray;
+      border-radius: 5px 0 0 5px;
+    }
+    &:last-child {
+      border-left: solid 1px rgb(240, 240, 240);
+      border-radius: 0 5px 5px 0;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

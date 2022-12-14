@@ -4,10 +4,12 @@ import { IMovie } from "../interfaces/IMovie";
 
 export interface IFilmState {
   films: IMovie[];
+  filmFiltered: IMovie[];
 }
 
 const initialState: IFilmState = {
   films: [],
+  filmFiltered: [],
 };
 
 export const filmSlice = createSlice({
@@ -26,10 +28,14 @@ export const filmSlice = createSlice({
     setMovies: (state, action: PayloadAction<IMovie[]>) => {
       state.films = action.payload;
     },
+    setFilmFiltered: (state, action: PayloadAction<IMovie[]>) => {
+      state.filmFiltered = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { upVote, downVote, removeMovie, setMovies } = filmSlice.actions;
+export const { upVote, downVote, removeMovie, setMovies, setFilmFiltered } =
+  filmSlice.actions;
 
 export default filmSlice.reducer;

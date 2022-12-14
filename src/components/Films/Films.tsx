@@ -2,27 +2,41 @@
 import Film from "./Film";
 
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../logic/store";
 
 //Style
 import "./films.scss";
+import { useEffect } from "react";
+import { setFilmFiltered } from "../../logic/filmsSlices";
 
 const Films = () => {
-  const film = useSelector((state: RootState) => state.films.films);
+  const films = useSelector((state: RootState) => state.films.films);
   const currentCategorie = useSelector(
     (state: RootState) => state.categories.currentCategory
   );
+  const page = useSelector((state: RootState) => state.pagination.page);
+  const filter = useSelector((state: RootState) => state.pagination.filter);
+  const filmFiltered = useSelector(
+    (state: RootState) => state.films.filmFiltered
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentCategorie) {
+      const tab = films.filter((film) => film.category === currentCategorie);
+      dispatch(setFilmFiltered(tab));
+    } else {
+      dispatch(setFilmFiltered(films));
+    }
+  }, [currentCategorie, films]);
 
   return (
     <div className="films">
-      {film.map((film, index) => {
-        if (currentCategorie) {
-          if (currentCategorie === film.category) {
-            return <Film film={film} index={index} key={film.id} />;
-          }
-        } else {
-          return <Film film={film} index={index} key={film.id} />;
+      {filmFiltered.map((film, index) => {
+        if ((page - 1) * filter <= index && index < page * filter) {
+          return <Film film={film} key={film.id} />;
         }
       })}
     </div>

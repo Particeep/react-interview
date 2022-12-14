@@ -9,10 +9,9 @@ import Trash from "../Buttons/Trash";
 
 type Props = {
   film: IMovie;
-  index: number;
 };
 
-const Film = ({ film, index }: Props) => {
+const Film = ({ film }: Props) => {
   const { title, likes, dislikes, category } = film;
   const [vote, setVote] = useState(likes + dislikes);
 
@@ -22,11 +21,11 @@ const Film = ({ film, index }: Props) => {
         <h2>{title}</h2>
         <p>{category}</p>
       </div>
-      <Trash index={index} />
+      <Trash film={film} />
       <Ranking likes={likes} dislikes={dislikes} vote={vote} />
 
       <div>
-        <Rating index={index} likes={likes} />
+        <Rating film={film} likes={likes} />
       </div>
     </div>
   );

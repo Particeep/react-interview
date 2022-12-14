@@ -4,6 +4,7 @@ import { movies$ } from "./movies";
 import React, { useEffect, useState } from "react";
 import Films from "./components/Films/Films";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 import { useDispatch } from "react-redux";
 import { setMovies } from "./logic/filmsSlices";
@@ -32,6 +33,7 @@ function App() {
           <Films />
         </div>
       )}
+      <Footer />
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import filmsReducer from "./filmsSlices";
 import categoriesReducer from "./categoriesSlices";
+import paginationReducer from "./paginationSlices";
 
 export const store = configureStore({
   reducer: {
     films: filmsReducer,
     categories: categoriesReducer,
+    pagination: paginationReducer,
   },
 });
 
