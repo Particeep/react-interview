@@ -2,9 +2,15 @@
   width: 100vw;
   padding: 20px;
   box-sizing: border-box;
-  height: calc((100vh) - 137.5px);
+  height: calc((100vh) - 187.5px);
   overflow: hidden;
   overflow-y: scroll;
+
+  .nofilm {
+    margin: auto;
+    font-size: 28px;
+    color: grey;
+  }
 
   .film {
     width: 100%;
@@ -66,6 +72,7 @@
       border: 2px solid black;
       color: black;
       border-radius: 50%;
+      cursor: pointer;
     }
   }
 }
@@ -79,6 +86,9 @@
       margin-right: 10px;
       &:nth-child(2n + 1) {
         margin-left: 10px;
+      }
+      .heading {
+        width: 65%;
       }
     }
   }
@@ -95,6 +105,19 @@
       }
       &:nth-child(4n + 1) {
         margin-left: 10px;
+      }
+
+      .heading {
+        width: 65%;
+
+        h2 {
+          font-size: 17px;
+        }
+      }
+
+      .trash {
+        top: 2px;
+        right: 2px;
       }
     }
   }

@@ -3,7 +3,12 @@ import { useState } from "react";
 
 //Redux import
 import { useDispatch, useSelector } from "react-redux";
-import { upVote, downVote } from "../../logic/filmsSlices";
+import {
+  upVote,
+  downVote,
+  removeDownVote,
+  removeUpVote,
+} from "../../logic/filmsSlices";
 import type { RootState } from "../../logic/store";
 
 //Style
@@ -27,25 +32,41 @@ const Rating = ({ film, likes }: Props) => {
     <div className="rating">
       <IconContext.Provider value={{ size: "1em" }}>
         <button
-          disabled={toggle}
           onClick={() => {
             const index = films.indexOf(film);
-            dispatch(upVote(index));
-            setToggle(true);
+            if (toggle === true) {
+              dispatch(removeUpVote(index));
+              setToggle(undefined);
+            } else if (toggle === false) {
+              dispatch(upVote(index));
+              dispatch(removeDownVote(index));
+              setToggle(true);
+            } else {
+              dispatch(upVote(index));
+              setToggle(true);
+            }
           }}
-          className="like"
+          className={`like ${toggle === true && "toggleTrue"}`}
         >
           <AiTwotoneLike />
           <span>{likes < 1000 ? likes : `${Math.round(likes / 1000)}K`}</span>
         </button>
         <button
-          disabled={toggle === false}
           onClick={() => {
             const index = films.indexOf(film);
-            dispatch(downVote(index));
-            setToggle(false);
+            if (toggle === true) {
+              dispatch(removeUpVote(index));
+              dispatch(downVote(index));
+              setToggle(false);
+            } else if (toggle === false) {
+              dispatch(removeDownVote(index));
+              setToggle(undefined);
+            } else {
+              dispatch(downVote(index));
+              setToggle(false);
+            }
           }}
-          className="dislike"
+          className={`dislike ${toggle === false && "toggleFalse"}`}
         >
           <AiTwotoneDislike />
         </button>

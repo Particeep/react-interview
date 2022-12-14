@@ -11,15 +11,14 @@
     border: none;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     &.like {
-      // color: rgb(56, 56, 222);
-      // border-right: solid 0.01px lightgrey;
       border-right: none;
       border-radius: 5px 0 0 5px;
       width: 50px;
 
-      &:disabled {
+      &.toggleTrue {
         background-color: rgb(205, 204, 204);
         color: #46cb18;
 
@@ -35,7 +34,7 @@
       border-radius: 0 5px 5px 0;
       justify-content: center;
 
-      &:disabled {
+      &.toggleFalse {
         background-color: rgb(205, 204, 204);
         color: rgb(254, 105, 105);
       }

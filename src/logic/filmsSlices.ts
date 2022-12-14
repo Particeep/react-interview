@@ -19,8 +19,14 @@ export const filmSlice = createSlice({
     upVote: (state, action: PayloadAction<number>) => {
       state.films[action.payload].likes += 1;
     },
+    removeUpVote: (state, action: PayloadAction<number>) => {
+      state.films[action.payload].likes -= 1;
+    },
     downVote: (state, action: PayloadAction<number>) => {
       state.films[action.payload].dislikes += 1;
+    },
+    removeDownVote: (state, action: PayloadAction<number>) => {
+      state.films[action.payload].dislikes -= 1;
     },
     removeMovie: (state, action: PayloadAction<number>) => {
       state.films.splice(action.payload, 1);
@@ -35,7 +41,14 @@ export const filmSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { upVote, downVote, removeMovie, setMovies, setFilmFiltered } =
-  filmSlice.actions;
+export const {
+  upVote,
+  downVote,
+  removeMovie,
+  setMovies,
+  setFilmFiltered,
+  removeUpVote,
+  removeDownVote,
+} = filmSlice.actions;
 
 export default filmSlice.reducer;

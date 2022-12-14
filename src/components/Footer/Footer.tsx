@@ -4,6 +4,7 @@ import { setFilter } from "../../logic/paginationSlices";
 import { useDispatch } from "react-redux";
 
 import "./footer.scss";
+import { AiOutlineLinkedin, AiFillGithub } from "react-icons/ai";
 
 const Footer = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,15 @@ const Footer = () => {
           <option value="8">8</option>
           <option value="4">4</option>
         </select>
+      </div>
+      <div className="references">
+        <p>Réalisé par Théodore Perron-Kyritsos</p>
+        <a href="https://github.com/theodorepk">
+          <AiFillGithub /> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/theodore-perron-kyritsos/">
+          <AiOutlineLinkedin /> Linkedin
+        </a>
       </div>
     </footer>
   );

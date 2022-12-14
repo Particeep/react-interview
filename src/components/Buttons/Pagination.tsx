@@ -22,7 +22,7 @@ const Pagination = () => {
       </div>
 
       <button
-        disabled={page === Math.floor(filmFiltered.length / filter) + 1}
+        disabled={page === Math.ceil(filmFiltered.length / filter)}
         onClick={() => dispatch(nextPage())}
       >
         Suivant
