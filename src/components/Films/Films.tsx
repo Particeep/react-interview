@@ -30,13 +30,15 @@ const Films = () => {
     } else {
       dispatch(setFilmFiltered(films));
     }
-  }, [currentCategorie, films]);
+  }, [currentCategorie, films, dispatch]);
 
   return (
     <div className="films">
       {filmFiltered.map((film, index) => {
         if ((page - 1) * filter <= index && index < page * filter) {
           return <Film film={film} key={film.id} />;
+        } else {
+          return null;
         }
       })}
     </div>

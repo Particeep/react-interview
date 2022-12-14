@@ -36,7 +36,7 @@ const Rating = ({ film, likes }: Props) => {
           className="like"
         >
           <AiTwotoneLike />
-          <span>{likes}</span>
+          <span>{likes < 1000 ? likes : `${Math.round(likes / 1000)}K`}</span>
         </button>
         <button
           disabled={toggle === false}

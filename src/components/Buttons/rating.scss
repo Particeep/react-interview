@@ -1,6 +1,6 @@
 .rating {
   display: flex;
-  width: 70px;
+  width: 80px;
   box-sizing: border-box;
   border: 0.5px solid black;
   border-radius: 5px;
@@ -17,7 +17,7 @@
       // border-right: solid 0.01px lightgrey;
       border-right: none;
       border-radius: 5px 0 0 5px;
-      width: 40px;
+      width: 50px;
 
       &:disabled {
         background-color: rgb(205, 204, 204);

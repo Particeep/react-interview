@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 
 import { useDispatch } from "react-redux";
 import { setMovies } from "./logic/filmsSlices";
+import { IMovie } from "./interfaces/IMovie";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,8 +17,27 @@ function App() {
 
   useEffect(() => {
     const dataFetch = async () => {
-      const response = await movies$;
-      dispatch(setMovies(response));
+      const response: IMovie[] = await movies$;
+      const tab: IMovie[] = [];
+
+      //To remove combine data for duplicte movies
+      response.forEach((element) => {
+        const filmTab = tab.find((filmTab) => filmTab.title === element.title);
+        if (filmTab) {
+          const index = tab.indexOf(filmTab);
+
+          //Need to copy the object to iterate
+          const copy = { ...filmTab };
+          copy.dislikes += element.dislikes;
+          copy.likes += element.likes;
+
+          tab.splice(index, 1, copy);
+        } else {
+          tab.push(element);
+        }
+      });
+
+      dispatch(setMovies(tab));
       setIsLoading(false);
     };
     dataFetch();

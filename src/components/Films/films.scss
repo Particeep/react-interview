@@ -69,3 +69,33 @@
     }
   }
 }
+
+@media (min-width: 650px) {
+  .films {
+    display: flex;
+    flex-wrap: wrap;
+    .film {
+      width: calc((100% - 30px) / 2);
+      margin-right: 10px;
+      &:nth-child(2n + 1) {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1230px) {
+  .films {
+    max-width: 1230px;
+    margin: auto;
+    .film {
+      width: calc((100% - 50px) / 4);
+      &:nth-child(2n + 1) {
+        margin-left: 0;
+      }
+      &:nth-child(4n + 1) {
+        margin-left: 10px;
+      }
+    }
+  }
+}
