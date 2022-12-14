@@ -37,8 +37,9 @@ const Trash = ({ film }: Props) => {
           ) {
             dispatch(previousPage());
           }
+
+          //handle if the film is the last of the category
           if (!(filmFiltered.length - 1)) {
-            console.log(filmFiltered.length);
             dispatch(setCurrentCategorie(""));
           }
         }}
