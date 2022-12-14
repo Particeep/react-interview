@@ -15,6 +15,9 @@ const Header = () => {
   const categories = useSelector(
     (state: RootState) => state.categories.categories
   );
+  const currentCategorie = useSelector(
+    (state: RootState) => state.categories.currentCategory
+  );
 
   const dispatch = useDispatch();
 
@@ -34,6 +37,7 @@ const Header = () => {
         name="categorie"
         id=""
         onChange={(event) => dispatch(setCurrentCategorie(event.target.value))}
+        value={currentCategorie}
       >
         <option value={""}>Choisissez une catégorie</option>
         {categories.map((categorie, index) => {

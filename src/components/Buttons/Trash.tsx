@@ -7,6 +7,7 @@ import { BsTrash } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { IMovie } from "../../interfaces/IMovie";
 import { previousPage } from "../../logic/paginationSlices";
+import { setCurrentCategorie } from "../../logic/categoriesSlices";
 
 type Props = {
   film: IMovie;
@@ -28,8 +29,17 @@ const Trash = ({ film }: Props) => {
         onClick={() => {
           const index = films.indexOf(film);
           dispatch(removeMovie(index));
-          if (page > Math.ceil((filmFiltered.length - 1) / filter)) {
+
+          //Handle if the last item on page is remove
+          if (
+            page > Math.ceil((filmFiltered.length - 1) / filter) &&
+            page > 1
+          ) {
             dispatch(previousPage());
+          }
+          if (!(filmFiltered.length - 1)) {
+            console.log(filmFiltered.length);
+            dispatch(setCurrentCategorie(""));
           }
         }}
       >
