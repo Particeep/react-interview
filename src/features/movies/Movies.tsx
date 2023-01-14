@@ -72,7 +72,7 @@ export function Movies() {
         justifyContent: "center",
       }}
     >
-      <h1>Movies</h1>
+      <h1>Light rotten tomatoes</h1>
       <Stack
         direction="column"
         spacing={1}
