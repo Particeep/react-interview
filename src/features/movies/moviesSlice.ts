@@ -26,9 +26,41 @@ export const moviesSlice = createSlice({
         (movie) => movie.id !== action.payload
       );
     },
+    addLike: (state, action: PayloadAction<string>) => {
+      const movie = state.movies.find((movie) => movie.id === action.payload);
+      if (movie) {
+        movie.likes++;
+      }
+    },
+    addDislike: (state, action: PayloadAction<string>) => {
+      const movie = state.movies.find((movie) => movie.id === action.payload);
+      if (movie) {
+        movie.dislikes++;
+      }
+    },
+    removeLike: (state, action: PayloadAction<string>) => {
+      const movie = state.movies.find((movie) => movie.id === action.payload);
+      if (movie) {
+        movie.likes--;
+      }
+    },
+    removeDislike: (state, action: PayloadAction<string>) => {
+      const movie = state.movies.find((movie) => movie.id === action.payload);
+      if (movie) {
+        movie.dislikes--;
+      }
+    },
   },
 });
 
-export const { setMovies, setCategories, deleteMovie } = moviesSlice.actions;
+export const {
+  setMovies,
+  setCategories,
+  deleteMovie,
+  addDislike,
+  addLike,
+  removeDislike,
+  removeLike,
+} = moviesSlice.actions;
 
 export default moviesSlice.reducer;

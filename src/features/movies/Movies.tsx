@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { movies$ } from "../../api/movies";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { Movie } from "../../app/types";
 import { setCategories, setMovies } from "./moviesSlice";
-import { MovieCard } from "../../components/MovieCard/MovieCard";
+import { MovieCard } from "../../components/MovieCard";
 import Box from "@mui/material/Box";
-
-import styles from "./Movies.module.css";
 
 export function Movies() {
   const { movies, categories } = useAppSelector((state) => state.movies);
@@ -41,20 +39,23 @@ export function Movies() {
 
   useEffect(() => {
     const categories = movies.map((movie) => movie.category);
-    const uniqueCategories = [...new Set(categories)];
+    const uniqueCategories = categories.filter(
+      (category, index) => categories.indexOf(category) === index
+    );
+    console.log(uniqueCategories);
     dispatch(setCategories(uniqueCategories));
   }, [movies]);
 
   const dispatch = useAppDispatch();
   return (
-    <div>
+    <Box>
       <h1>Movies</h1>
 
-      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </Box>
-    </div>
+    </Box>
   );
 }
