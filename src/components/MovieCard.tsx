@@ -18,6 +18,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
           textAlign: "left",
           fontWeight: 800,
           fontSize: 20,
+          color: "#002920",
         }}
         action={
           <IconButton
