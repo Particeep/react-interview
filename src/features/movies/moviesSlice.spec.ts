@@ -8,6 +8,7 @@ describe("movie reducer", () => {
   const initialState: MoviesState = {
     movies: [],
     categories: [],
+    filteredMovieIds: [],
     selectedCategories: [],
   };
 

@@ -10,10 +10,13 @@ import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Category } from "../app/types";
 
-import { setSelectedCategories } from "../features/movies/moviesSlice";
+import {
+  setFilteredMovieIds,
+  setSelectedCategories,
+} from "../features/movies/moviesSlice";
 
 export function SelectCategories() {
-  const { categories } = useAppSelector((state) => state.movies);
+  const { categories, movies } = useAppSelector((state) => state.movies);
 
   const dispatch = useAppDispatch();
 
@@ -29,6 +32,14 @@ export function SelectCategories() {
     if (selectedValues) {
       dispatch(setSelectedCategories(selectedValues));
       setNames(selectedValues);
+      const filteredMovieIds = movies
+        .filter((movie) =>
+          selectedValues.length > 0
+            ? selectedValues.includes(movie.category)
+            : true
+        )
+        .map((movie) => movie.id);
+      dispatch(setFilteredMovieIds(filteredMovieIds));
     }
   };
 

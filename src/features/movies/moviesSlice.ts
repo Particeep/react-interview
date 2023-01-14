@@ -3,12 +3,14 @@ import { Category, Movie } from "../../app/types";
 
 export interface MoviesState {
   movies: Movie[];
+  filteredMovieIds: string[];
   categories: Category[];
   selectedCategories: Category[];
 }
 
 const initialState: MoviesState = {
   categories: [],
+  filteredMovieIds: [],
   movies: [],
   selectedCategories: [],
 };
@@ -24,6 +26,9 @@ export const moviesSlice = createSlice({
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload
       );
+    },
+    setFilteredMovieIds: (state, action: PayloadAction<string[]>) => {
+      state.filteredMovieIds = action.payload;
     },
     addLike: (state, action: PayloadAction<string>) => {
       const movie = state.movies.find((movie) => movie.id === action.payload);
@@ -66,6 +71,7 @@ export const {
   addLike,
   removeDislike,
   removeLike,
+  setFilteredMovieIds,
   setSelectedCategories,
 } = moviesSlice.actions;
 

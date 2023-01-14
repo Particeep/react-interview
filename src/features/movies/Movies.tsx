@@ -2,15 +2,16 @@ import React, { useEffect, useMemo, useState } from "react";
 import { movies$ } from "../../api/movies";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { Movie } from "../../app/types";
-import { setCategories, setMovies } from "./moviesSlice";
+import { setCategories, setFilteredMovieIds, setMovies } from "./moviesSlice";
 import { MovieCard } from "../../components/MovieCard";
 import { Box } from "@mui/material";
 import { Stack } from "@mui/system";
 import { SelectCategories } from "../../components/SelectCategories";
 import { NoMovie } from "../../components/NoMovie";
+import Pagination from "../../components/Pagination";
 
 export function Movies() {
-  const { movies, selectedCategories } = useAppSelector(
+  const { filteredMovieIds, movies, selectedCategories } = useAppSelector(
     (state) => state.movies
   );
 
@@ -38,7 +39,9 @@ export function Movies() {
 
   useEffect(() => {
     movies$.then((movies) => {
-      dispatch(setMovies(mergeDuplicateMovies(movies as Movie[])));
+      const uniqueMovies = mergeDuplicateMovies(movies as Movie[]);
+      dispatch(setMovies(uniqueMovies));
+      dispatch(setFilteredMovieIds(uniqueMovies.map((movie) => movie.id)));
     });
   }, []);
 
@@ -95,6 +98,7 @@ export function Movies() {
           ))}
           {filteredMovies.length === 0 && <NoMovie />}
         </Box>
+        <Pagination />
       </Stack>
     </Box>
   );
