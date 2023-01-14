@@ -32,6 +32,10 @@ export function SelectCategories() {
     }
   };
 
+  if (categories.length === 0) {
+    return null;
+  }
+
   return (
     <FormControl sx={{ m: 1, width: 300 }}>
       <InputLabel id="select-categories-label">Categories</InputLabel>

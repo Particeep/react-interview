@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { movies$ } from "../../api/movies";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { Movie } from "../../app/types";
@@ -7,6 +7,7 @@ import { MovieCard } from "../../components/MovieCard";
 import { Box } from "@mui/material";
 import { Stack } from "@mui/system";
 import { SelectCategories } from "../../components/SelectCategories";
+import { NoMovie } from "../../components/NoMovie";
 
 export function Movies() {
   const { movies, selectedCategories } = useAppSelector(
@@ -58,6 +59,10 @@ export function Movies() {
     return selectedCategories.includes(movie.category);
   };
 
+  const filteredMovies = useMemo(() => {
+    return movies.filter(filterByCategories);
+  }, [movies, selectedCategories]);
+
   return (
     <Box
       sx={{
@@ -86,9 +91,10 @@ export function Movies() {
             width: "100%",
           }}
         >
-          {movies.filter(filterByCategories).map((movie) => (
+          {filteredMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
+          {filteredMovies.length === 0 && <NoMovie />}
         </Box>
       </Stack>
     </Box>
