@@ -11,7 +11,7 @@ import { NoMovie } from "../../components/NoMovie";
 import Pagination from "../../components/Pagination";
 
 export function Movies() {
-  const { filteredMovieIds, movies, selectedCategories } = useAppSelector(
+  const { movies, selectedCategories, page } = useAppSelector(
     (state) => state.movies
   );
 
@@ -93,9 +93,15 @@ export function Movies() {
             width: "100%",
           }}
         >
-          {filteredMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+          {filteredMovies
+            .filter((movie, index) => {
+              const start = page.currentPage * page.moviesPerPage;
+              const end = start + page.moviesPerPage;
+              return index >= start && index < end;
+            })
+            .map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
           {filteredMovies.length === 0 && <NoMovie />}
         </Box>
         <Pagination />

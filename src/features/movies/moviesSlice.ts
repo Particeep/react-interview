@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Category, Movie } from "../../app/types";
+import { rowsPerPageOptions } from "../../components/Pagination";
 
+export interface Page {
+  currentPage: number;
+  moviesPerPage: number;
+}
 export interface MoviesState {
   movies: Movie[];
   filteredMovieIds: string[];
   categories: Category[];
   selectedCategories: Category[];
+  page: Page;
 }
 
 const initialState: MoviesState = {
@@ -13,6 +19,10 @@ const initialState: MoviesState = {
   filteredMovieIds: [],
   movies: [],
   selectedCategories: [],
+  page: {
+    currentPage: 1,
+    moviesPerPage: rowsPerPageOptions[0],
+  },
 };
 
 export const moviesSlice = createSlice({
@@ -60,6 +70,9 @@ export const moviesSlice = createSlice({
     setSelectedCategories: (state, action: PayloadAction<Category[]>) => {
       state.selectedCategories = action.payload;
     },
+    setPage: (state, action: PayloadAction<Page>) => {
+      state.page = action.payload;
+    },
   },
 });
 
@@ -73,6 +86,7 @@ export const {
   removeLike,
   setFilteredMovieIds,
   setSelectedCategories,
+  setPage,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

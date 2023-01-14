@@ -1,3 +1,4 @@
+import { rowsPerPageOptions } from "../../components/Pagination";
 import moviesReducer, {
   MoviesState,
   setMovies,
@@ -10,6 +11,10 @@ describe("movie reducer", () => {
     categories: [],
     filteredMovieIds: [],
     selectedCategories: [],
+    page: {
+      currentPage: 1,
+      moviesPerPage: rowsPerPageOptions[0],
+    },
   };
 
   it("should handle initial state", () => {
