@@ -4,11 +4,13 @@ import { Category, Movie } from "../../app/types";
 export interface MoviesState {
   movies: Movie[];
   categories: Category[];
+  selectedCategories: Category[];
 }
 
 const initialState: MoviesState = {
   categories: [],
   movies: [],
+  selectedCategories: [],
 };
 
 export const moviesSlice = createSlice({
@@ -17,9 +19,6 @@ export const moviesSlice = createSlice({
   reducers: {
     setMovies: (state, action: PayloadAction<Movie[]>) => {
       state.movies = action.payload;
-    },
-    setCategories: (state, action: PayloadAction<Category[]>) => {
-      state.categories = action.payload;
     },
     deleteMovie: (state, action: PayloadAction<string>) => {
       state.movies = state.movies.filter(
@@ -50,6 +49,12 @@ export const moviesSlice = createSlice({
         movie.dislikes--;
       }
     },
+    setCategories: (state, action: PayloadAction<Category[]>) => {
+      state.categories = action.payload;
+    },
+    setSelectedCategories: (state, action: PayloadAction<Category[]>) => {
+      state.selectedCategories = action.payload;
+    },
   },
 });
 
@@ -61,6 +66,7 @@ export const {
   addLike,
   removeDislike,
   removeLike,
+  setSelectedCategories,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

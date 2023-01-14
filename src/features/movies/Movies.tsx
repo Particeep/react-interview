@@ -4,10 +4,14 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { Movie } from "../../app/types";
 import { setCategories, setMovies } from "./moviesSlice";
 import { MovieCard } from "../../components/MovieCard";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
+import { Stack } from "@mui/system";
+import { SelectCategories } from "../../components/SelectCategories";
 
 export function Movies() {
-  const { movies, categories } = useAppSelector((state) => state.movies);
+  const { movies, selectedCategories } = useAppSelector(
+    (state) => state.movies
+  );
 
   // Merge like and dislike counts for duplicate movies
   const mergeDuplicateMovies = (movies: Movie[]): Movie[] => {
@@ -42,20 +46,51 @@ export function Movies() {
     const uniqueCategories = categories.filter(
       (category, index) => categories.indexOf(category) === index
     );
-    console.log(uniqueCategories);
     dispatch(setCategories(uniqueCategories));
   }, [movies]);
 
   const dispatch = useAppDispatch();
-  return (
-    <Box>
-      <h1>Movies</h1>
 
-      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </Box>
+  const filterByCategories = (movie: Movie) => {
+    if (selectedCategories.length === 0) {
+      return true;
+    }
+    return selectedCategories.includes(movie.category);
+  };
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <h1>Movies</h1>
+      <Stack
+        direction="column"
+        spacing={1}
+        sx={{
+          width: "100vw",
+          maxWidth: "1200px",
+          justifyContent: "center",
+        }}
+      >
+        <SelectCategories />
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            width: "100%",
+          }}
+        >
+          {movies.filter(filterByCategories).map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </Box>
+      </Stack>
     </Box>
   );
 }
