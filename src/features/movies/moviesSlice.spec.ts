@@ -1,8 +1,8 @@
-import { rowsPerPageOptions } from "../../components/Pagination";
 import moviesReducer, {
   MoviesState,
   setMovies,
   setCategories,
+  addLike,
 } from "./moviesSlice";
 
 describe("movie reducer", () => {
@@ -13,15 +13,12 @@ describe("movie reducer", () => {
     selectedCategories: [],
     page: {
       currentPage: 1,
-      moviesPerPage: rowsPerPageOptions[0],
+      moviesPerPage: 4,
     },
   };
 
   it("should handle initial state", () => {
-    expect(moviesReducer(undefined, { type: "unknown" })).toEqual({
-      movies: [],
-      categories: [],
-    });
+    expect(moviesReducer(undefined, { type: "unknown" })).toEqual(initialState);
   });
 
   it("should handle setMovies", () => {
@@ -52,5 +49,49 @@ describe("movie reducer", () => {
       setCategories(["Action", "Comedy"])
     );
     expect(actual.categories).toEqual(["Action", "Comedy"]);
+  });
+
+  it("should handle addLike", () => {
+    const movies = [
+      {
+        id: "1",
+        title: "Movie 1",
+        category: "Action",
+        likes: 0,
+        dislikes: 0,
+      },
+      {
+        id: "2",
+        title: "Movie 2",
+        category: "Action",
+        likes: 0,
+        dislikes: 0,
+      },
+    ];
+
+    const actual = moviesReducer({ ...initialState, movies }, addLike("1"));
+    expect(actual.movies[0].likes).toEqual(1);
+  });
+
+  it("should handle addDislike", () => {
+    const movies = [
+      {
+        id: "1",
+        title: "Movie 1",
+        category: "Action",
+        likes: 0,
+        dislikes: 0,
+      },
+      {
+        id: "2",
+        title: "Movie 2",
+        category: "Action",
+        likes: 0,
+        dislikes: 0,
+      },
+    ];
+
+    const actual = moviesReducer({ ...initialState, movies }, addLike("1"));
+    expect(actual.movies[0].likes).toEqual(1);
   });
 });
