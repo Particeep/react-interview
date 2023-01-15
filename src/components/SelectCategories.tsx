@@ -57,7 +57,13 @@ export function SelectCategories() {
         value={names as any}
         onChange={handleChange}
         input={<OutlinedInput label="Name" />}
-        sx={{ border: "none" }}
+        sx={{
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+            borderBottom: "1px solid #000",
+            borderRadius: 0,
+          },
+        }}
       >
         {categories.map((categorie) => (
           <MenuItem key={categorie} value={categorie}>
