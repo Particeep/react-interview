@@ -20,7 +20,9 @@ export function SelectCategories() {
 
   const dispatch = useAppDispatch();
 
-  const [names, setNames] = useState<string[]>([]);
+  const [selectedCategorieNames, setSelectedCategorieNames] = useState<
+    string[]
+  >([]);
 
   const handleChange = (event: SelectChangeEvent<Category>) => {
     const {
@@ -31,7 +33,7 @@ export function SelectCategories() {
     const selectedValues = typeof value === "string" ? value.split(",") : value;
     if (selectedValues) {
       dispatch(setSelectedCategories(selectedValues));
-      setNames(selectedValues);
+      setSelectedCategorieNames(selectedValues);
       const filteredMovieIds = movies
         .filter((movie) =>
           selectedValues.length > 0
@@ -54,7 +56,10 @@ export function SelectCategories() {
         labelId="select-categories-label"
         id="select-categories"
         multiple
-        value={names as any}
+        value={selectedCategorieNames as unknown as string}
+        // Fix for two incompatible type errors: value must be a string and it must
+        // be an array of strings (for multiple select)
+        // Enforce the type until the issue is fixed
         onChange={handleChange}
         input={<OutlinedInput label="Name" />}
         sx={{
