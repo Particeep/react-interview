@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { Stack } from "@mui/system";
 import { SelectCategories } from "./SelectCategories";
 import Pagination from "./Pagination";
+import { ErrorMessage } from "./ErrorMessage";
 
 export function MoviesContainer({ children }: { children: React.ReactNode }) {
   return (
@@ -24,6 +25,7 @@ export function MoviesContainer({ children }: { children: React.ReactNode }) {
         }}
       >
         <SelectCategories />
+        <ErrorMessage />
         <Box
           sx={{
             display: "flex",

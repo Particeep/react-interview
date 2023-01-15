@@ -2,11 +2,18 @@ import React, { useEffect, useMemo } from "react";
 import { movies$ } from "../../api/movies";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { Movie } from "../../app/types";
-import { setCategories, setFilteredMovieIds, setMovies } from "./moviesSlice";
+import {
+  setCategories,
+  setErrorMessage,
+  setFilteredMovieIds,
+  setMovies,
+} from "./moviesSlice";
 import { MovieCard } from "../../components/MovieCard";
 import { NoMovie } from "../../components/NoMovie";
 import { MoviesContainer } from "../../components/MoviesContainer";
 import { filterByCategories, mergeDuplicateMovies } from "../../app/utils";
+import Ajv from "ajv";
+import { moviesSchema } from "../../app/ajvSchema";
 
 export function Movies() {
   const dispatch = useAppDispatch();
@@ -16,9 +23,19 @@ export function Movies() {
 
   useEffect(() => {
     movies$.then((movies) => {
-      const uniqueMovies = mergeDuplicateMovies(movies as Movie[]);
+      // Ensure that the data has the correct type
+      const ajv = new Ajv();
+      const validate = ajv.compile(moviesSchema);
+      const valid = validate(movies);
+      if (!valid) {
+        dispatch(setErrorMessage("Invalid data received from the server"));
+        return;
+      }
+      // Data is valid, we can enforce the type
+      const uniqueMovies = mergeDuplicateMovies(movies as unknown as Movie[]);
       dispatch(setMovies(uniqueMovies));
       dispatch(setFilteredMovieIds(uniqueMovies.map((movie) => movie.id)));
+      dispatch(setErrorMessage(null));
     });
   }, [dispatch]);
 

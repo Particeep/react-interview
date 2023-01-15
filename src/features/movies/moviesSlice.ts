@@ -12,6 +12,7 @@ export interface MoviesState {
   categories: Category[];
   selectedCategories: Category[];
   page: Page;
+  errorMessage: string | null;
 }
 
 const initialState: MoviesState = {
@@ -23,6 +24,7 @@ const initialState: MoviesState = {
     currentPage: 0,
     moviesPerPage: rowsPerPageOptions[rowsPerPageOptions.length - 1],
   },
+  errorMessage: null,
 };
 
 export const moviesSlice = createSlice({
@@ -73,6 +75,9 @@ export const moviesSlice = createSlice({
     setPage: (state, action: PayloadAction<Page>) => {
       state.page = action.payload;
     },
+    setErrorMessage: (state, action: PayloadAction<string | null>) => {
+      state.errorMessage = action.payload;
+    },
   },
 });
 
@@ -87,6 +92,7 @@ export const {
   setFilteredMovieIds,
   setSelectedCategories,
   setPage,
+  setErrorMessage,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

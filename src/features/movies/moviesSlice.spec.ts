@@ -15,6 +15,7 @@ describe("movie reducer", () => {
       currentPage: 1,
       moviesPerPage: 4,
     },
+    errorMessage: null,
   };
 
   it("should handle initial state", () => {
