@@ -50,7 +50,7 @@ export function SelectCategories() {
   }
 
   return (
-    <FormControl sx={{ m: 1, width: 300 }}>
+    <FormControl sx={{ m: 1, width: 350 }}>
       <InputLabel id="select-categories-label">Categories</InputLabel>
       <Select
         labelId="select-categories-label"

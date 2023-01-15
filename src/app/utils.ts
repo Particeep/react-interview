@@ -20,7 +20,7 @@ const mergeDuplicateMovies = (movies: Movie[]): Movie[] => {
     }
     return movie;
   });
-  return uniqueMovies;
+  return uniqueMovies.sort((a, b) => a.title.localeCompare(b.title));
 };
 
 const filterByCategories = (movie: Movie, selectedCategories: Category[]) => {
