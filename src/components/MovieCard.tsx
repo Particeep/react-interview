@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Movie } from "../app/types";
 import { Card, CardHeader, CardActions, IconButton } from "@mui/material";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
@@ -7,9 +7,17 @@ import { useAppDispatch } from "../app/hooks";
 import { deleteMovie } from "../features/movies/moviesSlice";
 import { Chip } from "@mui/material";
 import { Gauge } from "./Gauge";
+import ConfirmDeleteModale from "./ConfirmDeleteModale";
 
 export function MovieCard({ movie }: { movie: Movie }) {
   const dispatch = useAppDispatch();
+  const [openConfirmMOdale, setOpenConfirmModal] = useState(false);
+
+  const handleDelete = () => {
+    dispatch(deleteMovie(movie.id));
+    setOpenConfirmModal(false);
+  };
+
   return (
     <Card key={movie.id} sx={{ width: "350px", margin: "10px" }}>
       <CardHeader
@@ -23,7 +31,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
         action={
           <IconButton
             aria-label="settings"
-            onClick={() => dispatch(deleteMovie(movie.id))}
+            onClick={() => setOpenConfirmModal(true)}
           >
             <ClearRoundedIcon />
           </IconButton>
@@ -33,6 +41,12 @@ export function MovieCard({ movie }: { movie: Movie }) {
         <Chip label={movie.category} variant="outlined" color="primary" />
         <Gauge movie={movie} />
       </CardActions>
+      <ConfirmDeleteModale
+        isOpen={openConfirmMOdale}
+        onConfirm={handleDelete}
+        onCancel={() => setOpenConfirmModal(false)}
+        movieTitle={movie.title}
+      />
     </Card>
   );
 }
