@@ -12,8 +12,8 @@ describe("movie reducer", () => {
     filteredMovieIds: [],
     selectedCategories: [],
     page: {
-      currentPage: 1,
-      moviesPerPage: 4,
+      currentPage: 0,
+      moviesPerPage: 12,
     },
     errorMessage: null,
   };
