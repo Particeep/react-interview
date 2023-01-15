@@ -20,8 +20,8 @@ const initialState: MoviesState = {
   movies: [],
   selectedCategories: [],
   page: {
-    currentPage: 1,
-    moviesPerPage: rowsPerPageOptions[0],
+    currentPage: 0,
+    moviesPerPage: rowsPerPageOptions[rowsPerPageOptions.length - 1],
   },
 };
 

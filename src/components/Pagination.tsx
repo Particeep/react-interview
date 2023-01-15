@@ -9,14 +9,11 @@ export const rowsPerPageOptions = [4, 8, 12];
 export default function Pagination() {
   const { filteredMovieIds, page } = useAppSelector((state) => state.movies);
   const dispatch = useAppDispatch();
-  // const [page, setPage] = useState(1);
-  // const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[0]);
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
-    // setPage(newPage);
     dispatch(
       setPage({
         ...page,
@@ -28,8 +25,6 @@ export default function Pagination() {
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    // setRowsPerPage(parseInt(event.target.value, 10));
-    // setPage(0);
     dispatch(
       setPage({
         currentPage: 0,
