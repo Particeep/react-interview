@@ -20,7 +20,7 @@ export function Movies() {
       dispatch(setMovies(uniqueMovies));
       dispatch(setFilteredMovieIds(uniqueMovies.map((movie) => movie.id)));
     });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const categories = movies.map((movie) => movie.category);
@@ -28,7 +28,7 @@ export function Movies() {
       (category, index) => categories.indexOf(category) === index
     );
     dispatch(setCategories(uniqueCategories));
-  }, [movies]);
+  }, [movies, dispatch]);
 
   const filteredMovies = useMemo(() => {
     return movies.filter((movie) =>

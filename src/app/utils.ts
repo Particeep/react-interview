@@ -18,6 +18,7 @@ const mergeDuplicateMovies = (movies: Movie[]): Movie[] => {
     } else {
       uniqueMovies.push(movie);
     }
+    return movie;
   });
   return uniqueMovies;
 };
