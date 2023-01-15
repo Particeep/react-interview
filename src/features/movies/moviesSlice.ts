@@ -38,6 +38,9 @@ export const moviesSlice = createSlice({
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload
       );
+      state.filteredMovieIds = state.filteredMovieIds.filter(
+        (id) => id !== action.payload
+      );
     },
     setFilteredMovieIds: (state, action: PayloadAction<string[]>) => {
       state.filteredMovieIds = action.payload;
