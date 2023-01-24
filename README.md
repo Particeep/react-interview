@@ -19,3 +19,9 @@ Prenez des initiatives, il y a des points bonus si
 * Il y a une attention aux détails
 
 /!\ La suppression du comportement asynchrone dans `movies.js` entraînera une annulation du test.
+
+Dans le cadre de ce test, j'ai réalisé le site via le Framework React.
+
+Vous trouverez votre document movies.js dans le dossier ‘src/utile'
+
+Afin de faciliter la compilation j'ai ajouté un fichier run.sh qui téléchargera toutes les dépendances et lancera la compilation
