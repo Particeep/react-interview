@@ -1,0 +1,24 @@
+
+:root {
+    //--degrader : linear-gradient(130deg, #d63031 1%, #d604c1 ,#e17055 99%);
+    //--primary_1 :  linear-gradient(130deg, #d63031 1%, #d604c1 ,#e17055 99%);
+    --degrade_1 :  linear-gradient(to right, black, rgba(255,0,0,0));
+    --degrade_2 :  linear-gradient(to left, black, rgba(255,0,0,0));
+    --degrade_3 : linear-gradient(to right, #373b44, #4286f4); 
+
+    --primary_1 : linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    --primary_2 : #203a43;
+    --primary_3 : #2c5364;
+    --primary_4 : white;
+    --primary_err : #eb3b5a;
+    --gray_1: #383838;
+    --gray_2: #aaa69d;
+    --gray_3: #efefef;
+    --gray_4: #f7f1e3;
+    --font-family: 'Economica', sans-serif;
+    --font-family_style: 'Freehand', sans-serif;
+    --box-shadow: 0 6px 9px 0 rgb(0 0 0 /15%);
+    --box-shadow-nav: rgb(0 0 0 /50%) 0px 2px 18px 0px;
+
+    --font_main_lever : 'Satisfy', cursive;
+}

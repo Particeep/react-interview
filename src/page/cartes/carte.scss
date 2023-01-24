@@ -1,0 +1,89 @@
+.carte{
+    background:var(--primary_3);
+    width:90%;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow-nav);
+    text-align: center;
+}
+
+.btnSupCarte{
+    font-size: 2vh;
+    color: white;
+    padding: 2vh;
+    transition: all 0.3s;
+    &:hover{
+        color: red;
+       
+    }
+}
+
+.infoCarteJauge{
+    margin-top:1vh;
+}
+
+.CarteBtnLike{
+    font-size: 2vh;
+    color: white;
+    padding-top: 2vh;
+    transition: all 0.3s;
+    &:hover{
+        color:green;
+    }
+}
+
+.CarteBtnDisLike{
+    font-size: 2vh;
+    color: white;
+    padding-top: 2vh;
+    transition: all 0.3s;
+    &:hover{
+        color:red;
+    }
+}
+
+.CarteLikeActif{
+    color: green;
+    transition : all 0.3s;
+    &:hover{
+        color: white;
+    }
+}
+
+.CarteDislikeActif{
+    color: red;
+    transition : all 0.3s;
+    &:hover{
+        color: white;
+    }
+}
+
+.infoCarteTitreLike{
+    display: grid;
+    grid-template-columns: 50% 25% 25%;    
+}
+
+.infoCarteSupJauge{
+    display: grid;
+    grid-template-columns: 50% 50%;    
+}
+
+.infoCarte{
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.infoCarteCategory{
+    margin: 0px;
+}
+
+.infoCarteTitre{
+    margin: 0px;
+    margin-top : 1vh
+}
+
+.imgFilm{
+    width:100%;
+    // height: 45vh;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
