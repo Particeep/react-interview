@@ -1,0 +1,68 @@
+.gate_2{
+    //height: 100%;
+    //width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,50%);    
+}
+
+.gate_3{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,33%);    
+}
+
+.gate_4{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,25%);    
+}
+
+.gate_5{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5,20%);    
+}
+
+.gate_6{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6,16%);    
+}
+
+.gate_7{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7,14%);    
+}
+
+.gate_8{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(8,12%);    
+}
+
+.gate_9{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(9,11%);    
+}
+
+.gate_10{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(10,10%);    
+}
+
+
+.gate_ver{
+    display: grid;
+    grid-template: 80vh 6vh 40vh;    
+}

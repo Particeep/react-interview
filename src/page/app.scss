@@ -1,0 +1,68 @@
+
+@use './../utile/styles/mixine' as mixin;
+
+body{
+    background: var(--primary_1);
+}
+
+.listeCarte{
+    margin-left: -6vw;
+    display: grid;
+    @include mixin.xs{
+        grid-template-columns: 96vw; 
+    }
+    @include mixin.s{
+        grid-template-columns: 48vw 48vw; 
+    }
+    @include mixin.m{
+        grid-template-columns: 32vw 32vw 32vw; 
+
+    }
+    @include mixin.l{
+        grid-template-columns: 24vw 24vw 24vw 24vw; 
+    }
+    @include mixin.xl{
+        grid-template-columns: 20vw 20vw 20vw 20vw 20vw; 
+    }
+}
+
+.listeCarteCarte{
+   padding-top:4vh;
+}
+
+.zoneListeCarte{
+    margin-left: -0.6vw;
+    display: grid;
+    grid-template-columns: 7vw 87vw 7vw; 
+}
+
+.zoneListeCarteFlecheLeft{
+    z-index: 1;
+    color: white;
+    text-align: center;
+    background: var(--degrade_1);
+    font-size: 2vw;
+    padding-top: 45vh;
+    height: 100%;
+    width: 100%;
+    transition: all 0.3s;
+    opacity: 0.5;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.zoneListeCarteFlecheRight{
+    text-align: center;
+    background: var(--degrade_2);
+    font-size: 2vw;
+    padding-top: 45vh;
+    width: 100%;
+    height: 100%;
+    color: white;
+    transition: all 0.3s;
+    opacity: 0.5;
+    &:hover{
+        opacity: 1;
+    }
+}

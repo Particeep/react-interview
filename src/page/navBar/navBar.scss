@@ -1,0 +1,84 @@
+.navBar{
+    background: var(--primary_3);
+    //height:8vh;
+    width:100vw;
+    margin-left:-0.8vw;
+    margin-top:-1vh;
+    padding: 0px;
+    box-shadow: var(--box-shadow-nav);
+    display: grid;
+    grid-template-columns: 20vw 20vw 32vw 28vw;
+}
+
+.navBarBtnCategory{
+    display: grid;
+    grid-template-columns: 7vw 7vw 7vw 7vw;
+}
+
+.messageNavBar{
+    color:white;
+    font-size:1vw;
+    font-family: 'Source Code Pro', monospace;
+    padding-left: 1vw;
+}
+
+.formNavBar{
+    text-align: center;
+}
+
+.inputTextFormNavBar{
+    margin: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    border-radius: 0.5vw;
+    border:0px;
+    width:80%;
+}
+.searchFormNavBar{
+    color: white;
+    font-size: 1.5vw;
+}
+
+.btnCategory{
+    text-align: center;
+    background:var(--primary_2);
+    padding-top:1vh;
+    padding-bottom:1vh;
+    width:7vw;
+    color: white;
+    margin: 0px;
+    transition:all 0.3s;
+    &:hover{
+        box-shadow: var(--box-shadow-nav);
+        background: white;
+        color :var(--primary_2);
+    }
+}
+
+.btnCategoryactif{
+    opacity: 0.3;
+}
+
+.navBarNbFilm{
+    display: grid;
+    grid-template-columns: 5vw 5vw 5vw 5vw;
+    color:white;
+}
+
+.navBarNbFilmBtn{
+    background: var(--primary_2);
+    text-align: center;
+    padding-top: 1vh;
+    opacity: 0.3;
+    transition: all 0.3s;
+    &:hover{
+        box-shadow: var(--box-shadow-nav);
+        opacity: 0.8;
+    }
+}
+
+.navBarNbFilmBtnActif{
+    opacity: 1;
+}

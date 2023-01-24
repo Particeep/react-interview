@@ -1,0 +1,41 @@
+.centre_vertical{
+    display: flex;
+    align-items: center;
+}
+
+.centre_horizontal{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.centre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+   background-color: white;
+   cursor: pointer;
+   transition: 0.3s background-color;
+   &:hover{
+    border: 2px solid var(--primary_2);
+    background-color: var(--primary_2);
+    color: white;
+   }
+}
+
+.btn_revers{
+    background-color: var(--primary_2);
+    color: white;
+    border-radius: 5px;
+    width:20vw;
+    cursor: pointer;
+    transition: 0.3s background-color;
+    &:hover{
+     background-color: white;
+     color: var(--primary_1);
+     border: 2px solid var(--primary_2);
+    }
+ }
