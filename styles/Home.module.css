@@ -1,0 +1,10 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 100vh;
+	padding-bottom: 6rem;
+
+	background-color: #101020;
+}
