@@ -78,7 +78,7 @@ const Card = ({ data }: Props) => {
 										data?.category === 'Comedy',
 								},
 								{
-									'bg-orange-100  text-orange-800  dark:bg-orange-900 dark:text-orange-300':
+									'bg-orange-100  text-orange-900  dark:bg-orange-900 dark:text-orange-100':
 										data?.category === 'Drame',
 								},
 								{
@@ -117,6 +117,7 @@ const Card = ({ data }: Props) => {
 										'bg-gray-600 hover:bg-gray-700 focus:bg-gray-700'
 									}`}
 									onClick={() => handleReaction(LIKE)}
+									aria-label="like movie"
 								>
 									<HandThumbUpIcon className="h-6" />
 								</button>
@@ -126,6 +127,7 @@ const Card = ({ data }: Props) => {
 										reaction === DISLIKE &&
 										'bg-gray-600 hover:bg-gray-700 focus:bg-gray-700'
 									}`}
+									aria-label="dislike movie"
 									onClick={() => handleReaction(DISLIKE)}
 								>
 									<HandThumbDownIcon className="h-6" />
@@ -135,6 +137,7 @@ const Card = ({ data }: Props) => {
 								type="button"
 								className={`inline-block p-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out rounded-full`}
 								onClick={() => dispatch(deleteMovie(data.id))}
+								aria-label="delete movie"
 							>
 								<TrashIcon className="h-6" />
 							</button>

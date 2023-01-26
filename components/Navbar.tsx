@@ -28,16 +28,24 @@ const Navbar = () => {
 					width={40}
 					height={40}
 				/>
-
-				<Select
-					options={options}
-					isMulti
-					onChange={options => {
-						const categories = options.map(option => option.value)
-						dispatch(setFilter(categories))
-					}}
-					placeholder="Genres..."
-				/>
+				<label htmlFor="movies-genres">
+					<span id="movies-genres" className="sr-only">
+						Genres
+					</span>
+					<Select
+						options={options}
+						isMulti
+						onChange={options => {
+							const categories = options.map(
+								option => option.value
+							)
+							dispatch(setFilter(categories))
+						}}
+						placeholder="Genres..."
+						aria-labelledby="genres"
+						name="movies-genres"
+					/>
+				</label>
 			</section>
 		</nav>
 	)

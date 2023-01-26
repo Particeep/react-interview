@@ -11,7 +11,7 @@ module.exports = {
 				transparent: 'transparent',
 				current: 'currentColor',
 				orange: {
-					100: '#FF9691',
+					100: '#FFC0BD',
 					200: '#FF857E',
 					300: '#FF736C',
 					400: '#FF6259',
