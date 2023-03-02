@@ -1,5 +1,5 @@
-import React from 'react';
-import { Autocomplete, TextField } from '@mui/material';
+import React from "react";
+import { Autocomplete, TextField } from "@mui/material";
 
 const Filter = ({ categories, value, onChange }) => {
   return (
@@ -9,7 +9,12 @@ const Filter = ({ categories, value, onChange }) => {
       value={value}
       onChange={(event, newValue) => onChange(newValue)}
       renderInput={(params) => (
-        <TextField {...params} label="Filter by category" variant="outlined"  sx={{ width: 200 }} />
+        <TextField
+          {...params}
+          label="Filter by category"
+          variant="outlined"
+          sx={{ width: 200 ,maxHeight:150}}
+        />
       )}
     />
   );

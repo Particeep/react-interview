@@ -1,13 +1,12 @@
-import React from 'react';
-import { Grid } from '@mui/material';
-import MovieCard from './MovieCard';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { Grid } from "@mui/material";
+import MovieCard from "./MovieCard";
+import { useDispatch } from "react-redux";
 import { deleteMovie, toggleLike } from "../Redux/moviesSlice";
 const MovieList = ({ movies }) => {
-   const dispatch = useDispatch();
-   const handleDelete = (id) => {
+  const dispatch = useDispatch();
+  const handleDelete = (id) => {
     dispatch(deleteMovie(id));
-   
   };
   const handleToggleLike = (title) => {
     dispatch(toggleLike(title));

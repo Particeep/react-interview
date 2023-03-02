@@ -12,7 +12,6 @@ const App = () => {
   const [moviesPerPage, setMoviesPerPage] = useState(8);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const dispatch = useDispatch();
-  
   const movies = useSelector(selectAllMovies);
   useEffect(() => {
     dispatch(fetchMovies());
@@ -23,7 +22,6 @@ const App = () => {
   };
 
   const handleToggleLike = (title) => {
-   
     dispatch(toggleLike(title));
   };
 

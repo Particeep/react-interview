@@ -1,7 +1,13 @@
-import React from 'react';
-import { Box, Button, Grid, MenuItem, Select, Typography } from '@mui/material';
+import React from "react";
+import { Box, Button, Grid, MenuItem, Select, Typography } from "@mui/material";
 
-const Pagination = ({ moviesPerPage, totalMovies, paginate, currentPage, setMoviesPerPage }) => {
+const Pagination = ({
+  moviesPerPage,
+  totalMovies,
+  paginate,
+  currentPage,
+  setMoviesPerPage,
+}) => {
   const pageNumbers = [];
   const totalPages = Math.ceil(totalMovies / moviesPerPage);
 
@@ -21,7 +27,7 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate, currentPage, setMovi
   return (
     <Grid container spacing={4} sx={{ mt: 4 }}>
       <Grid item xs={12} md={6}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography variant="body2" sx={{ mr: 1 }}>
             Afficher
           </Typography>
@@ -36,7 +42,13 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate, currentPage, setMovi
         </Box>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
           <Typography variant="body2" sx={{ mr: 1 }}>
             Page {currentPage} sur {totalPages}
           </Typography>
@@ -50,7 +62,7 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate, currentPage, setMovi
           {pageNumbers.map((number) => (
             <Button
               key={number}
-              variant={number === currentPage ? 'contained' : 'outlined'}
+              variant={number === currentPage ? "contained" : "outlined"}
               onClick={() => handlePageChange(number)}
             >
               {number}
