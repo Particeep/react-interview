@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardActions, Typography, IconButton, Box } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const MovieCard = ({ title, category,img, likes, dislikes, isLiked, onDelete, onToggleLike }) => {

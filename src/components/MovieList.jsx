@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import MovieCard from './MovieCard';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 const MovieList = ({ movies, onDelete, onToggleLike }) => {
   //  const movies = useSelector((state) => state.movies);
    const dispatch = useDispatch();
