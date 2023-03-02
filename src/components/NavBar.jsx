@@ -6,7 +6,11 @@ const NavBar = ({ selectedCategories, setSelectedCategories, movies }) => {
   return (
     <AppBar position="static">
       <Toolbar sx={{ bgcolor: "#ed867e" }}>
-        <img src={logo} alt="Logo" style={{ marginRight: "auto" }} />
+        <img
+          src={logo}
+          alt="Logo"
+          style={{ marginRight: "auto"}}
+        />
         <Filter
           categories={[...new Set(movies?.map((movie) => movie.category))]}
           value={selectedCategories}

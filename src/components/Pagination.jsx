@@ -8,7 +8,10 @@ const Pagination = ({
   currentPage,
   setMoviesPerPage,
 }) => {
+
   const pageNumbers = [];
+
+  // Calculate the total number of pages required to display all movies
   const totalPages = Math.ceil(totalMovies / moviesPerPage);
 
   for (let i = 1; i <= totalPages; i++) {
@@ -19,10 +22,15 @@ const Pagination = ({
     paginate(pageNumber);
   };
 
-  const handleMoviesPerPageChange = (event) => {
-    setMoviesPerPage(parseInt(event.target.value, 10));
-    paginate(1);
-  };
+ // This function is responsible for setting the number of movies that will display per page on the UI
+const handleMoviesPerPageChange = (event) => {
+  // Set the movies per page based on the event value
+  setMoviesPerPage(parseInt(event.target.value, 10));
+  
+  // Update the pagination by sending 1 as argument
+  paginate(1);
+};
+
 
   return (
     <Grid container spacing={4} sx={{ mt: 4 }}>

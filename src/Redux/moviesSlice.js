@@ -37,6 +37,7 @@ const moviesSlice = createSlice({
 });
 
 
+/* Creating a thunk that will be dispatched to the reducer. */
 export const fetchMovies = createAsyncThunk('movies/fetchMovies', async () => {
   const response = await movies$;
   return response;

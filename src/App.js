@@ -13,6 +13,7 @@ const App = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const dispatch = useDispatch();
   const movies = useSelector(selectAllMovies);
+
   useEffect(() => {
     dispatch(fetchMovies());
   }, [dispatch]);
@@ -25,13 +26,18 @@ const App = () => {
     dispatch(toggleLike(title));
   };
 
+  // Constants used to divide movies into pages
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+
+  // Filter movies by selected categories
   const filteredMovies = movies?.filter((movie) =>
     selectedCategories?.length === 0
       ? true
       : selectedCategories?.includes(movie.category)
   );
+
+  // Slice the filtered movies by current page
   const currentMovies = filteredMovies?.slice(
     indexOfFirstMovie,
     indexOfLastMovie
