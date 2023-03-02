@@ -16,7 +16,6 @@ const moviesLists = [
     category: "Comedy",
     likes: 4,
     dislikes: 1,
-    isLiked: false,
   },
   {
     id: "2",
@@ -25,7 +24,6 @@ const moviesLists = [
     category: "Comedy",
     likes: 2,
     dislikes: 0,
-    isLiked: false,
   },
   {
     id: "3",
@@ -34,7 +32,6 @@ const moviesLists = [
     category: "Animation",
     likes: 3,
     dislikes: 1,
-    isLiked: false,
   },
   {
     id: "4",
@@ -43,7 +40,6 @@ const moviesLists = [
     category: "Thriller",
     likes: 6,
     dislikes: 6,
-    isLiked: false,
   },
   {
     id: "5",
@@ -52,7 +48,6 @@ const moviesLists = [
     category: "Drame",
     likes: 16,
     dislikes: 2,
-    isLiked: false,
   },
   {
     id: "6",
@@ -61,7 +56,6 @@ const moviesLists = [
     category: "Thriller",
     likes: 11,
     dislikes: 3,
-    isLiked: false,
   },
   {
     id: "7",
@@ -70,7 +64,6 @@ const moviesLists = [
     category: "Thriller",
     likes: 12333,
     dislikes: 32,
-    isLiked: false,
   },
   {
     id: "8",
@@ -79,7 +72,6 @@ const moviesLists = [
     category: "Thriller",
     likes: 2,
     dislikes: 1,
-    isLiked: false,
   },
   {
     id: "9",
@@ -88,7 +80,6 @@ const moviesLists = [
     category: "Thriller",
     likes: 2,
     dislikes: 1,
-    isLiked: false,
   },
   {
     id: "10",
@@ -97,7 +88,6 @@ const moviesLists = [
     category: "Thriller",
     likes: 22,
     dislikes: 12,
-    isLiked: false,
   },
 ];
 

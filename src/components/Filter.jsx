@@ -13,7 +13,7 @@ const Filter = ({ categories, value, onChange }) => {
           {...params}
           label="Filter by category"
           variant="outlined"
-          sx={{ width: 200 ,maxHeight:150}}
+          sx={{ width: 300 }}
         />
       )}
     />
