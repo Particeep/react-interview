@@ -11,14 +11,11 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(8);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  // const [movies, setMovies] = useState([]);
-
   const dispatch = useDispatch();
   
   const movies = useSelector(selectAllMovies);
   useEffect(() => {
     dispatch(fetchMovies());
-    console.log(movies)
   }, [dispatch]);
 
   const handleDeleteMovie = (id) => {
