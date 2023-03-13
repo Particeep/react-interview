@@ -13,10 +13,25 @@ const moviesSlice = createSlice({
       state.movies = state.movies.filter((movie) => movie.id !== action.payload);
     },
     toggleLike: (state, action) => {
-      const movie = state.movies.find((movie) => movie.title === action.payload);
+      const movie = state.movies.find((movie) => movie.id === action.payload);
       if (movie) {
+        if (movie.isDisliked) {
+          movie.isDisliked = false;
+          movie.dislikes--;
+        }
         movie.isLiked = !movie.isLiked;
         movie.likes = movie.isLiked ? movie.likes + 1 : movie.likes - 1;
+      }
+    },
+    toggleDisLike: (state, action) => {
+      const movie = state.movies.find((movie) => movie.id === action.payload);
+      if (movie) {
+        if (movie.isLiked) {
+          movie.isLiked = false;
+          movie.likes--;
+        }
+        movie.isDisliked = !movie.isDisliked;
+        movie.dislikes = movie.isDisliked ? movie.dislikes + 1 : movie.dislikes - 1;
       }
     },
   },
@@ -43,6 +58,6 @@ export const fetchMovies = createAsyncThunk('movies/fetchMovies', async () => {
   return response;
 });
 
-export const {deleteMovie, toggleLike } = moviesSlice.actions;
+export const {deleteMovie, toggleLike, toggleDisLike } = moviesSlice.actions;
 export const selectAllMovies = (state) => state.movies.movies;
 export default moviesSlice.reducer;

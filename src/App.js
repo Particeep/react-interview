@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteMovie, toggleLike } from "./Redux/moviesSlice";
 import MovieList from "./components/MovieList";
 import Pagination from "./components/Pagination";
 import NavBar from "./components/NavBar";
@@ -18,13 +17,7 @@ const App = () => {
     dispatch(fetchMovies());
   }, [dispatch]);
 
-  const handleDeleteMovie = (id) => {
-    dispatch(deleteMovie(id));
-  };
 
-  const handleToggleLike = (title) => {
-    dispatch(toggleLike(title));
-  };
 
   // Constants used to divide movies into pages
   const indexOfLastMovie = currentPage * moviesPerPage;
@@ -55,8 +48,6 @@ const App = () => {
       <Container sx={{ py: 4 }}>
         <MovieList
           movies={currentMovies}
-          onDelete={handleDeleteMovie}
-          onToggleLike={handleToggleLike}
         />
         <Pagination
           moviesPerPage={moviesPerPage}
