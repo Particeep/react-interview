@@ -1,0 +1,25 @@
+@import "../../styles/main.scss";
+.button-icon {
+  border: none;
+  border-radius: 100px;
+  height: 40px;
+  width: 40px;
+  
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include blur-background();
+  opacity: 0.5;
+  transition: 300ms;
+
+  &:hover {
+    opacity: 1 !important;
+  }
+
+  &--active{
+    background-color: $primary-color-blue !important;
+    opacity: 0.9;
+  }
+}

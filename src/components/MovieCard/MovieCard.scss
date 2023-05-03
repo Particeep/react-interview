@@ -1,0 +1,77 @@
+@import '../../styles/main.scss';
+.movie-card{
+    position: relative;
+    overflow: hidden ;
+
+    border-radius: 50px !important;
+
+
+
+
+    width: 130*2px;
+    height: 130*2.6px;
+
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: scale 300ms ease-in-out;
+    transform: translateZ(0);
+
+    &:hover{
+        scale: 1.05;
+    }
+
+    &__img{
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+    }
+
+    &__button-like{
+        position: absolute;
+        z-index: 2;
+        top:25px;
+        left: 25px;
+    }
+
+    &__button-delete{
+        position: absolute;
+        z-index: 2;
+        top:25px;
+        right: 25px;
+    }
+
+    &__information-wrapper{
+        
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        margin-top: 10px;
+        padding-bottom:25px ;
+        padding-left: 25px;
+        padding-top: 10px;
+  
+        @include blur-background();
+        &__category{
+            font-size: 0.8rem;
+            background-color: $dark-transparent-color;
+            padding: 6px 10px;
+            border-radius: 10px;
+        }
+        &__title{
+            margin: 10px 0;
+  
+        }
+        &__footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 50px;
+        }
+    }
+
+
+
+}

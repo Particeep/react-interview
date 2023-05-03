@@ -1,0 +1,45 @@
+/*=============================================
+=               Typography       =
+=============================================*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+
+$primary-font-familly: 'Montserrat', sans-serif;
+
+/*=====  Typography ======*/
+
+
+/*=============================================
+=            Colors          =
+=============================================*/
+$primary-color-blue: #25C9FF;
+$primary-color-purple: #AD00FF;
+$primary-gradient:linear-gradient(150deg, rgba(173,0,255,1) 0%, rgba(37,201,255,1) 100%);
+$drak-color: #080816;
+$dark-transparent-color: #0f0f2889;
+$gray-transparent-color:#59595965;
+$gray-transparent-darker-color:#3f3f3f3c;
+$white-color: #FFFF;
+/*=====  End of Colors ======*/
+
+
+
+/*=============================================
+=            Mixins            =
+=============================================*/
+
+@mixin primary-gradien-background(){
+    background: rgb(173,0,255);
+    background: linear-gradient(150deg, rgba(173,0,255,1) 0%, rgba(37,201,255,1) 100%); 
+}
+
+
+@mixin blur-background(){
+    background-color:  #24242496; 
+    backdrop-filter: blur(10px);
+    --tw-backdrop-blur: blur(10px);
+}
+
+
+/*=====  End of Mixins ======*/
+
+
