@@ -1,0 +1,15 @@
+.pagination-settings {
+  display: flex;
+  align-items: center;
+  &__list-btn {
+    display: flex;
+
+    & > * {
+      margin: 5px;
+    }
+  }
+  &__title {
+    font-size: 0.8rem;
+    margin-right: 10px;
+  }
+}

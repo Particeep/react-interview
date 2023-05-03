@@ -1,0 +1,26 @@
+@import "../../styles/main.scss";
+
+.gauge {
+  &__shape {
+    position: relative;
+    width: 100%;
+    max-width: 150px;
+    height: 10px;
+    border-radius: 100px;
+    background-color: $dark-transparent-color;
+  }
+
+  &__content {
+    position: absolute;
+    height: 100%;
+    background-color: $primary-color-blue;
+    border-radius: 100px;
+    transition: 300ms ease-in-out;
+  }
+
+  &__description{
+    font-size: 0.7rem;
+    font-weight: 400;
+    margin: 10px 2px;
+  }
+}

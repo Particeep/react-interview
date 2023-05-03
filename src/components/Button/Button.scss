@@ -1,0 +1,118 @@
+@import "../../styles/main.scss";
+
+$border-raduis-medium: 10px;
+.button {
+  position: relative;
+  border: none;
+  border-radius: $border-raduis-medium;
+  background: none;
+  transition: 300ms;
+  padding: 10px 15px;
+  height: 35px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: $primary-font-familly;
+  min-width: 40px;
+  cursor: pointer;
+
+  &__background {
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 150%;
+    left: 0;
+    top: 0;
+    transition: 300ms;
+    @include primary-gradien-background();
+  }
+  &__label {
+    position: relative;
+    z-index: 2;
+    color: $white-color;
+    font-size: 1rem;
+  }
+
+  &--primary {
+    border-radius: 50px;
+    &:hover {
+      .button__background {
+        margin-left: -50%;
+      }
+    }
+
+    .button__label {
+      position: relative;
+      z-index: 2;
+      color: $white-color;
+      font-size: 1rem;
+    }
+  }
+
+  &--secondary {
+    background-color: $gray-transparent-color;
+    &:hover {
+      background-color: $gray-transparent-darker-color;
+      .button__icon-cross {
+        rotate: 225deg;
+        transition: 500ms ease-in-out;
+      }
+    }
+
+    .button__label {
+      position: relative;
+      z-index: 2;
+      color: $white-color;
+      font-size: 1rem;
+    }
+
+    &.button--active {
+      background-color: $white-color;
+      .button__label {
+        color: $drak-color !important;
+      }
+      .button__icon-cross {
+        margin-left: 15px;
+        filter: none;
+        rotate: 0deg;
+      }
+
+      &:hover {
+        opacity: 0.8;
+        .button__icon-cross {
+          rotate: 180deg;
+          transition: 500ms ease-in-out;
+        }
+      }
+    }
+  }
+
+  &--with-cross-icon {
+    justify-content: space-between !important;
+  }
+
+  &__icon-cross {
+    rotate: 45deg;
+    margin-left: 15px;
+    filter: brightness(0) saturate(100%) invert(99%) sepia(3%) saturate(155%)
+      hue-rotate(289deg) brightness(116%) contrast(100%);
+  }
+
+  &__icon-arrow {
+    &--prev {
+      rotate: 180deg;
+    }
+  }
+
+  &--pagination-prev {
+    border-radius: 50px $border-raduis-medium $border-raduis-medium 50px;
+  }
+
+  &--pagination-next {
+    border-radius: $border-raduis-medium 50px 50px $border-raduis-medium;
+  }
+}

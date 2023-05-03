@@ -1,0 +1,26 @@
+.movie-list{
+    display: flex;
+    justify-content: center;
+
+    &__wrapper{
+        max-width: 300px;
+
+        @media screen and (min-width: 640px ) {
+            max-width: 600px;
+     
+        }
+
+        @media screen and (min-width: 900px ) {
+            max-width: 900px;
+     
+        }
+        display: flex;
+        flex-wrap: wrap;
+
+        width: fit-content;
+    
+        & > *{
+            margin: 20px;
+        }
+    }
+}

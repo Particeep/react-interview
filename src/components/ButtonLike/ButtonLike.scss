@@ -1,0 +1,14 @@
+.like-btn{
+    filter: brightness(0) saturate(100%) invert(0%) sepia(75%) saturate(7474%) hue-rotate(303deg) brightness(84%) contrast(95%);
+    opacity: 0.5;
+    transition: 300ms;
+    &:hover{
+        filter: none;
+        opacity: 0.5;
+    }
+
+    &--active{
+        filter: none;
+        opacity: 1;
+    }
+}
