@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import useListMovies from "../../hooks/useListMovies";
 import MovieCard from "../MovieCard/MovieCard";
