@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { movies$ } from "./movies";
+import { connect } from "react-redux";
+import {
+  fetchMovies,
+  likeMovie,
+  dislikeMovie,
+  filterByCategory,
+  deleteMovie,
+} from "./redux/actions/moviesActions";
 import {
   Box,
   Typography,
@@ -17,7 +24,22 @@ import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutl
 import CloseIcon from "@mui/icons-material/Close";
 import Pagination from "@mui/lab/Pagination";
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
+  const handleLike = () => {
+    console.log("movie : ", movie.id, movie.likes);
+    likeMovie(movie.id);
+  };
+
+  const handleDislike = () => {
+    dislikeMovie(movie.id);
+  };
+
+  const handleDelete = () => {
+    if (window.confirm("Are you sure you want to delete this movie?")) {
+      deleteMovie(movie.id);
+    }
+  };
+
   return (
     <Card
       sx={{
@@ -43,16 +65,21 @@ function MovieCard({ movie }) {
           image={placeholder}
           alt={movie.title}
         />
-        <IconButton sx={{ position: "absolute", top: "5px", right: "5px" }}>
+        <IconButton
+          sx={{ position: "absolute", top: "5px", right: "5px" }}
+          onClick={handleDelete}>
           <CloseIcon />
         </IconButton>
-        <CardActionArea sx={{ display: "flex" }} disableSpacing>
-          <Typography>{3}</Typography>
-          <IconButton onClick={() => console.log("liked")}>
+        <CardActionArea
+          sx={{ display: "flex" }}
+          disableSpacing
+          disableTouchRipple>
+          <Typography>{movie.likes}</Typography>
+          <IconButton onClick={handleLike}>
             <ThumbUpOutlinedIcon />
           </IconButton>
-          <Typography>{2}</Typography>
-          <IconButton onClick={() => console.log("disliked")}>
+          <Typography>{movie.dislikes}</Typography>
+          <IconButton onClick={handleDislike}>
             <ThumbDownOffAltOutlinedIcon />
           </IconButton>
         </CardActionArea>
@@ -61,7 +88,14 @@ function MovieCard({ movie }) {
   );
 }
 
-function MovieList({ movies, currentPage, moviesPerPage }) {
+function MovieList({
+  movies,
+  currentPage,
+  moviesPerPage,
+  likeMovie,
+  dislikeMovie,
+  deleteMovie,
+}) {
   const startIndex = (currentPage - 1) * moviesPerPage;
   const endIndex = startIndex + moviesPerPage;
   const currentMovies = movies.slice(startIndex, endIndex);
@@ -70,15 +104,22 @@ function MovieList({ movies, currentPage, moviesPerPage }) {
     <Grid container>
       {currentMovies.map((movie) => (
         <Grid item xs={6} md={4} lg={4} key={movie.id}>
-          <MovieCard movie={movie} />
+          <MovieCard
+            movie={movie}
+            likeMovie={likeMovie}
+            dislikeMovie={dislikeMovie}
+            deleteMovie={deleteMovie}
+          />
         </Grid>
       ))}
     </Grid>
   );
 }
 
-function CategoryFilter({ movies, handleFilterChange }) {
-  const categories = Array.from(new Set(movies.map((movie) => movie.category)));
+function CategoryFilter({ filteredMovies, handleFilterChange }) {
+  const categories = Array.from(
+    new Set(filteredMovies.map((movie) => movie.category))
+  );
 
   return (
     <Autocomplete
@@ -98,33 +139,36 @@ function CategoryFilter({ movies, handleFilterChange }) {
   );
 }
 
-function App() {
-  const [movies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+function App({
+  movies,
+  filteredMovies,
+  fetchMovies,
+  likeMovie,
+  dislikeMovie,
+  filterByCategory,
+  deleteMovie,
+}) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage, setMoviesPerPage] = useState(4);
+  const [moviesPerPage, setMoviesPerPage] = useState(6);
 
   useEffect(() => {
-    movies$.then((movies) => {
-      setMovies(movies);
-      setFilteredMovies(movies);
-    });
-  }, []);
+    fetchMovies();
+  }, [fetchMovies]);
 
-  const handleFilterChange = (selectedCategory) => {
-    if (selectedCategory) {
-      const filteredMovies = movies.filter(
-        (movie) => movie.category === selectedCategory
-      );
-      setFilteredMovies(filteredMovies);
-    } else {
-      setFilteredMovies(movies);
-    }
-    setCurrentPage(1);
+  const handleLike = (movieId) => {
+    likeMovie(movieId);
   };
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handleDislike = (movieId) => {
+    dislikeMovie(movieId);
+  };
+
+  const handleFilterChange = (category) => {
+    const filteredMovies = category
+      ? movies.filter((movie) => movie.category === category)
+      : movies;
+
+    filterByCategory(filteredMovies);
   };
 
   const handleMoviesPerPageChange = (event) => {
@@ -133,35 +177,65 @@ function App() {
     setCurrentPage(1);
   };
 
-  const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const totalMovies = filteredMovies.length;
+  const totalPages = Math.ceil(totalMovies / moviesPerPage);
 
   return (
-    <div>
+    <div className='App'>
       <Typography variant='h2' align='center'>
         Movies App
       </Typography>
-      <CategoryFilter movies={movies} handleFilterChange={handleFilterChange} />
-      <label>
-        Movies per Page:
-        <select value={moviesPerPage} onChange={handleMoviesPerPageChange}>
-          <option value={4}>4</option>
-          <option value={8}>8</option>
-          <option value={12}>12</option>
-        </select>
-      </label>
+      <CategoryFilter
+        filteredMovies={filteredMovies}
+        handleFilterChange={handleFilterChange}
+      />
+      <Box display='flex' justifyContent='center' mt={2}>
+        <label>
+          Movies per Page:
+          <select value={moviesPerPage} onChange={handleMoviesPerPageChange}>
+            <option value={4}>4</option>
+            <option value={8}>8</option>
+            <option value={12}>12</option>
+          </select>
+        </label>
+      </Box>
       <MovieList
-        movies={filteredMovies}
+        movies={movies}
         currentPage={currentPage}
         moviesPerPage={moviesPerPage}
+        likeMovie={handleLike}
+        dislikeMovie={handleDislike}
+        deleteMovie={deleteMovie}
       />
-      <Pagination
-        sx={{ display: "flex", justifyContent: "center" }}
-        count={totalPages}
-        page={currentPage}
-        onChange={(event, page) => handlePageChange(page)}
-      />
+      <Box display='flex' justifyContent='center' mt={4} sx={{ gap: "8px" }}>
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          shape='rounded'
+        />
+      </Box>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies.movies,
+    filteredMovies: state.movies.filteredMovies,
+  };
+};
+
+const mapDispatchToProps = {
+  fetchMovies,
+  likeMovie,
+  dislikeMovie,
+  filterByCategory,
+  deleteMovie,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
