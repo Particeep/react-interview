@@ -17,6 +17,16 @@ import {
   Autocomplete,
   TextField,
   CardActionArea,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import placeholder from "./technology.png";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
@@ -25,6 +35,39 @@ import CloseIcon from "@mui/icons-material/Close";
 import Pagination from "@mui/lab/Pagination";
 
 function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const DialogDelete = ({ deleteMovie }) => {
+    return (
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'>
+        <DialogTitle id='alert-dialog-title'>{"Delete a movie"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            Are you sure to delete this movie?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            Cancel
+          </Button>
+          <Button onClick={() => deleteMovie(movie.id)}>Delete</Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
+
   const handleLike = () => {
     console.log("movie : ", movie.id, movie.likes);
     likeMovie(movie.id);
@@ -35,9 +78,7 @@ function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
   };
 
   const handleDelete = () => {
-    if (window.confirm("Are you sure you want to delete this movie?")) {
-      deleteMovie(movie.id);
-    }
+    handleClickOpen();
   };
 
   return (
@@ -84,6 +125,7 @@ function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
           </IconButton>
         </CardActionArea>
       </Box>
+      <DialogDelete deleteMovie={deleteMovie} />
     </Card>
   );
 }
@@ -122,20 +164,24 @@ function CategoryFilter({ filteredMovies, handleFilterChange }) {
   );
 
   return (
-    <Autocomplete
-      disablePortal
-      id='category-filter'
-      options={categories}
-      sx={{
-        width: 400,
-        borderRadius: "22px",
-        display: "flex",
-        justifyContent: "center",
-      }}
-      size='small'
-      onChange={(event, value) => handleFilterChange(value)}
-      renderInput={(params) => <TextField {...params} label='Search a movie' />}
-    />
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Autocomplete
+        disablePortal
+        id='category-filter'
+        options={categories}
+        sx={{
+          width: 400,
+          borderRadius: "22px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+        size='small'
+        onChange={(event, value) => handleFilterChange(value)}
+        renderInput={(params) => (
+          <TextField {...params} label='Search a movie' />
+        )}
+      />
+    </Box>
   );
 }
 
@@ -149,7 +195,7 @@ function App({
   deleteMovie,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage, setMoviesPerPage] = useState(6);
+  const [moviesPerPage, setMoviesPerPage] = useState(8);
 
   useEffect(() => {
     fetchMovies();
@@ -164,11 +210,8 @@ function App({
   };
 
   const handleFilterChange = (category) => {
-    const filteredMovies = category
-      ? movies.filter((movie) => movie.category === category)
-      : movies;
-
-    filterByCategory(filteredMovies);
+    console.log("selected category");
+    filterByCategory(category);
   };
 
   const handleMoviesPerPageChange = (event) => {
@@ -194,14 +237,18 @@ function App({
         handleFilterChange={handleFilterChange}
       />
       <Box display='flex' justifyContent='center' mt={2}>
-        <label>
-          Movies per Page:
-          <select value={moviesPerPage} onChange={handleMoviesPerPageChange}>
-            <option value={4}>4</option>
-            <option value={8}>8</option>
-            <option value={12}>12</option>
-          </select>
-        </label>
+        <FormControl variant='standard' sx={{ ml: 1, minWidth: 120 }}>
+          <InputLabel id='movies-per-page-label'>Movies per Page</InputLabel>
+          <Select
+            labelId='movies-per-page-label'
+            id='movies-per-page'
+            value={moviesPerPage}
+            onChange={handleMoviesPerPageChange}>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={12}>12</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
       <MovieList
         movies={movies}
