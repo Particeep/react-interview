@@ -25,6 +25,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Divider,
 } from "@mui/material";
 import placeholder from "./technology.png";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
@@ -60,14 +61,15 @@ function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
           <Button onClick={handleClose} autoFocus>
             Cancel
           </Button>
-          <Button onClick={() => deleteMovie(movie.id)}>Delete</Button>
+          <Button onClick={() => deleteMovie(movie.id)} color='error'>
+            Delete
+          </Button>
         </DialogActions>
       </Dialog>
     );
   };
 
   const handleLike = () => {
-    console.log("movie : ", movie.id, movie.likes);
     likeMovie(movie.id);
   };
 
@@ -141,9 +143,20 @@ function MovieList({
   const currentMovies = movies.slice(startIndex, endIndex);
 
   return (
-    <Grid container>
+    <Grid
+      container
+      spacing={4}
+      sx={{ overflow: "hidden", padding: "0 20px" }}
+      justify='center'>
       {currentMovies.map((movie) => (
-        <Grid item xs={6} md={4} lg={4} key={movie.id}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={4}
+          key={movie.id}
+          sx={{ padding: 0 }}>
           <MovieCard
             movie={movie}
             likeMovie={likeMovie}
@@ -209,15 +222,18 @@ function App({
   const totalPages = Math.ceil(totalMovies / moviesPerPage);
 
   return (
-    <div className='App'>
-      <Typography variant='h2' align='center'>
+    <div className='App' style={{ margin: "0.6rem 0 0.6rem 0" }}>
+      <Typography variant='h3' align='center' mb={2} mt={2}>
         Movies App
       </Typography>
+      <Divider
+        sx={{ margin: "0.4rem 0 0.8rem 0", backgroundColor: "#b2201f" }}
+      />
       <CategoryFilter
         filteredMovies={filteredMovies}
         handleFilterChange={handleFilterChange}
       />
-      <Box display='flex' justifyContent='center' mt={2}>
+      <Box display='flex' justifyContent='center' mt={2} mb={4}>
         <FormControl variant='standard' sx={{ ml: 1, minWidth: 120 }}>
           <InputLabel id='movies-per-page-label'>Movies per Page</InputLabel>
           <Select

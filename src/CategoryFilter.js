@@ -17,11 +17,18 @@ function CategoryFilter({ filteredMovies, handleFilterChange }) {
           borderRadius: "22px",
           display: "flex",
           justifyContent: "center",
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+            {
+              borderColor: "#b2201f",
+            },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: "black",
+          },
         }}
         size='small'
         onChange={(event, value) => handleFilterChange(value)}
         renderInput={(params) => (
-          <TextField {...params} label='Search a movie' />
+          <TextField {...params} label='Select movie category' />
         )}
       />
     </Box>

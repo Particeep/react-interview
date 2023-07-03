@@ -53,7 +53,6 @@ function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
   };
 
   const handleLike = () => {
-    console.log("movie : ", movie.id, movie.likes);
     likeMovie(movie.id);
   };
 
@@ -69,7 +68,7 @@ function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
     <Card
       sx={{
         boxShadow: "0px 4px 10px rgba(21, 57, 45, 0.1)",
-        margin: "20px",
+        margin: "0 0.4rem 0 0.4rem",
         width: "18rem",
         position: "relative",
       }}>
@@ -96,7 +95,10 @@ function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
           <CloseIcon />
         </IconButton>
         <CardActionArea
-          sx={{ display: "flex" }}
+          disableRipple
+          sx={{
+            display: "flex",
+          }}
           disableSpacing
           disableTouchRipple>
           <Typography>{movie.likes}</Typography>
