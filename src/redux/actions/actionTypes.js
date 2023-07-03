@@ -1,0 +1,5 @@
+export const GET_MOVIES = "GET_MOVIES";
+export const LIKE_MOVIE = "LIKE_MOVIE";
+export const DISLIKE_MOVIE = "DISLIKE_MOVIE";
+export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+export const DELETE_MOVIE = "DELETE_MOVIE";
