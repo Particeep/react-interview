@@ -14,8 +14,6 @@ import {
   Grid,
   CardMedia,
   IconButton,
-  Autocomplete,
-  TextField,
   CardActionArea,
   Dialog,
   DialogTitle,
@@ -33,7 +31,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import Pagination from "@mui/lab/Pagination";
-
+import CategoryFilter from "./CategoryFilter";
 function MovieCard({ movie, likeMovie, dislikeMovie, deleteMovie }) {
   const [open, setOpen] = useState(false);
 
@@ -155,33 +153,6 @@ function MovieList({
         </Grid>
       ))}
     </Grid>
-  );
-}
-
-function CategoryFilter({ filteredMovies, handleFilterChange }) {
-  const categories = Array.from(
-    new Set(filteredMovies.map((movie) => movie.category))
-  );
-
-  return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <Autocomplete
-        disablePortal
-        id='category-filter'
-        options={categories}
-        sx={{
-          width: 400,
-          borderRadius: "22px",
-          display: "flex",
-          justifyContent: "center",
-        }}
-        size='small'
-        onChange={(event, value) => handleFilterChange(value)}
-        renderInput={(params) => (
-          <TextField {...params} label='Search a movie' />
-        )}
-      />
-    </Box>
   );
 }
 
