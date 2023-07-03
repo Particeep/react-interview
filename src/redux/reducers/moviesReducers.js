@@ -8,74 +8,60 @@ import {
 
 const initialState = {
   movies: [],
-  filteredMovies: [],
+  filteredMovies: [], // Add filteredMovies array to the initial state
 };
 
 const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_MOVIES: {
+    case GET_MOVIES:
       return {
         ...state,
         movies: action.payload,
-        filteredMovies: action.payload,
+        filteredMovies: action.payload, // Initialize filteredMovies with all movies
       };
-    }
-    case LIKE_MOVIE: {
-      const updatedMovies = state.movies.map((movie) => {
-        if (movie.id === action.payload) {
-          console.log("movie r: ", movie.id, movie.likes, action.payload);
-          return {
-            ...movie,
-            likes: movie.likes + 1,
-          };
-        }
-        return movie;
-      });
-
-      return {
-        ...state,
-        movies: updatedMovies,
-      };
-    }
-    case DISLIKE_MOVIE: {
-      const updatedMovies = state.movies.map((movie) => {
-        if (movie.id === action.payload) {
-          return {
-            ...movie,
-            dislikes: movie.dislikes + 1,
-          };
-        }
-        return movie;
-      });
-
-      return {
-        ...state,
-        movies: updatedMovies,
-      };
-    }
-    case FILTER_BY_CATEGORY: {
+    case FILTER_BY_CATEGORY:
       return {
         ...state,
         filteredMovies: action.payload,
       };
-    }
-    case DELETE_MOVIE: {
-      const updatedMovies = state.movies.filter(
-        (movie) => movie.id !== action.payload
-      );
-      const updatedFilteredMovies = state.filteredMovies.filter(
-        (movie) => movie.id !== action.payload
-      );
-
+    case LIKE_MOVIE:
       return {
         ...state,
-        movies: updatedMovies,
-        filteredMovies: updatedFilteredMovies,
+        movies: state.movies.map((movie) =>
+          movie.id === action.payload
+            ? { ...movie, likes: movie.likes + 1 }
+            : movie
+        ),
+        filteredMovies: state.filteredMovies.map((movie) =>
+          movie.id === action.payload
+            ? { ...movie, likes: movie.likes + 1 }
+            : movie
+        ),
       };
-    }
+    case DISLIKE_MOVIE:
+      return {
+        ...state,
+        movies: state.movies.map((movie) =>
+          movie.id === action.payload
+            ? { ...movie, dislikes: movie.dislikes + 1 }
+            : movie
+        ),
+        filteredMovies: state.filteredMovies.map((movie) =>
+          movie.id === action.payload
+            ? { ...movie, dislikes: movie.dislikes + 1 }
+            : movie
+        ),
+      };
+    case DELETE_MOVIE:
+      return {
+        ...state,
+        movies: state.movies.filter((movie) => movie.id !== action.payload),
+        filteredMovies: state.filteredMovies.filter(
+          (movie) => movie.id !== action.payload
+        ),
+      };
     default:
       return state;
   }
 };
-
 export default moviesReducer;

@@ -209,9 +209,19 @@ function App({
     dislikeMovie(movieId);
   };
 
-  const handleFilterChange = (category) => {
-    console.log("selected category");
-    filterByCategory(category);
+  const handleFilterChange = (selectedCategory) => {
+    let filteredMovies;
+
+    if (selectedCategory) {
+      filteredMovies = movies.filter(
+        (movie) => movie.category === selectedCategory
+      );
+    } else {
+      filteredMovies = movies;
+    }
+
+    filterByCategory(filteredMovies);
+    setCurrentPage(1);
   };
 
   const handleMoviesPerPageChange = (event) => {
@@ -251,7 +261,7 @@ function App({
         </FormControl>
       </Box>
       <MovieList
-        movies={movies}
+        movies={filteredMovies}
         currentPage={currentPage}
         moviesPerPage={moviesPerPage}
         likeMovie={handleLike}
