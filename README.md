@@ -8,14 +8,14 @@
 
 4. Ajouter un filtre par catégorie (de type multiselect) en supposant qu'on ne les connaisse pas à l'avance (il faut donc les récupérer dynamiquement depuis les films). Si tous les films d'une catégorie sont supprimés, celle-ci ne doit plus apparaître.
 
-5. Ajouter un système de pagination avec les fonctionnalités suivantes: 
-    * Boutons précédent/suivant
-    * Choix du nombre d'élements affichés par page (4, 8 ou 12).
+5. Ajouter un système de pagination avec les fonctionnalités suivantes:
+   - Boutons précédent/suivant
+   - Choix du nombre d'élements affichés par page (4, 8 ou 12).
 
 Prenez des initiatives, il y a des points bonus si
 
-* C'est joli
-* Vous utilisez correctement REDUX 
-* Il y a une attention aux détails
+- C'est joli
+- Vous utilisez correctement REDUX
+- Il y a une attention aux détails
 
 /!\ La suppression du comportement asynchrone dans `movies.js` entraînera une annulation du test.
