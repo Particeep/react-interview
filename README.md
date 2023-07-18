@@ -1,3 +1,29 @@
+# Solution proposée :
+
+## la stack utilisée avec ReactJs
+
+1. Redux: pour la gestion du store global
+2. Redux-Saga: pour la gestion des traitements asynchrones
+3. Styled-components: pour gérer le style
+
+## Etapes pour lancer l'application
+
+1. Lancer la commande :
+
+```bash
+npm install
+```
+
+2. Puis :
+
+```bash
+npm run
+```
+
+3. Naviguer sur : http://localhost:3000/
+
+# Original README
+
 # react-interview
 
 1. Lister les films dans des cartes avec: le titre en gras, la catégorie et une jauge type Youtube indiquant le ratio likes/dislikes. Les cartes doivent être côtes à côtes et responsive. Càd que lorsque la fenêtre se réduit, les cartes sautent à la ligne suivante.
