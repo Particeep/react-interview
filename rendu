@@ -1,0 +1,132 @@
+import React, { useState, useEffect } from 'react';
+
+// Composant de carte de film
+const MovieCard = ({ movie, onDelete, onLike }) => {
+  const [liked, setLiked] = useState(false);
+
+  const handleLike = () => {
+    setLiked(!liked);
+    onLike(movie.id);
+  };
+
+  return (
+    <div className="movie-card">
+      <h2>{movie.title}</h2>
+      <p>{movie.category}</p>
+      <div className="likes-bar">
+        <div className="likes" style={{ width: `${(movie.likes / (movie.likes + movie.dislikes)) * 100}%` }}></div>
+        <div className="dislikes" style={{ width: `${(movie.dislikes / (movie.likes + movie.dislikes)) * 100}%` }}></div>
+      </div>
+      <button onClick={() => onDelete(movie.id)}>Supprimer</button>
+      <button onClick={handleLike}>{liked ? 'Disliker' : 'Liker'}</button>
+    </div>
+  );
+};
+
+// Composant de liste de films
+const MovieList = ({ movies, onDelete, onLike }) => {
+  return (
+    <div className="movie-list">
+      {movies.map(movie => (
+        <MovieCard key={movie.id} movie={movie} onDelete={onDelete} onLike={onLike} />
+      ))}
+    </div>
+  );
+};
+
+// Composant principal
+const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [moviesPerPage, setMoviesPerPage] = useState(4);
+
+  useEffect(() => {
+    // Récupérer les films (utilisation de movies$)
+    movies$.then(data => {
+      setMovies(data);
+      setFilteredMovies(data);
+      // Récupérer les catégories
+      const categoriesSet = new Set(data.map(movie => movie.category));
+      setCategories([...categoriesSet]);
+    });
+  }, []);
+
+  const handleDelete = id => {
+    setMovies(movies.filter(movie => movie.id !== id));
+    setFilteredMovies(filteredMovies.filter(movie => movie.id !== id));
+  };
+
+  const handleLike = id => {
+    const updatedMovies = movies.map(movie => {
+      if (movie.id === id) {
+        if (movie.liked) {
+          return { ...movie, likes: movie.likes - 1, liked: false };
+        } else {
+          return { ...movie, likes: movie.likes + 1, liked: true };
+        }
+      }
+      return movie;
+    });
+    setMovies(updatedMovies);
+    setFilteredMovies(updatedMovies);
+  };
+
+  const handleCategoryFilter = event => {
+    const selectedCategories = Array.from(event.target.selectedOptions, option => option.value);
+    if (selectedCategories.length === 0) {
+      setFilteredMovies(movies);
+    } else {
+      const filtered = movies.filter(movie => selectedCategories.includes(movie.category));
+      setFilteredMovies(filtered);
+    }
+  };
+
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
+
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovies = filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie);
+
+  return (
+    <div>
+      <select multiple onChange={handleCategoryFilter}>
+        {categories.map(category => (
+          <option key={category} value={category}>{category}</option>
+        ))}
+      </select>
+      <MovieList movies={currentMovies} onDelete={handleDelete} onLike={handleLike} />
+      <Pagination
+        moviesPerPage={moviesPerPage}
+        totalMovies={filteredMovies.length}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+    </div>
+  );
+};
+
+// Composant de pagination
+const Pagination = ({ moviesPerPage, totalMovies, currentPage, onPageChange }) => {
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalMovies / moviesPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map(number => (
+          <li key={number} className={currentPage === number ? 'active' : ''}>
+            <button onClick={() => onPageChange(number)}>{number}</button>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
+export default App;
